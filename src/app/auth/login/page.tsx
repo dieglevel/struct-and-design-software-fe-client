@@ -1,7 +1,9 @@
+import { LogoICon } from "../../../../public/svgs";
+
 const LoginPage = () => {
     return (
         <div>
-            <h1>login page</h1>
+            <LogoICon width={120} height={86} />
         </div>
     );
 };

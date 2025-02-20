@@ -1,1 +1,1 @@
-export * from "./register.interface";
+export * from "./account.interface";
