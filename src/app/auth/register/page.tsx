@@ -26,6 +26,7 @@ const RegisterPage = () => {
                 <form className="flex flex-col">
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
                         Họ và tên
+                        <span className="text-colorbrand-burntSienna-600 text-lg pl-1">*</span>
                     </label>
                     <input
                         type="text"
@@ -34,6 +35,7 @@ const RegisterPage = () => {
                     />
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
                         Ngày sinh
+                        <span className="text-colorbrand-burntSienna-600 text-lg pl-1">*</span>
                     </label>
                     <input
                         type="date"
@@ -42,6 +44,7 @@ const RegisterPage = () => {
                     />
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
                         Số điện thoại
+                        <span className="text-colorbrand-burntSienna-600 text-lg pl-1">*</span>
                     </label>
                     <input
                         type="text"
@@ -50,6 +53,7 @@ const RegisterPage = () => {
                     />
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
                         Nhập mật khẩu
+                        <span className="text-colorbrand-burntSienna-600 text-lg pl-1">*</span>
                     </label>
                     <input
                         type="password"
@@ -80,7 +84,7 @@ const RegisterPage = () => {
                             <p className="text-colorbrand-grayWhite-500 text-sm text-center">
                                 Đã có tài khoản
                             </p>
-                            <a href="#" className="text-colorbrand-burntSienna-500 text-sm">
+                            <a href="./login" className="text-colorbrand-burntSienna-500 text-sm">
                                 Đăng nhập
                             </a>
                         </div>

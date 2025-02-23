@@ -25,6 +25,7 @@ const LoginPage = () => {
                 <form className="flex flex-col">
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
                         Số điện thoại
+                        <span className="text-colorbrand-burntSienna-600 text-lg pl-1">*</span>
                     </label>
                     <input
                         type="text"
@@ -33,6 +34,7 @@ const LoginPage = () => {
                     />
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
                         Nhập mật khẩu
+                        <span className="text-colorbrand-burntSienna-600 text-lg pl-1">*</span>
                     </label>
                     <input
                         type="password"
@@ -54,7 +56,7 @@ const LoginPage = () => {
                                 Duy trì đăng nhập
                             </label>
                         </div>
-                        <a href="#" className="text-colorbrand-burntSienna-500">
+                        <a href="./forget-password" className="text-colorbrand-burntSienna-500">
                             Quên mật khẩu?
                         </a>
                     </div>
@@ -66,7 +68,10 @@ const LoginPage = () => {
                             <p className="text-colorbrand-grayWhite-500 text-sm text-center">
                                 Bạn chưa có tài khoản?
                             </p>
-                            <a href="#" className="text-colorbrand-burntSienna-500 text-sm">
+                            <a
+                                href="./register"
+                                className="text-colorbrand-burntSienna-500 text-sm"
+                            >
                                 Đăng ký ngay
                             </a>
                         </div>
