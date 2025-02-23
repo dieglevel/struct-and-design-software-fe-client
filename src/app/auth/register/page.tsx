@@ -10,10 +10,10 @@ const RegisterPage = () => {
            lg:w-1/3 
            xl:w-1/4 
            2xl:w-1/5 
-           mb-10
+            
            "
         >
-            <LogoICon className="w-30 h-1/4 m-auto" />
+            <LogoICon className="w-30 h-[160px] m-auto" />
             <div className="pb-10">
                 <h1 className="text-colorbrand-midnightBlue-950 text-2xl font-bold text-center pt-10">
                     Đăng ký

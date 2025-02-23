@@ -12,8 +12,8 @@ const LoginPage = () => {
         2xl:w-1/5 
         "
         >
-            <LogoICon className="w-30 h-1/4 m-auto p-b" />
-            <div className="">
+            <LogoICon className="w-30 h-[160px] m-auto p-b" />
+            <div className="pb-10">
                 <h1 className="text-colorbrand-midnightBlue-950 text-2xl font-bold text-center pt-10">
                     Đăng nhập
                 </h1>
