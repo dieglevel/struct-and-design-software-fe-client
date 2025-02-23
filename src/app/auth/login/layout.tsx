@@ -1,8 +1,4 @@
 const LoginLayout = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <div>
-            <h1>{children}</h1>
-        </div>
-    );
+    return <div className="w-full ">{children}</div>;
 };
 export default LoginLayout;
