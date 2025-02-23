@@ -1,4 +1,4 @@
-import { LogoICon } from "../../../../public/svgs";
+import { LogoICon } from "../../../assets/svgs";
 
 const LoginPage = () => {
     return (
