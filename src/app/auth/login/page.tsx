@@ -17,7 +17,7 @@ const LoginPage = () => {
                 <h1 className="text-colorbrand-midnightBlue-950 text-2xl font-bold text-center pt-10">
                     Đăng nhập
                 </h1>
-                <p className="text-base text-colorbrand-grayWhite-500 font-thin text-center ">
+                <p className="text-base text-colorbrand-grayWhite-500 font-thin text-center  md:text-nowrap ">
                     Cùng V-Travel đồng hành với bạn trong các chuyến đi.
                 </p>
             </div>

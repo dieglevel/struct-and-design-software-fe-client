@@ -1,8 +1,4 @@
 const RegisterLayout = ({ children }: { children: React.ReactNode }) => {
-    return (
-        <div>
-            <h1>{children}</h1>
-        </div>
-    );
+    return <div className="w-full h-svh flex justify-center items-center">{children}</div>;
 };
 export default RegisterLayout;
