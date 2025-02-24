@@ -1,11 +1,13 @@
 "use client";
 import { LogoICon } from "@/assets/svgs";
 import { useRouter } from "next/navigation";
-const ForgetPasswordPage = () => {
+import { redirect } from "next/navigation";
+const InputOTPPage = () => {
     const router = useRouter();
-    function sendOTP() {
-        router.push("/auth/OTP");
+    function resendOTP() {
+        alert("Resend OTP");
     }
+    function submitOTP() {}
     return (
         <div
             className="
@@ -29,29 +31,27 @@ const ForgetPasswordPage = () => {
             <div className="">
                 <form className="flex flex-col">
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
-                        Số điện thoại{" "}
-                        <span className="text-colorbrand-burntSienna-600 text-lg">*</span>
+                        Nhập mã xác thực
                     </label>
                     <input
                         type="text"
-                        placeholder="Nhập số điện thoại"
+                        placeholder="Nhập mã xác thực"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
-                    <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
-                        Số điện thoại{" "}
-                        <span className="text-colorbrand-burntSienna-600 text-lg">*</span>
-                    </label>
-                    <input
-                        type="text"
-                        placeholder="Nhập số điện thoại"
-                        className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
-                    />
+                    <div className="flex flex-row justify-end gap-2">
+                        <p className="text-colorbrand-grayWhite-200 text-base  my-2 ">
+                            Không nhận được mã?
+                        </p>
+                        <button onClick={resendOTP} className="text-colorbrand-burntSienna-500">
+                            <p className="text-colorbrand-burntSienna-600">Gửi lại</p>
+                        </button>
+                    </div>
                     <div className="flex flex-col">
                         <button
-                            onClick={sendOTP}
+                            onClick={submitOTP}
                             className="bg-colorbrand-burntSienna-500 text-colorbrand-grayWhite-50 rounded-md p-2 w-1/2 m-auto mt-10"
                         >
-                            Gửi
+                            Tiếp theo
                         </button>
                         <div className="flex flex-row justify-center gap-2 mt-5">
                             <p className="text-colorbrand-grayWhite-500 text-sm text-center">
@@ -70,4 +70,4 @@ const ForgetPasswordPage = () => {
         </div>
     );
 };
-export default ForgetPasswordPage;
+export default InputOTPPage;
