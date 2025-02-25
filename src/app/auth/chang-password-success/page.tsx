@@ -1,11 +1,6 @@
-"use client";
 import { LogoICon } from "@/assets/svgs";
-import { useRouter } from "next/navigation";
-const ForgetPasswordPage = () => {
-    const router = useRouter();
-    function sendOTP() {
-        router.push("/auth/OTP");
-    }
+
+const ChangePasswordSuccessPage = () => {
     return (
         <div
             className="
@@ -29,29 +24,26 @@ const ForgetPasswordPage = () => {
             <div className="">
                 <form className="flex flex-col">
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
-                        Số điện thoại{" "}
+                        Mật khẩu mới
                         <span className="text-colorbrand-burntSienna-600 text-lg">*</span>
                     </label>
                     <input
-                        type="text"
-                        placeholder="Nhập số điện thoại"
+                        type="password"
+                        placeholder="Nhập mật khẩu mới"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
-                        Số điện thoại{" "}
+                        Xác nhận mật khẩu mới
                         <span className="text-colorbrand-burntSienna-600 text-lg">*</span>
                     </label>
                     <input
-                        type="text"
-                        placeholder="Nhập số điện thoại"
+                        type="password"
+                        placeholder="Xác nhận mật khẩu mới"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
                     <div className="flex flex-col">
-                        <button
-                            onClick={sendOTP}
-                            className="bg-colorbrand-burntSienna-500 text-colorbrand-grayWhite-50 rounded-md p-2 w-1/2 m-auto mt-10"
-                        >
-                            Gửi
+                        <button className="bg-colorbrand-burntSienna-500 text-colorbrand-grayWhite-50 rounded-md p-2 w-1/2 m-auto mt-10">
+                            Tiếp theo
                         </button>
                         <div className="flex flex-row justify-center gap-2 mt-5">
                             <p className="text-colorbrand-grayWhite-500 text-sm text-center">
@@ -70,4 +62,4 @@ const ForgetPasswordPage = () => {
         </div>
     );
 };
-export default ForgetPasswordPage;
+export default ChangePasswordSuccessPage;
