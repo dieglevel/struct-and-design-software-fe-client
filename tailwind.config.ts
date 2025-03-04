@@ -1,3 +1,4 @@
+import { heroui } from "@heroui/theme";
 import type { Config } from "tailwindcss";
 
 export default {
@@ -7,6 +8,7 @@ export default {
         "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
         "./src/containers/**/*.{js,ts,jsx,tsx,mdx}",
+        "./node_modules/@heroui/theme/dist/components/(divider|image).js",
     ],
     theme: {
         extend: {
@@ -110,5 +112,5 @@ export default {
             },
         },
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [require("tailwindcss-animate"), heroui()],
 } satisfies Config;

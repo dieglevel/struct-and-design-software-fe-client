@@ -2,12 +2,13 @@
 import { LogoICon } from "@/assets/svgs";
 import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
+import React from "react";
 const InputOTPPage = () => {
     const router = useRouter();
-    function resendOTP() {
-        alert("Resend OTP");
+    function confirmOTP(e: React.FormEvent) {
+        e.preventDefault();
+        router.push("/auth/change-password");
     }
-    function submitOTP() {}
     return (
         <div
             className="
@@ -42,13 +43,13 @@ const InputOTPPage = () => {
                         <p className="text-colorbrand-grayWhite-200 text-base  my-2 ">
                             Không nhận được mã?
                         </p>
-                        <button onClick={resendOTP} className="text-colorbrand-burntSienna-500">
+                        <button className="text-colorbrand-burntSienna-500">
                             <p className="text-colorbrand-burntSienna-600">Gửi lại</p>
                         </button>
                     </div>
                     <div className="flex flex-col">
                         <button
-                            onClick={submitOTP}
+                            onClick={confirmOTP}
                             className="bg-colorbrand-burntSienna-500 text-colorbrand-grayWhite-50 rounded-md p-2 w-1/2 m-auto mt-10"
                         >
                             Tiếp theo

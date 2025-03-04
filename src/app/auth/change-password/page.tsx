@@ -15,7 +15,7 @@ const ChangePasswordPage = () => {
             <LogoICon className="w-30 h-[160px] m-auto p-b" />
             <div className="pb-10">
                 <h1 className="text-colorbrand-midnightBlue-950 text-2xl font-bold text-center pt-10">
-                    Quên mật khẩu?
+                    Nhập mật khẩu mới
                 </h1>
                 <p className="text-base text-colorbrand-grayWhite-500 font-thin text-center  md:text-nowrap ">
                     Đừng lo chúng tôi sẽ giúp bạn khôi phục tài khoản.
