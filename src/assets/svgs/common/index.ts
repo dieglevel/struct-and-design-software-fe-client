@@ -6,4 +6,7 @@ export * from "./google-pay-logo";
 export * from "./facebook-logo";
 export * from "./youtube-logo";
 export * from "./discord-logo";
-export * from "./google-logo"; 
+export * from "./google-logo";
+export * from "./arrow-top-right";
+export * from "./un-favorite";
+export * from "./favorite";
