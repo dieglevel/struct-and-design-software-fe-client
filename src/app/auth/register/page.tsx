@@ -1,28 +1,26 @@
 import { LogoICon } from "@/assets/svgs";
 
 const RegisterPage = () => {
+    
     return (
         <div
             className="
-           w-full h-full
-           max-w-[80%] max-h-[80%]
-           md:w-1/2 
-           lg:w-1/3 
-           xl:w-1/4 
-           2xl:w-1/5 
-            
+           w-full h-screen
+           flex flex-col justify-center items-center
+            border-2 border-colorbrand-grayWhite-200 rounded-md
+            p-5
            "
         >
-            <LogoICon className="w-30 h-[160px] m-auto" />
+            <LogoICon className="w-30 h-40 " />
             <div className="pb-10">
                 <h1 className="text-colorbrand-midnightBlue-950 text-2xl font-bold text-center pt-10">
                     Đăng ký
                 </h1>
                 <p className="text-base text-colorbrand-grayWhite-500 font-thin text-center md:text-nowrap ">
-                    Cùng V-Travel đồng hành với bạn trong các chuyến đi.
+                    Đồng hành với bạn trong các chuyến đi.
                 </p>
             </div>
-            <div className="">
+            <div className="">  
                 <form className="flex flex-col">
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
                         Họ và tên

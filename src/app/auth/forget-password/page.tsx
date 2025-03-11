@@ -1,10 +1,11 @@
 "use client";
 import { LogoICon } from "@/assets/svgs";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 const ForgetPasswordPage = () => {
-    const router = useRouter();
+    // const router = useRouter();
     function sendOTP() {
-        router.push("/auth/OTP");
+        // router.push("/auth/otp");
+        window.location.href = "/auth/otp";
     }
     return (
         <div
@@ -37,15 +38,7 @@ const ForgetPasswordPage = () => {
                         placeholder="Nhập số điện thoại"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
-                    <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
-                        Số điện thoại{" "}
-                        <span className="text-colorbrand-burntSienna-600 text-lg">*</span>
-                    </label>
-                    <input
-                        type="text"
-                        placeholder="Nhập số điện thoại"
-                        className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
-                    />
+                    
                     <div className="flex flex-col">
                         <button
                             onClick={sendOTP}
