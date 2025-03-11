@@ -7,3 +7,5 @@ export * from "./facebook-logo";
 export * from "./youtube-logo";
 export * from "./discord-logo";
 export * from "./google-logo"; 
+export * from "./clock";
+export * from "./tick";
