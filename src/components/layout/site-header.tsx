@@ -70,7 +70,7 @@ export default function SiteHeader() {
         <div className="container mx-auto flex h-16 items-center px-4">
           <div className="flex items-center flex-1 justify-between">
             <Link href="/" className="mr-6">
-              <LogoICon width={158} height={35} />
+              <LogoICon height={60} />
             </Link>
 
             {/* Desktop Navigation */}
