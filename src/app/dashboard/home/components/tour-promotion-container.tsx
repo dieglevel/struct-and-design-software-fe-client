@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Image from "next/image";
-import ReactStars from "react-stars";
 import { ClockIcon } from "@/assets/svgs";
 import { useState, useEffect } from "react";
+import ReactStars from "react-stars";
 
 interface TourProps {
   id: string;

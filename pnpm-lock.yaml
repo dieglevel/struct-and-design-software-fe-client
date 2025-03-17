@@ -68,6 +68,9 @@ importers:
       react-redux:
         specifier: ^9.2.0
         version: 9.2.0(@types/react@19.0.10)(react@19.0.0)(redux@5.0.1)
+      react-stars:
+        specifier: ^2.2.5
+        version: 2.2.5
       tailwind-merge:
         specifier: ^2.6.0
         version: 2.6.0
@@ -87,6 +90,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.0.4(@types/react@19.0.10)
+      '@types/react-stars':
+        specifier: ^2.2.4
+        version: 2.2.4
       eslint:
         specifier: ^9
         version: 9.21.0(jiti@1.21.7)
@@ -96,9 +102,6 @@ importers:
       postcss:
         specifier: ^8
         version: 8.5.3
-      react-stars:
-        specifier: ^2.2.5
-        version: 2.2.5
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.17
@@ -817,6 +820,9 @@ packages:
     resolution: {integrity: sha512-4fSQ8vWFkg+TGhePfUzVmat3eC14TXYSsiiDSLI0dVLsrm9gZFABjPy/Qu6TKgl1tq1Bu1yDsuQgY3A3DOjCcg==}
     peerDependencies:
       '@types/react': ^19.0.0
+
+  '@types/react-stars@2.2.4':
+    resolution: {integrity: sha512-7wZNmH28ZeDSkesOmpvenLOLJ3StRdHzAbbs+ZkLEOx75Qe8vUWl+qCGnJHdKr+HCF/BSZPvw7LF96Fl+fTUSw==}
 
   '@types/react@19.0.10':
     resolution: {integrity: sha512-JuRQ9KXLEjaUNjTWpzuR231Z2WpIwczOkBEIvbHNCzQefFIT0L8IqE6NV6ULLyC1SI/i234JnDoMkfg+RjQj2g==}
@@ -3096,6 +3102,10 @@ snapshots:
       undici-types: 6.19.8
 
   '@types/react-dom@19.0.4(@types/react@19.0.10)':
+    dependencies:
+      '@types/react': 19.0.10
+
+  '@types/react-stars@2.2.4':
     dependencies:
       '@types/react': 19.0.10
 

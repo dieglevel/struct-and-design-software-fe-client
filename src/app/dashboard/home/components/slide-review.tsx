@@ -1,7 +1,5 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import Image, { StaticImageData } from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -9,12 +7,20 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import avatar1 from "@/assets/images/avatar1.png";
-import ReactStars from "react-stars";
 import { type CarouselApi } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay"
+import Autoplay from "embla-carousel-autoplay";
+import ReactStars from "react-stars";
+
+interface ReviewProps {
+  id: number;
+  name: string;
+  avatar: StaticImageData;
+  rating: number;
+  text: string;
+}
 
 // Testimonial data
-const testimonials = [
+const reviews: ReviewProps[] = [
   {
     id: 1,
     name: "John Doe",
@@ -91,15 +97,20 @@ export const SlideReview = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
+  const [reviewTours, setReviewTours] = useState<ReviewProps[]>([]);
+
+  useEffect(() => {
+    setReviewTours(reviews);
+  }, []);
 
   useEffect(() => {
     if (!api) return;
 
     setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
+    // setCurrent(api.selectedScrollSnap() );
 
     const handleSelect = () => {
-      setCurrent(api.selectedScrollSnap() + 1);
+      setCurrent(api.selectedScrollSnap());
     };
 
     api.on("select", handleSelect);
@@ -108,6 +119,8 @@ export const SlideReview = () => {
       api.off("select", handleSelect);
     };
   }, [api]);
+
+  if (!reviews) return null;
 
   return (
     <div className="w-full py-12">
@@ -118,37 +131,38 @@ export const SlideReview = () => {
             align: "start",
             loop: true,
           }}
+          plugins={[
+            Autoplay({
+              delay: 2000,
+              stopOnInteraction: true,
+            }),
+          ]}
           className="w-full"
         >
           <CarouselContent>
-            {testimonials.map((testimonial) => (
-              <CarouselItem key={testimonial.id} className="pl-4 basis-1/4">
+            {reviewTours.map((review) => (
+              <CarouselItem key={review.id} className="pl-4 basis-1/4">
                 <div className="p-1">
                   <Card className="border-none shadow-none">
                     <CardContent className="flex flex-col items-center p-6">
                       <div className="flex w-full">
                         <div className="mb-4 mr-5 rounded-full overflow-hidden h-20 w-20">
                           <Image
-                            src={testimonial.avatar}
-                            alt={testimonial.name}
+                            src={review.avatar}
+                            alt={review.name}
                             width={160}
                             height={80}
                             className="object-cover"
                           />
                         </div>
                         <div className="flex flex-col justify-center">
-                          <div className="">{testimonial.name}</div>
-                          <ReactStars
-                            count={5}
-                            size={24}
-                            value={testimonial.rating}
-                            edit={false}
-                          />
+                          <div>{review.name}</div>
+                          <ReactStars value={review.rating} edit={false} />
                         </div>
                       </div>
 
                       <p className="text-sm text-gray-600">
-                        {testimonial.text}
+                        {review.text}
                       </p>
                     </CardContent>
                   </Card>
@@ -158,8 +172,8 @@ export const SlideReview = () => {
           </CarouselContent>
         </Carousel>
         <div className="flex justify-center mt-6 gap-2 w-full h-14">
-          {Array.from({ length: Math.ceil(count / 4) }).map((_, i) => {
-            const isActive = Math.floor(current / 4) === i;
+          {Array.from({ length: Math.ceil(count) }).map((_, i) => {
+            const isActive = Math.floor(current) === i;
             return (
               <button
                 key={i}
