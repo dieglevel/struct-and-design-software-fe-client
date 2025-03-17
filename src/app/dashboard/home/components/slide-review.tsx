@@ -11,6 +11,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import avatar1 from "@/assets/images/avatar1.png";
 import ReactStars from "react-stars";
 import { type CarouselApi } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay"
 
 // Testimonial data
 const testimonials = [
@@ -88,20 +89,24 @@ const testimonials = [
 
 export const SlideReview = () => {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0)
-  const [count, setCount] = useState(0)
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (!api) {
-      return;
-    }
+    if (!api) return;
 
-    setCount(api.scrollSnapList().length)
-    setCurrent(api.selectedScrollSnap() + 1)
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
-        setCurrent(api.selectedScrollSnap() + 1)
-    });
+    const handleSelect = () => {
+      setCurrent(api.selectedScrollSnap() + 1);
+    };
+
+    api.on("select", handleSelect);
+
+    return () => {
+      api.off("select", handleSelect);
+    };
   }, [api]);
 
   return (
@@ -151,8 +156,27 @@ export const SlideReview = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          
         </Carousel>
+        <div className="flex justify-center mt-6 gap-2 w-full h-14">
+          {Array.from({ length: Math.ceil(count / 4) }).map((_, i) => {
+            const isActive = Math.floor(current / 4) === i;
+            return (
+              <button
+                key={i}
+                className={`
+                    h-1.5 rounded-full transition-all
+                    ${
+                      isActive
+                        ? "w-6 bg-orange-500"
+                        : "w-1.5 bg-gray-300 hover:bg-gray-400"
+                    }
+                  `}
+                onClick={() => api?.scrollTo(i * 4)}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
