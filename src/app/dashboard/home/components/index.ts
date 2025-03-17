@@ -4,3 +4,5 @@ export * from './discover-container';
 export * from './banner';
 export * from './tour-promotion-container';
 export * from './destination-favorite-container';
+export * from './review-container';
+export * from './slide-review';

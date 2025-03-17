@@ -5,7 +5,9 @@ import {
   BannerTourComponent,
   DestinationFavoriteContainer,
   DiscoverComponent,
+  ReviewContainer,
   SearchComponent,
+  SlideReview,
   TourPromotionComponent,
 } from "./components";
 import { SubComponent } from "./components/sub-container";
@@ -24,6 +26,8 @@ const Home = () => {
         {/* discover */}
         <DiscoverComponent />
         <DestinationFavoriteContainer />
+        <ReviewContainer />
+        <SlideReview/>
       </div>
     </>
   );

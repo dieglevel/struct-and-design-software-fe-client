@@ -1,8 +1,15 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import React from "react";
 import hoiAn from "@/assets/images/hoiAn.jpg";
 
-const destinations = [
+interface Destination {
+    id: number;
+    title: string;
+    subtitle: string;
+    image: StaticImageData;
+}
+
+const destinations: Destination[] = [
   {
     id: 1,
     title: "Hội An",
@@ -51,7 +58,7 @@ export const DestinationFavoriteContainer = () => {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-3 md:grid-rows-2 gap-8 h-[1060px]">
         {destinations.map((destination, index) => (
-          <div
+          <button
             className={`relative rounded-lg overflow-hidden bg-gradient-to-b from-[#ffffff5b]  to-[#1a191980] ${
               index%2===0 && index > 0 ? "col-span-2" : ""}`}
             key={destination.id}
@@ -68,7 +75,7 @@ export const DestinationFavoriteContainer = () => {
               </p>
               <p className="text-[#FFC515] text-lg">{destination.subtitle}</p>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </section>
