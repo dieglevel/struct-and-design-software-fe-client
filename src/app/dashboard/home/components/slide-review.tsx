@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import avatar1 from "@/assets/images/avatar1.png";
+import ReactStars from "react-stars";
 
 // Testimonial data
 const testimonials = [
@@ -68,9 +69,14 @@ export const SlideReview = () => {
                             className="object-cover"
                           />
                         </div>
-
-                        <div className="flex items-center mb-3">
-                          {testimonial.name}
+                        <div>
+                          <div className="">{testimonial.name}</div>
+                          <ReactStars
+                            count={5}
+                            size={24}
+                            value={testimonial.rating}
+                            edit={false}
+                          />
                         </div>
                       </div>
 
