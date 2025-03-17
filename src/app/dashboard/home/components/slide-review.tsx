@@ -143,7 +143,7 @@ export const SlideReview = () => {
             {reviewTours.map((review) => (
               <CarouselItem key={review.id} className="pl-4 basis-1/4">
                 <div className="p-1">
-                  <Card className="border-none shadow-none">
+                  <Card className="border-none shadow-none bg-none]">
                     <CardContent className="flex flex-col items-center p-6">
                       <div className="flex w-full">
                         <div className="mb-4 mr-5 rounded-full overflow-hidden h-20 w-20">
