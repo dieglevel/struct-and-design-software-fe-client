@@ -1,8 +1,10 @@
 "use client";
 
 import {
+    AchievementComponent,
     BannerTourComponent,
     DiscoverContainerComponent,
+    RecentlyContainerComponent,
     SuggestionTourContainerComponent,
     SummerTourContainerComponent,
     TourSearchContainerComponent,
@@ -17,6 +19,8 @@ const Tour = () => {
                 <SummerTourContainerComponent />
                 <BannerTourComponent />
                 <SuggestionTourContainerComponent />
+                <AchievementComponent />
+                <RecentlyContainerComponent />
             </div>
         </>
     );
