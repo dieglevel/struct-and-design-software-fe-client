@@ -40,11 +40,25 @@ const testimonials = [
     rating: 5,
     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
+  {
+    id: 5,
+    name: "Sarah Johnson",
+    avatar: avatar1,
+    rating: 5,
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    id: 6,
+    name: "Sarah Johnson",
+    avatar: avatar1,
+    rating: 5,
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
 ];
 
 export const SlideReview = () => {
   return (
-    <div className="w-full bg-gray-50 py-12">
+    <div className="w-full py-12">
       <div className="container mx-auto px-4">
         <Carousel
           opts={{
@@ -59,8 +73,8 @@ export const SlideReview = () => {
                 <div className="p-1">
                   <Card className="border-none shadow-none">
                     <CardContent className="flex flex-col items-center p-6">
-                      <div className="flex justify-between w-full">
-                        <div className="mb-4 rounded-full overflow-hidden h-20 w-20">
+                      <div className="flex w-full">
+                        <div className="mb-4 mr-5 rounded-full overflow-hidden h-20 w-20">
                           <Image
                             src={testimonial.avatar}
                             alt={testimonial.name}
@@ -69,7 +83,7 @@ export const SlideReview = () => {
                             className="object-cover"
                           />
                         </div>
-                        <div>
+                        <div className="flex flex-col justify-center">
                           <div className="">{testimonial.name}</div>
                           <ReactStars
                             count={5}
@@ -80,7 +94,7 @@ export const SlideReview = () => {
                         </div>
                       </div>
 
-                      <p className="text-sm text-gray-600 text-center">
+                      <p className="text-sm text-gray-600">
                         {testimonial.text}
                       </p>
                     </CardContent>
