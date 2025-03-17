@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   Carousel,
@@ -9,6 +10,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card";
 import avatar1 from "@/assets/images/avatar1.png";
 import ReactStars from "react-stars";
+import { type CarouselApi } from "@/components/ui/carousel";
 
 // Testimonial data
 const testimonials = [
@@ -42,14 +44,42 @@ const testimonials = [
   },
   {
     id: 5,
-    name: "Sarah Johnson",
+    name: "Raiden",
     avatar: avatar1,
     rating: 5,
     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
   },
   {
     id: 6,
-    name: "Sarah Johnson",
+    name: "Kazuma",
+    avatar: avatar1,
+    rating: 5,
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    id: 7,
+    name: "Hutao",
+    avatar: avatar1,
+    rating: 5,
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    id: 8,
+    name: "Zhong li",
+    avatar: avatar1,
+    rating: 5,
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    id: 9,
+    name: "Nahida",
+    avatar: avatar1,
+    rating: 5,
+    text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+  },
+  {
+    id: 10,
+    name: "Tu Nguyen",
     avatar: avatar1,
     rating: 5,
     text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -57,10 +87,28 @@ const testimonials = [
 ];
 
 export const SlideReview = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0)
+  const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length)
+    setCurrent(api.selectedScrollSnap() + 1)
+
+    api.on("select", () => {
+        setCurrent(api.selectedScrollSnap() + 1)
+    });
+  }, [api]);
+
   return (
     <div className="w-full py-12">
       <div className="container mx-auto px-4">
         <Carousel
+          setApi={setApi}
           opts={{
             align: "start",
             loop: true,
@@ -103,6 +151,7 @@ export const SlideReview = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
+          
         </Carousel>
       </div>
     </div>
