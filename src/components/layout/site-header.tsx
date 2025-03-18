@@ -63,7 +63,7 @@ export default function SiteHeader() {
               </Link>
             </div>
             <Link
-              href={"/dashboard/profile"}
+              href={"/dashboard/information"}
               className="text-white hover:text-gray-200 font-bold"
             >
               Tài khoản

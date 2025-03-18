@@ -1,9 +1,20 @@
 import { Button, Input } from "@/components/ui";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar, CalendarIcon } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { CalendarIcon } from "lucide-react";
 import { cn } from "@/utils";
+import { format } from "date-fns"
+import { vi } from "date-fns/locale"
+import { useState } from "react";
+import { Calendar } from "@/components/ui/calendar";
 
 export const SearchComponent = () => {
+    const [date, setDate] = useState<Date | undefined>(new Date("2001-11-10"))
+  
+
   return (
     <section className="transform -translate-y-1/2 px-4 z-20 bg-white/80 backdrop-blur-sm rounded-lg p-6 shadow-lg w-3/4 relative ">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -28,13 +39,23 @@ export const SearchComponent = () => {
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
-                className={cn("w-full justify-start text-left font-normal")}
+                className={cn(
+                  "w-full justify-start text-left font-normal border-gray-300",
+                  !date && "text-muted-foreground"
+                )}
               >
-                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "dd/MM/yyyy") : "Chọn ngày"}
+                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar mode="single" />
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+                locale={vi}
+              />
             </PopoverContent>
           </Popover>
         </div>
@@ -46,13 +67,23 @@ export const SearchComponent = () => {
             <PopoverTrigger asChild>
               <Button
                 variant="outline"
-                className={cn("w-full justify-start text-left font-normal")}
+                className={cn(
+                  "w-full justify-start text-left font-normal border-gray-300",
+                  !date && "text-muted-foreground"
+                )}
               >
-                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, "dd/MM/yyyy") : "Chọn ngày"}
+                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar mode="single" />
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+                locale={vi}
+              />
             </PopoverContent>
           </Popover>
         </div>

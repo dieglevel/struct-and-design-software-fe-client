@@ -4,12 +4,32 @@ import avatar1 from "@/assets/images/avatar1.png";
 import { EvaluateIcon, FavoriteIcon, OrderIcon, UserIcon } from "@/assets/svgs";
 import { useState } from "react";
 
-const menuItems = [
-  "Thông tin cá nhân",
-  "Đổi mật khẩu",
-  "Thông tin thanh toán",
-  "Xóa tài khoản",
-  "Đăng xuất",
+interface MenuItemProps {
+  href: string;
+  name: string;
+}
+
+const menuItems: MenuItemProps[] = [
+  {
+    href: "/dashboard/information",
+    name: "Thông tin cá nhân",
+  },
+  {
+    href: "/dashboard/change-password",
+    name: "Đổi mật khẩu",
+  },
+  {
+    href: "/dashboard/change-password",
+    name: "Thông tin thanh toán",
+  },
+  {
+    href: "/dashboard/information",
+    name: "Xóa tài khoản",
+  },
+  {
+    href: "/dashboard/information",
+    name: "Đăng xuất",
+  }
 ];
 
 export const SideBar = () => {
@@ -41,7 +61,7 @@ export const SideBar = () => {
             {menuItems.map((item, index) => (
               <li key={index}>
                 <Link
-                  href="#"
+                  href={item.href}
                   className={`pb-2 ${
                     activeIndex === index
                       ? "text-[#ff6b4a] border-b border-[#ff6b4a]"
@@ -49,7 +69,7 @@ export const SideBar = () => {
                   }`}
                   onClick={() => setActiveIndex(index)}
                 >
-                  {item}
+                  {item.name}
                 </Link>
               </li>
             ))}
