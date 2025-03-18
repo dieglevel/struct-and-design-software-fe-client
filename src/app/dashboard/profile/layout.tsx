@@ -1,3 +1,4 @@
+"use client"
 import { SideBar } from "./components"
 
 export default function LayoutUserProfile({

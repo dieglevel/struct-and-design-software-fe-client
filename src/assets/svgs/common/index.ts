@@ -9,3 +9,7 @@ export * from "./discord-logo";
 export * from "./google-logo"; 
 export * from "./clock";
 export * from "./tick";
+export * from "./evaluate";
+export * from "./favorite";
+export * from "./order";
+export * from "./user";

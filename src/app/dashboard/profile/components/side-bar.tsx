@@ -1,18 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
-import {
-  User,
-  KeyRound,
-  CreditCard,
-  Trash2,
-  LogOut,
-  FileText,
-  Heart,
-  Award,
-} from "lucide-react";
 import avatar1 from "@/assets/images/avatar1.png";
+import { EvaluateIcon, FavoriteIcon, OrderIcon, UserIcon } from "@/assets/svgs";
+import { useState } from "react";
+
+const menuItems = [
+  "Thông tin cá nhân",
+  "Đổi mật khẩu",
+  "Thông tin thanh toán",
+  "Xóa tài khoản",
+  "Đăng xuất",
+];
 
 export const SideBar = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
   return (
     <div className="container w-full max-w-xs bg-white p-4">
       <div className="flex flex-col items-center mb-6">
@@ -33,75 +35,50 @@ export const SideBar = () => {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-[#1a3c61]">Tài khoản</h3>
-            <User className="h-5 w-5 text-[#1a3c61]" />
+            <UserIcon className="h-5 w-5 text-[#1a3c61]" />
           </div>
-          <ul className="space-y-4">
-            <li>
-              <Link
-                href="#"
-                className="block text-[#ff6b4a] border-b border-[#ff6b4a] pb-2"
-              >
-                Thông tin cá nhân
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block text-gray-600 pb-2">
-                <div className="flex items-center">
-                  <KeyRound className="h-4 w-4 mr-2 hidden" />
-                  <span>Đổi mật khẩu</span>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block text-gray-600 pb-2">
-                <div className="flex items-center">
-                  <CreditCard className="h-4 w-4 mr-2 hidden" />
-                  <span>Thông tin thanh toán</span>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block text-gray-600 pb-2">
-                <div className="flex items-center">
-                  <Trash2 className="h-4 w-4 mr-2 hidden" />
-                  <span>Xóa tài khoản</span>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block text-gray-600 pb-2">
-                <div className="flex items-center">
-                  <LogOut className="h-4 w-4 mr-2 hidden" />
-                  <span>Đăng xuất</span>
-                </div>
-              </Link>
-            </li>
+          <ul className="space-y-4 ml-8">
+            {menuItems.map((item, index) => (
+              <li key={index}>
+                <Link
+                  href="#"
+                  className={`pb-2 ${
+                    activeIndex === index
+                      ? "text-[#ff6b4a] border-b border-[#ff6b4a]"
+                      : "text-gray-600"
+                  }`}
+                  onClick={() => setActiveIndex(index)}
+                >
+                  {item}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         <div>
-          <div className="flex items-center justify-between mb-4">
+          <Link href="#" className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-[#1a3c61]">Đơn hàng</h3>
-            <FileText className="h-5 w-5 text-[#1a3c61]" />
-          </div>
+            <OrderIcon className="h-5 w-5 text-[#1a3c61]" />
+          </Link>
         </div>
 
         <div>
-          <div className="flex items-center justify-between mb-4">
+          <Link href="#" className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-[#1a3c61]">
               Yêu thích đã lưu
             </h3>
-            <Heart className="h-5 w-5 text-[#1a3c61]" />
-          </div>
+            <FavoriteIcon className="h-5 w-5 text-[#1a3c61]" />
+          </Link>
         </div>
 
         <div>
-          <div className="flex items-center justify-between mb-4">
+          <Link href="#" className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-[#1a3c61]">
               Đánh giá của bạn
             </h3>
-            <Award className="h-5 w-5 text-[#1a3c61]" />
-          </div>
+            <EvaluateIcon className="h-5 w-5 text-[#1a3c61]" />
+          </Link>
         </div>
       </div>
     </div>
