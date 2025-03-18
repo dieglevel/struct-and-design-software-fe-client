@@ -1,0 +1,1 @@
+export * from '@/app/dashboard/profile/components/side-bar';

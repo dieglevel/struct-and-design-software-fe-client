@@ -1,12 +1,18 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { Menu, Phone, Mail} from "lucide-react"
-import React, { useEffect, useState } from "react"
+import Link from "next/link";
+import { Menu, Phone, Mail } from "lucide-react";
+import React, { useEffect, useState } from "react";
 
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { DiscordIcon, FacebookIcon, GoogleIcon, LogoICon, YoutubeIcon } from "@/assets/svgs"
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DiscordIcon,
+  FacebookIcon,
+  GoogleIcon,
+  LogoICon,
+  YoutubeIcon,
+} from "@/assets/svgs";
 
 const navigation = [
   { name: "TRANG CHỦ", href: "/dashboard/home" },
@@ -14,17 +20,16 @@ const navigation = [
   { name: "KHÁCH SẠN", href: "/dashboard/khach-san" },
   { name: "CẨM NANG DU LỊCH", href: "/dashboard/cam-nang" },
   { name: "LIÊN HỆ", href: "/dashboard/lien-he" },
-]
+];
 
 export default function SiteHeader() {
-
   const [activeItem, setActiveItem] = useState<string>("");
 
   useEffect(() => {
     const pathname = window.location.pathname;
-    setActiveItem(navigation.find(item => item.href === pathname)?.name || "");
-
-
+    setActiveItem(
+      navigation.find((item) => item.href === pathname)?.name || ""
+    );
   }, []);
 
   return (
@@ -56,11 +61,13 @@ export default function SiteHeader() {
               <Link href="#" className="hover:text-gray-200">
                 <FacebookIcon className="h-4 w-4" />
               </Link>
-              
             </div>
-            <Button variant="ghost" size="sm" className="text-white hover:text-gray-200 font-bold">
-              TÀI KHOẢN
-            </Button>
+            <Link
+              href={"/dashboard/profile"}
+              className="text-white hover:text-gray-200 font-bold"
+            >
+              Tài khoản
+            </Link>
           </div>
         </div>
       </div>
@@ -79,7 +86,11 @@ export default function SiteHeader() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-bold transition-colors hover:text-primary ${item.name === activeItem ? 'text-[#F27052]' : 'text-gray-700'}`}
+                  className={`text-sm font-bold transition-colors hover:text-primary ${
+                    item.name === activeItem
+                      ? "text-[#F27052]"
+                      : "text-gray-700"
+                  }`}
                 >
                   {item.name}
                 </Link>
@@ -122,6 +133,5 @@ export default function SiteHeader() {
         </div>
       </div>
     </header>
-  )
+  );
 }
-
