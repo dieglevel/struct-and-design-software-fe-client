@@ -21,7 +21,7 @@ interface FormData {
   date: Date | undefined
 }
 
-export default function Information() {
+export default function DeleteAccount() {
   const [formData, setFormData] = useState<FormData>({
     fullName: "Phung Anh Minh",
     email: "Dieglevel@gmail.com",
@@ -81,8 +81,8 @@ export default function Information() {
               id="email"
               name="email"
               type="email"
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="border-gray-300"
             />
           </div>
