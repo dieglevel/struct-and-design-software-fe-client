@@ -22,22 +22,12 @@ export default function Information() {
     phoneNumber: "0388 245 392",
   })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission here
-    console.log({ ...formData, dateOfBirth: date })
-  }
 
   return (
-    <div className="w-full max-w-3xl mx-auto p-6 bg-white rounded-lg">
+    <div className="w-full max-w-4xl lg:w-[896] self-center p-6 rounded-lg flex-1">
       <h2 className="text-xl font-bold text-[#0a3b66] mb-6 pb-2 border-b">THÔNG TIN CÁ NHÂN</h2>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form className="space-y-6 w-full ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <Label htmlFor="fullName" className="text-[#0a3b66]">
@@ -47,7 +37,6 @@ export default function Information() {
               id="fullName"
               name="fullName"
               value={formData.fullName}
-              onChange={handleInputChange}
               className="border-gray-300"
             />
           </div>
@@ -84,7 +73,6 @@ export default function Information() {
               name="email"
               type="email"
               value={formData.email}
-              onChange={handleInputChange}
               className="border-gray-300"
             />
           </div>
@@ -97,7 +85,6 @@ export default function Information() {
               id="phoneNumber"
               name="phoneNumber"
               value={formData.phoneNumber}
-              onChange={handleInputChange}
               className="border-gray-300"
             />
           </div>
