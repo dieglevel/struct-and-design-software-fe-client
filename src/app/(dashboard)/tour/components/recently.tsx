@@ -1,9 +1,6 @@
-import { FavoriteIcon, TopRightIcon, UnFavoriteIcon } from "@/assets/svgs";
-import { ClockCircleOutlined } from "@ant-design/icons";
-import { Divider } from "@heroui/divider";
+import { FavoriteIcon, UnFavoriteIcon } from "@/assets/svgs";
 import { Image } from "@heroui/image";
-import { Rating } from "@mui/material";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 export const RecentlyContainerComponent = () => {
     const data_summer = [
         {
@@ -52,7 +49,7 @@ export const RecentlyContainerComponent = () => {
             <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center ">
                 {data_summer.map((item, index): ReactNode => {
                     return (
-                        <div className="flex  bg-white rounded-lg shadow-lg">
+                        <div key={index} className="flex  bg-white rounded-lg shadow-lg">
                             <div className="rounded-t-lg relative">
                                 <div className=" px-4 top-0 left-0 right-0 absolute translate-y-3 z-10 flex justify-between">
                                     <div className="bg-white rounded-lg p-2">

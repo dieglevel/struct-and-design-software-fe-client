@@ -32,7 +32,8 @@ export const DiscoverContainerComponent = () => {
             <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center">
                 {data.map((item, index): ReactNode => {
                     return (
-                        <div>
+                        <div key={index}>
+                            
                             <Image
                                 alt="Hình ảnh địa  điểm"
                                 src={item.url}

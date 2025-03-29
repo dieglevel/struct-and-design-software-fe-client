@@ -1,7 +1,6 @@
 "use client";
 import { LogoICon } from "@/assets/svgs";
 import { useRouter } from "next/navigation";
-import { redirect } from "next/navigation";
 import React from "react";
 const InputOTPPage = () => {
     const router = useRouter();
