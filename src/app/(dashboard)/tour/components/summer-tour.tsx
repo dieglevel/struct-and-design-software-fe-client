@@ -4,20 +4,7 @@ import { Divider } from "@heroui/divider";
 import { Image } from "@heroui/image";
 import { Rating } from "@mui/material";
 import { ReactNode, useEffect } from "react";
-export const SuggestionTourContainerComponent = () => {
-    useEffect(() => {
-        const relativeBoxes = document.querySelectorAll(".relativeBox");
-        const absoluteBoxes = document.querySelectorAll(".absoluteBox");
-
-        relativeBoxes.forEach((relativeBox, index) => {
-            const relativeEl = relativeBox as HTMLElement;
-            const absoluteEl = absoluteBoxes[index] as HTMLElement;
-
-            if (relativeEl && absoluteEl) {
-                absoluteEl.style.width = `${relativeEl.offsetWidth}px`;
-            }
-        });
-    }, []);
+export const SummerTourContainerComponent = () => {
     const data_summer = [
         {
             url: "https://r2.nucuoimekong.com/wp-content/uploads/moc-chau-son-la-1-1280x720.jpg",
@@ -60,14 +47,15 @@ export const SuggestionTourContainerComponent = () => {
     return (
         <div>
             <h1 className="text-colorbrand-midnightBlue-900 text-xl md:text-2xl font-bold uppercase my-6 md:my-16 ">
-                v-travel gợi ý<div className="w-20 border-2 border-gray"></div>
+                tour du lịch hè giá tốt
+                <div className="w-20 border-2 border-gray"></div>
             </h1>
             <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center ">
                 {data_summer.map((item, index): ReactNode => {
                     return (
-                        <div className="bg-white rounded-lg shadow-lg">
+                        <div className="bg-white rounded-lg shadow-lg relative">
                             <div className="rounded-t-lg">
-                                <div className="absoluteBox px-4 absolute translate-y-3 z-10 flex justify-between">
+                                <div className=" px-4 absolute translate-y-3 top-0 left-0 right-0 z-10 flex justify-between">
                                     <div className="bg-white rounded-lg p-2">
                                         <h3 className="font-bold font-serif">{`-${item.discount}%`}</h3>
                                     </div>
