@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { PasswordInput } from "../components";
+import { PasswordInput } from "@/containers/profile";
 
 
 export default function ChangePassword() {

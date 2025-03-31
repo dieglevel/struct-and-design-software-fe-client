@@ -6,3 +6,4 @@ export * from './tour-promotion-container';
 export * from './destination-favorite-container';
 export * from './review-container';
 export * from './slide-review';
+export * from './sub-container';

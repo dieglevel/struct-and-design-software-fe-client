@@ -17,23 +17,23 @@ interface MenuItemProps {
 
 const accountMenuItems: MenuItemProps[] = [
   {
-    href: "/dashboard/information",
+    href: "/profile/information",
     name: "Thông tin cá nhân",
   },
   {
-    href: "/dashboard/change-password",
+    href: "/profile/change-password",
     name: "Đổi mật khẩu",
   },
   {
-    href: "/dashboard/change-password",
+    href: "/profile/change-password",
     name: "Thông tin thanh toán",
   },
   {
-    href: "/dashboard/delete-account",
+    href: "/profile/delete-account",
     name: "Xóa tài khoản",
   },
   {
-    href: "/dashboard/information",
+    href: "/profile/information",
     name: "Đăng xuất",
   },
 ];

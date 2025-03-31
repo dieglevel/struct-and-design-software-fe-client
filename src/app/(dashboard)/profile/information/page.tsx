@@ -68,7 +68,7 @@ export default function Information() {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">
-                <Calendar mode="single" selected={formData.date} onSelect={(e) => setFormData({ ...formData,  date:e})} initialFocus locale={vi} />
+                <Calendar mode="single" selected={formData.date} onSelect={(e) => setFormData({ ...formData,  date:e})} locale={vi} />
               </PopoverContent>
             </Popover>
           </div>

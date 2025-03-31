@@ -43,7 +43,7 @@
     "next": "15.1.5",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
-    "react-day-picker": "8.10.1",
+    "react-day-picker": "9.3.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",
     "react-stars": "^2.2.5",

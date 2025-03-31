@@ -1,5 +1,5 @@
 "use client"
-import { SideBar } from "./components"
+import { SideBar } from "@/containers/profile"
 
 export default function LayoutUserProfile({
   children,

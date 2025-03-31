@@ -9,9 +9,8 @@ import {
   SearchComponent,
   SlideReview,
   TourPromotionComponent,
-} from "./components";
-import { SubComponent } from "./components/sub-container";
-
+  SubComponent
+} from "@/containers/home";
 
 
 const Home = () => {
