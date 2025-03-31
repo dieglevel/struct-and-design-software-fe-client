@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import banner from "@/assets/images/banner.png"; // Đường dẫn alias '@' có thể cần config

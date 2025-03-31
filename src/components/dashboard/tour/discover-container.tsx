@@ -1,3 +1,4 @@
+"use client";
 import { Image } from "@heroui/image";
 import { ReactNode } from "react";
 export const DiscoverContainerComponent = () => {

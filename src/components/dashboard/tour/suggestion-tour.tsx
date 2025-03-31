@@ -1,9 +1,10 @@
+"use client";
 import { FavoriteIcon, TopRightIcon, UnFavoriteIcon } from "@/assets/svgs";
 import { ClockCircleOutlined } from "@ant-design/icons";
 import { Divider } from "@heroui/divider";
 import { Image } from "@heroui/image";
 import { Rating } from "@mui/material";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 export const SuggestionTourContainerComponent = () => {
     const data_summer = [
         {
