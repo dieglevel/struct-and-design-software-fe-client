@@ -29,7 +29,7 @@ const accountMenuItems: MenuItemProps[] = [
     name: "Thông tin thanh toán",
   },
   {
-    href: "/dashboard/information",
+    href: "/dashboard/delete-account",
     name: "Xóa tài khoản",
   },
   {
@@ -49,7 +49,8 @@ export const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <div className="container w-full max-w-xs p-4">
+    <div className="container w-full max-w-xs
+     p-4">
       <div className="flex flex-col items-center mb-6">
         <div className="relative w-24 h-24 mb-3">
           <Image

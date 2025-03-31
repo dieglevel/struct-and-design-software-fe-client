@@ -34,7 +34,7 @@ export default function Information() {
 
   return (
     <div className="w-full max-w-4xl lg:w-[896] self-center p-6 rounded-lg flex-1">
-      <h2 className="text-xl font-bold text-[#0a3b66] mb-6 pb-2 border-b uppercase">Xóa tài khoản</h2>
+      <h2 className="text-xl font-bold text-[#0a3b66] mb-6 pb-2 border-b uppercase">Thông tin cá nhân</h2>
       <form className="space-y-6 w-full ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
