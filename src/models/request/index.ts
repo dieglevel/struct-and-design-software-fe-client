@@ -1,1 +1,1 @@
-export * from "./login.dto.request";
+export * from "./login.request.dto";

@@ -3,9 +3,21 @@ import { LoginRequestDTO } from "@/models/request";
 import { LogoICon } from "../../../assets/svgs";
 import { useForm } from "react-hook-form";
 import api from "@/libs/axios/axios.config";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 const LoginPage = () => {
     const { register, handleSubmit } = useForm<LoginRequestDTO>();
+    const [isModalOpen, setModalOpen] = useState(false); // Trạng thái modal
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -21,9 +33,8 @@ const LoginPage = () => {
                 localStorage.setItem("token", res.data.data.token);
                 window.location.reload();
             }
-            console.log("Login successful:", res.data);
         } catch (error) {
-            console.error("Login failed:", error);
+            setModalOpen(true);
         }
     };
 
@@ -111,6 +122,22 @@ const LoginPage = () => {
                     </div>
                 </form>
             </div>
+            <AlertDialog open={isModalOpen} onOpenChange={setModalOpen}>
+                <AlertDialogTrigger />
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>Đăng nhập thất bại</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            Kiểm tra lại tên đăng nhập hoặc mật khẩu của bạn và thử lại.
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogAction onClick={() => setModalOpen(false)}>
+                            Đóng
+                        </AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </div>
     );
 };

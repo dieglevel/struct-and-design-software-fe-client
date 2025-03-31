@@ -1,3 +1,4 @@
+"use client";
 import { FavoriteIcon, UnFavoriteIcon } from "@/assets/svgs";
 import { ClockCircleOutlined } from "@ant-design/icons";
 import { Image } from "@heroui/image";
