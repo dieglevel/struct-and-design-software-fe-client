@@ -8,7 +8,7 @@ import {
     SuggestionTourContainerComponent,
     SummerTourContainerComponent,
     TourSearchContainerComponent,
-} from "./components";
+} from "../../../components/dashboard/tour";
 
 const Tour = () => {
     return (

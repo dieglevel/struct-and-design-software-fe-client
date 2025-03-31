@@ -1,9 +1,7 @@
-import { FavoriteIcon, TopRightIcon, UnFavoriteIcon } from "@/assets/svgs";
+import { FavoriteIcon, UnFavoriteIcon } from "@/assets/svgs";
 import { ClockCircleOutlined } from "@ant-design/icons";
-import { Divider } from "@heroui/divider";
 import { Image } from "@heroui/image";
-import { Rating } from "@mui/material";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 export const RecentlyContainerComponent = () => {
     const data_summer = [
         {
@@ -49,7 +47,7 @@ export const RecentlyContainerComponent = () => {
             <h1 className="text-colorbrand-midnightBlue-900 text-xl md:text-2xl font-bold uppercase my-6 md:my-16 ">
                 Đã xem gần đây<div className="w-20 border-2 border-gray"></div>
             </h1>
-            <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center ">
+            <div className="grid grid-cols-2  md:grid-cols-3 gap-4 place-items-center ">
                 {data_summer.map((item, index): ReactNode => {
                     return (
                         <div className="flex  bg-white rounded-lg shadow-lg">
@@ -67,27 +65,27 @@ export const RecentlyContainerComponent = () => {
                                 <Image
                                     alt="Hình ảnh địa  điểm"
                                     src={item.url}
-                                    className="relativeBox h-32 md:h-56  object-cover z-0"
+                                    className="relativeBox h-32 md:h-56 w-full object-cover z-0"
                                     key={index}
                                     radius="none"
                                 ></Image>
                             </div>
                             <div className="flex flex-col justify-between mx-1 my-4">
-                                <h3 className="text-colorbrand-midnightBlue-900 text-sm md:text-xl">
+                                <h3 className="text-colorbrand-midnightBlue-900 text-sm ">
                                     {item.title}
                                 </h3>
-                                {/* <div className="flex flex-col lg:flex-row  justify-between ">
-                                    <h3 className="text-gray-500 text-sm md:text-lg">
+                                <div className="flex flex-col lg:flex-row  justify-between ">
+                                    <h3 className="text-gray-500 text-xs md:text-sm">
                                         <ClockCircleOutlined /> {item.time}
                                     </h3>
-                                    <Rating
+                                    {/* <Rating
                                         name="text-feedback"
                                         value={item.rating}
                                         readOnly
                                         precision={0.5}
-                                    />
+                                    /> */}
                                 </div>
-                                <Divider className="my-5" />
+                                {/* <Divider className="my-5" />
                                 <div className="flex flex-col md:flex-row justify-between">
                                     <h3 className="text-colorbrand-midnightBlue-900 text-lg font-bold">
                                         {item.price}{" "}
