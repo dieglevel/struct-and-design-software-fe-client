@@ -1,3 +1,4 @@
+"use client";
 import { ExperienceIcon } from "@/assets/svgs/tour";
 import { AdviseIcon } from "@/assets/svgs/tour/advise";
 import { PaymentIcon } from "@/assets/svgs/tour/payment";

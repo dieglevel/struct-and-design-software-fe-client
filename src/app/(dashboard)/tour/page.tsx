@@ -1,6 +1,3 @@
-import Tour from "@/containers/tour";
-
-
 import {
     AchievementComponent,
     BannerTourComponent,
@@ -11,7 +8,7 @@ import {
     TourSearchContainerComponent,
 } from "../../../components/dashboard/tour";
 
-const Tour = () => {
+const TourPage = () => {
     return (
         <>
             <TourSearchContainerComponent />
@@ -25,7 +22,6 @@ const Tour = () => {
             </div>
         </>
     );
-
 };
 
-export default Page;
+export default TourPage;
