@@ -98,34 +98,38 @@ export default function SiteHeader() {
             </nav>
           </div>
 
-          {/* Mobile Navigation */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col space-y-4">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
-                <div className="flex flex-col space-y-2 pt-4">
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Phone className="h-4 w-4" />
-                    <span>1800 0123</span>
-                  </div>
-                  <div className="flex items-center space-x-2 text-sm">
-                    <Mail className="h-4 w-4" />
-                    <span>information@travel@gmail.com</span>
-                  </div>
+                    {/* Mobile Navigation */}
+                    <Sheet>
+                        <SheetTrigger asChild>
+                            <Button variant="ghost" size="icon" className="md:hidden">
+                                <Menu className="h-6 w-6" />
+                                <span className="sr-only">Toggle menu</span>
+                            </Button>
+                        </SheetTrigger>
+                        <SheetContent side="right">
+                            <nav className="flex flex-col space-y-4">
+                                {navigation.map((item) => (
+                                    <Link
+                                        key={item.name}
+                                        href={item.href}
+                                        className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
+                                    >
+                                        {item.name}
+                                    </Link>
+                                ))}
+                                <div className="flex flex-col space-y-2 pt-4">
+                                    <div className="flex items-center space-x-2 text-sm">
+                                        <Phone className="h-4 w-4" />
+                                        <span>1800 0123</span>
+                                    </div>
+                                    <div className="flex items-center space-x-2 text-sm">
+                                        <Mail className="h-4 w-4" />
+                                        <span>information@travel@gmail.com</span>
+                                    </div>
+                                </div>
+                            </nav>
+                        </SheetContent>
+                    </Sheet>
                 </div>
               </nav>
             </SheetContent>
