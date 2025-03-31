@@ -1,15 +1,13 @@
-import Tour from "@/containers/tour";
+"use client";
 
+import {    AchievementComponent,
+   BannerTourComponent,
+   DiscoverContainerComponent,
+   RecentlyContainerComponent,
+   SuggestionTourContainerComponent,
+   SummerTourContainerComponent,
+   TourSearchContainerComponent, } from "./components";
 
-import {
-    AchievementComponent,
-    BannerTourComponent,
-    DiscoverContainerComponent,
-    RecentlyContainerComponent,
-    SuggestionTourContainerComponent,
-    SummerTourContainerComponent,
-    TourSearchContainerComponent,
-} from "../../../components/dashboard/tour";
 
 const Tour = () => {
     return (
@@ -25,7 +23,6 @@ const Tour = () => {
             </div>
         </>
     );
-
 };
 
-export default Page;
+export default Tour;

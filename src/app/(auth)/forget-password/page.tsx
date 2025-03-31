@@ -1,12 +1,11 @@
 "use client";
 import { LogoICon } from "@/assets/svgs";
-import { useRouter } from "next/navigation";
-
+// import { useRouter } from "next/navigation";
 const ForgetPasswordPage = () => {
-    const router = useRouter();
-    function sendOTP(e: React.FormEvent) {
-        e.preventDefault();
-        router.push("/auth/otp");
+    // const router = useRouter();
+    function sendOTP() {
+        // router.push("/auth/otp");
+        window.location.href = "/auth/otp";
     }
     return (
         <div
@@ -39,6 +38,7 @@ const ForgetPasswordPage = () => {
                         placeholder="Nhập số điện thoại"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
+                    
                     <div className="flex flex-col">
                         <button
                             onClick={sendOTP}
