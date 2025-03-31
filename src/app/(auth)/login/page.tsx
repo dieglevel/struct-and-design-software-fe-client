@@ -1,6 +1,32 @@
+"use client";
+import { LoginRequestDTO } from "@/models/request";
 import { LogoICon } from "../../../assets/svgs";
-
+import { useForm } from "react-hook-form";
+import api from "@/libs/axios/axios.config";
+import { useEffect } from "react";
 const LoginPage = () => {
+    const { register, handleSubmit } = useForm<LoginRequestDTO>();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            window.location.href = "/home";
+        }
+    }, []);
+
+    const onSubmit = async (data: LoginRequestDTO) => {
+        try {
+            const res = await api.post(`${process.env.NEXT_PUBLIC_USER_SERVICE}/auth/token`, data);
+            if (res.data.data.token) {
+                localStorage.setItem("token", res.data.data.token);
+                window.location.reload();
+            }
+            console.log("Login successful:", res.data);
+        } catch (error) {
+            console.error("Login failed:", error);
+        }
+    };
+
     return (
         <div
             className="
@@ -18,18 +44,21 @@ const LoginPage = () => {
                     Đăng nhập
                 </h1>
                 <p className="text-base text-colorbrand-grayWhite-500 font-thin text-center  md:text-nowrap ">
-                    Cùng V-Travel đồng hành với bạn trong các chuyến đi.
+                    Cùng V-Travel đồng h
                 </p>
+                ành với bạn trong các chuyến đi.
             </div>
             <div className="">
-                <form className="flex flex-col">
+                <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
-                        Số điện thoại
+                        Tên đăng nhập
                         <span className="text-colorbrand-burntSienna-600 text-lg pl-1">*</span>
                     </label>
+
                     <input
                         type="text"
-                        placeholder="Nhập số điện thoại"
+                        {...register("username", { required: true })}
+                        placeholder="Nhập tên đăng nhập"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
                     <label className="text-colorbrand-midnightBlue-950 text-base font-bold my-2 ">
@@ -38,6 +67,7 @@ const LoginPage = () => {
                     </label>
                     <input
                         type="password"
+                        {...register("password", { required: true })}
                         placeholder="Nhập mật khẩu"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
@@ -61,7 +91,10 @@ const LoginPage = () => {
                         </a>
                     </div>
                     <div className="flex flex-col">
-                        <button className="bg-colorbrand-burntSienna-500 text-colorbrand-grayWhite-50 rounded-md p-2 w-1/2 m-auto mt-10">
+                        <button
+                            className="bg-colorbrand-burntSienna-500 text-colorbrand-grayWhite-50 rounded-md p-2 w-1/2 m-auto mt-10"
+                            type="submit"
+                        >
                             Đăng nhập
                         </button>
                         <div className="flex flex-row justify-center gap-2 mt-5">
