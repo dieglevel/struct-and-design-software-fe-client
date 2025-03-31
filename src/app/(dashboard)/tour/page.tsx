@@ -1,29 +1,7 @@
-"use client";
+import Tour from "@/containers/tour";
 
-import {
-    AchievementComponent,
-    BannerTourComponent,
-    DiscoverContainerComponent,
-    RecentlyContainerComponent,
-    SuggestionTourContainerComponent,
-    SummerTourContainerComponent,
-    TourSearchContainerComponent,
-} from "./components";
-
-const Tour = () => {
-    return (
-        <>
-            <TourSearchContainerComponent />
-            <div className="mx-4 md:mx-16">
-                <DiscoverContainerComponent />
-                <SummerTourContainerComponent />
-                <BannerTourComponent />
-                <SuggestionTourContainerComponent />
-                <AchievementComponent />
-                <RecentlyContainerComponent />
-            </div>
-        </>
-    );
+const Page = () => {
+     return <Tour />;
 };
 
-export default Tour;
+export default Page;
