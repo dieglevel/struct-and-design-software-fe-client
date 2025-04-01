@@ -1,29 +1,33 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import api from "@/libs/axios/axios.config";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export enum SideBarSelected {
-	Chat = "chat",
-	Contact = "contact",
-}
-
-interface SidebarState {
-	selected: SideBarSelected;
-}
-
-const initialState: SidebarState = {
-	selected: SideBarSelected.Chat,
-};
-
-const sidebarSlice = createSlice({
-	name: "sidebar",
-	initialState,
-	reducers: {
-		changeSidebar: (state, action: PayloadAction<SideBarSelected>) => {
-			state.selected = action.payload;
-		},
-	},
+export const fetchProducts = createAsyncThunk("tourMinMax", async () => {
+    const response = await api.get(`${process.env.NEXT_BOOKING_SERVICE}`); // Thay URL API thật
+    return response.data;
 });
 
-export const SideBarReducer = sidebarSlice.reducer;
+const productSlice = createSlice({
+    name: "products",
+    initialState: {
+        items: [],
+        status: "idle", // idle | loading | succeeded | failed
+        error: null,
+    },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchProducts.pending, (state) => {
+                state.status = "loading";
+            })
+            .addCase(fetchProducts.fulfilled, (state, action) => {
+                state.status = "succeeded";
+                state.items = action.payload;
+            })
+            .addCase(fetchProducts.rejected, (state, action) => {
+                state.status = "failed";
+            });
+    },
+});
 
-export const { changeSidebar } = sidebarSlice.actions;
-
+export default productSlice.reducer;

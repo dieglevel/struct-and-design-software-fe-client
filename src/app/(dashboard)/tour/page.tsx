@@ -6,9 +6,9 @@ import {
     SuggestionTourContainerComponent,
     SummerTourContainerComponent,
     TourSearchContainerComponent,
-} from "../../../components/dashboard/tour";
+} from "@/containers/tour/components";
 
-const TourPage = () => {
+export default function TourPage() {
     return (
         <>
             <TourSearchContainerComponent />
@@ -22,6 +22,4 @@ const TourPage = () => {
             </div>
         </>
     );
-};
-
-export default TourPage;
+}

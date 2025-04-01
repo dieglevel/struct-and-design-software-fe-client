@@ -3,7 +3,7 @@ import tourBanner from "@/assets/images/tour-banner.png";
 
 export const BannerTourComponent = () => {
     return (
-        <div className="relative w-full">
+        <div className="relative w-full pt-16">
             <Image src={tourBanner} className="object-cover w-full h-96 " alt="Tour Banner" />
             <div className="flex items-center justify-center flex-col text-center mt-5 w-96 absolute top-1/2 left-1/2 -bottom-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <h3 className="font-serif">Rộn ràng hè sang</h3>
