@@ -14,9 +14,12 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@heroui/divider": "^2.2.10",
+    "@heroui/form": "^2.1.15",
     "@heroui/image": "^2.2.10",
+    "@heroui/react": "^2.7.5",
     "@heroui/system": "^2.4.11",
     "@heroui/theme": "^2.4.11",
+    "@hookform/resolvers": "^4.1.3",
     "@mui/material": "^6.4.6",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-dialog": "^1.1.6",
@@ -41,7 +44,8 @@
     "react-hook-form": "^7.55.0",
     "react-redux": "^9.2.0",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
