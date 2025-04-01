@@ -47,14 +47,14 @@ export const SuggestionTourContainerComponent = () => {
     return (
         <div>
             <h1 className="text-colorbrand-midnightBlue-900 text-xl md:text-2xl font-bold uppercase my-6 md:my-16 ">
-                v-travel gợi ý<div className="w-20 border-2 border-gray"></div>
+                v-travel sốt dẻo<div className="w-20 border-2 border-gray"></div>
             </h1>
             <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4 place-items-center ">
                 {data_summer.map((item, index): ReactNode => {
                     return (
-                        <div key={index} className="bg-white rounded-lg shadow-lg relative">
-                            <div className="rounded-t-lg">
-                                <div className=" px-4 absolute top-0 left-0 right-0 translate-y-3 z-10 flex justify-between">
+                        <div key={index} className="bg-white rounded-lg shadow-lg  ">
+                            <div className="rounded-t-lg relative">
+                                <div className=" px-4 absolute translate-y-3 top-0 left-0 right-0 z-[11] flex justify-between ">
                                     <div className="bg-white rounded-lg p-2">
                                         <h3 className="font-bold font-serif">{`-${item.discount}%`}</h3>
                                     </div>
@@ -64,15 +64,17 @@ export const SuggestionTourContainerComponent = () => {
                                         <UnFavoriteIcon className="w-6 md:w-8" />
                                     )}
                                 </div>
+                            </div>
+                            <div className="w-full h-32 md:h-48 lg:h-60 overflow-hidden rounded-t-lg ">
                                 <Image
-                                    alt="Hình ảnh địa  điểm"
+                                    alt="Hình ảnh địa điểm"
                                     src={item.url}
-                                    className="relativeBox h-32 md:h-56  object-cover z-0"
+                                    className="min-w-60 min-h-32 object-cover"
                                     key={index}
                                     radius="none"
-                                ></Image>
+                                />
                             </div>
-                            <div className="flex flex-col justify-between mx-1 my-4">
+                            <div className="flex flex-col justify-between mx-8 my-4">
                                 <h3 className="text-colorbrand-midnightBlue-900 text-sm md:text-xl">
                                     {item.title}
                                 </h3>
@@ -91,7 +93,9 @@ export const SuggestionTourContainerComponent = () => {
                                 <div className="flex flex-col md:flex-row justify-between">
                                     <h3 className="text-colorbrand-midnightBlue-900 text-lg font-bold">
                                         {item.price}{" "}
-                                        <span className="relative bottom-3 text-base">đ</span>
+                                        <span className="relative bottom-3 text-base underline">
+                                            đ
+                                        </span>
                                     </h3>
                                     <a className="text-colorbrand-burntSienna-500 md:text-sm lg:text-base">
                                         Xem chi tiết <TopRightIcon className="inline " />
