@@ -3,8 +3,8 @@ import {
   BannerTourComponent,
   CheapTourContainerComponent,
   DiscoverContainerComponent,
-  RecentlyContainerComponent,
-  SuggestionTourContainerComponent,
+  HotTourContainerComponent,
+  NewestTourContainerComponent,
   TourSearchContainerComponent,
 } from '@/containers/tour/components'
 
@@ -16,9 +16,9 @@ export default function TourPage() {
         <DiscoverContainerComponent />
         <CheapTourContainerComponent />
         <BannerTourComponent />
-        {/* <SuggestionTourContainerComponent /> */}
+        <NewestTourContainerComponent />
         <AchievementComponent />
-        {/* <RecentlyContainerComponent /> */}
+        <HotTourContainerComponent />
       </div>
     </>
   )

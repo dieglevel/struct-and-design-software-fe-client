@@ -10,7 +10,7 @@ import { Image } from '@heroui/image'
 import { Rating } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { ReactNode, useEffect, useState } from 'react'
-export const CheapTourContainerComponent = () => {
+export const NewestTourContainerComponent = () => {
     const [data_summer, setData] = useState<TourResponseDTO[]>([])
   const route = useRouter()
   const goDetail = (id: string) => {
@@ -35,7 +35,7 @@ export const CheapTourContainerComponent = () => {
   return (
     <div>
       <h1 className="my-6 text-xl font-bold uppercase text-colorbrand-midnightBlue-900 md:my-16 md:text-2xl">
-        Tour du lịch giá rẻ<div className="border-gray w-20 border-2"></div>
+        Tour mới đăng<div className="border-gray w-20 border-2"></div>
       </h1>
       <div className="grid grid-cols-2 place-items-center gap-4 lg:gap-14 md:grid-cols-3 lg:grid-cols-4">
         {data_summer?.length> 0 &&
@@ -71,8 +71,8 @@ export const CheapTourContainerComponent = () => {
                   radius="none"
                 />
               </div>
-              <div className="mx-8 my-4 flex flex-col justify-between">
-                <h3 className="text-sm text-colorbrand-midnightBlue-900 md:text-xl line-clamp-3 lg:line-clamp-2 ">{item.name}</h3>
+              <div className="  flex flex-col justify-between">
+                <h3 className="text-sm text-colorbrand-midnightBlue-900 md:text-xl line-clamp-3  lg:line-clamp-2 ">{item.name}</h3>
                 <div className="flex flex-col justify-between lg:flex-row">
                   <h3 className="text-sm text-gray-500 md:text-lg line-clamp-2">
                     <ClockCircleOutlined /> {item.description}
