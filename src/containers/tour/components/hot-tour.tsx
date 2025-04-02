@@ -30,12 +30,12 @@ export const HotTourContainerComponent = () => {
       }
     }
     fetchData()
-  })
+  },[])
 
   return (
     <div>
       <h1 className="my-6 text-xl font-bold uppercase text-colorbrand-midnightBlue-900 md:my-16 md:text-2xl">
-        Tour HOT<div className="border-gray w-20 border-2"></div>
+        Tour du lịch giá rẻ<div className="border-gray w-20 border-2"></div>
       </h1>
       <div className="grid grid-cols-2 place-items-center gap-4 lg:gap-14 md:grid-cols-3 lg:grid-cols-4">
         {data_summer?.length> 0 &&
@@ -46,7 +46,7 @@ export const HotTourContainerComponent = () => {
               key={index}
               className="rounded-lg bg-white shadow-lg hover:cursor-pointer"
               onClick={() => {
-                goDetail('726a784b-3720-43f4-a2a4-c513734b3f1f')
+                goDetail(item.tourId as string)
               }}
             >
               {/* discount and favorite */}
@@ -62,7 +62,7 @@ export const HotTourContainerComponent = () => {
                                     )}
                                 </div>
                             </div> */}
-              <div className="h-32 w-full overflow-hidden rounded-t-lg md:h-48 lg:h-60">
+              <div className="h-32 w-full overflow-hidden rounded-t-lg md:h-40 lg:h-60">
                 <Image
                   alt="Hình ảnh địa điểm"
                   src={item.thumbnail}
@@ -71,8 +71,8 @@ export const HotTourContainerComponent = () => {
                   radius="none"
                 />
               </div>
-              <div className="mx-8 my-4 flex flex-col justify-between">
-                <h3 className="text-sm text-colorbrand-midnightBlue-900 md:text-xl line-clamp-3 lg:line-clamp-2 ">{item.name}</h3>
+              <div className=" mx-4 my-2 lg:my-4 flex flex-col justify-between">
+                <h3 className="text-sm text-colorbrand-midnightBlue-900 md:text-xl line-clamp-3 h-14  lg:line-clamp-2 font-semibold ">{item.name}</h3>
                 <div className="flex flex-col justify-between lg:flex-row">
                   <h3 className="text-sm text-gray-500 md:text-lg line-clamp-2">
                     <ClockCircleOutlined /> {item.description}
@@ -86,9 +86,9 @@ export const HotTourContainerComponent = () => {
                   />
                 </div>
                 <Divider className="my-5" />
-                <div className="flex flex-col justify-between lg:flex-row">
-                  <h3 className="text-lg font-bold text-colorbrand-midnightBlue-900">
-                    {FORMAT_MONEY(item.price as number)} <span className="relative bottom-3 text-base underline">đ</span>
+                <div className="flex flex-col items-center lg:justify-between  lg:flex-row">
+                  <h3 className="text-lg font-black text-colorbrand-midnightBlue-900">
+                    {FORMAT_MONEY(item.price as number)} 
                   </h3>
                   <a className="text-colorbrand-burntSienna-500 lg:text-base">
                     Xem chi tiết <TopRightIcon className="inline" />
