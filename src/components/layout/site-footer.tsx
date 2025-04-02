@@ -1,29 +1,23 @@
-import Link from "next/link";
-import { MapPin, Mail, Phone } from "lucide-react";
+import Link from 'next/link'
+import { MapPin, Mail, Phone } from 'lucide-react'
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import {
-  GooglePayIcon,
-  MasterCardIcon,
-  PaypalIcon,
-  VisaIcon,
-} from "@/assets/svgs";
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Separator } from '@/components/ui/separator'
+import { GooglePayIcon, MasterCardIcon, PaypalIcon, VisaIcon } from '@/assets/svgs'
 
 export default function SiteFooter() {
   return (
     <footer className="w-full border-t bg-white">
-      <div className="container mx-auto px-4 py-6 mt-5 md:px-6">
+      <div className="container mx-auto mt-5 px-4 py-6 md:px-6">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {/* About Us Column */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Về Chúng Tôi</h3>
             <p className="text-sm text-muted-foreground">
-              Không hổ danh Thổ địa du lịch, V-Travel.com sẽ giúp bạn không bỏ
-              lỡ bất cứ điều tuyệt vời nào trong chuyến du lịch của mình. Chúng
-              tôi luôn chọn cho bạn khách sạn phù hợp, tour độc đáo, thông tin
-              du lịch chi tiết kèm mức giá hợp dẫn.
+              Không hổ danh Thổ địa du lịch, V-Travel.com sẽ giúp bạn không bỏ lỡ bất cứ điều tuyệt vời nào trong chuyến
+              du lịch của mình. Chúng tôi luôn chọn cho bạn khách sạn phù hợp, tour độc đáo, thông tin du lịch chi tiết
+              kèm mức giá hợp dẫn.
             </p>
           </div>
 
@@ -31,34 +25,19 @@ export default function SiteFooter() {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold">Chính sách & Quy định</h3>
             <nav className="flex flex-col space-y-2">
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-primary"
-              >
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary">
                 Điều khoản và điều kiện
               </Link>
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-primary"
-              >
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary">
                 Quy định về thanh toán
               </Link>
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-primary"
-              >
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary">
                 Quy định về xác nhận thông tin
               </Link>
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-primary"
-              >
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary">
                 Chính sách về hủy & hoàn trả tiền
               </Link>
-              <Link
-                href="#"
-                className="text-sm text-muted-foreground hover:text-primary"
-              >
+              <Link href="#" className="text-sm text-muted-foreground hover:text-primary">
                 Các câu hỏi thường gặp
               </Link>
             </nav>
@@ -85,12 +64,10 @@ export default function SiteFooter() {
             {/* Email Subscription */}
             <div className="space-y-2">
               <div className="flex max-w-sm space-x-2">
-                <Input
-                  type="email"
-                  placeholder="Nhập email của bạn..."
-                  className="flex-1"
-                />
-                <Button variant="default" style={{ backgroundColor: '#F27052' }}>Xác nhận</Button>
+                <Input type="email" placeholder="Nhập email của bạn..." className="flex-1" />
+                <Button variant="default" style={{ backgroundColor: '#F27052' }}>
+                  Xác nhận
+                </Button>
               </div>
             </div>
           </div>
@@ -98,7 +75,7 @@ export default function SiteFooter() {
 
         <Separator className="my-4" />
 
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           {/* Copyright */}
           <div className="text-center text-sm text-muted-foreground">
             Copyright © 2023 VTravel. All Rights Reserved.
@@ -113,5 +90,5 @@ export default function SiteFooter() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

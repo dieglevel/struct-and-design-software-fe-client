@@ -1,4 +1,4 @@
 const LoginLayout = ({ children }: { children: React.ReactNode }) => {
-    return <div className="w-full h-svh flex justify-center items-center">{children}</div>;
-};
-export default LoginLayout;
+  return <div className="flex h-svh w-full items-center justify-center">{children}</div>
+}
+export default LoginLayout

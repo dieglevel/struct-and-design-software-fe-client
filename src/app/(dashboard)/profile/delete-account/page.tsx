@@ -1,11 +1,11 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { AlertTriangle, CheckCircle, Info, Trash2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { useState } from 'react'
+import { AlertTriangle, CheckCircle, Info, Trash2 } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,27 +16,27 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+} from '@/components/ui/alert-dialog'
+import { Checkbox } from '@/components/ui/checkbox'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function DeleteAccount() {
-  const [password, setPassword] = useState("")
-  const [confirmText, setConfirmText] = useState("")
+  const [password, setPassword] = useState('')
+  const [confirmText, setConfirmText] = useState('')
   const [acknowledgements, setAcknowledgements] = useState({
     data: false,
     subscriptions: false,
     permanent: false,
   })
-  const [deleteStatus, setDeleteStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+  const [deleteStatus, setDeleteStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const allAcknowledged = Object.values(acknowledgements).every(Boolean)
-  const canDelete = password.length > 0 && confirmText === "XÓA TÀI KHOẢN" && allAcknowledged
+  const canDelete = password.length > 0 && confirmText === 'XÓA TÀI KHOẢN' && allAcknowledged
 
   const handleDeleteAccount = async () => {
     if (!canDelete) return
 
-    setDeleteStatus("loading")
+    setDeleteStatus('loading')
 
     try {
       // Here you would call your server action to delete the account
@@ -45,15 +45,15 @@ export default function DeleteAccount() {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
-      setDeleteStatus("success")
+      setDeleteStatus('success')
     } catch (error) {
-      setDeleteStatus("error")
+      setDeleteStatus('error')
     }
   }
 
-  if (deleteStatus === "success") {
+  if (deleteStatus === 'success') {
     return (
-      <div className="w-full max-w-4xl mx-auto p-6">
+      <div className="mx-auto w-full max-w-4xl p-6">
         <Card>
           <CardHeader className="text-center">
             <CardTitle className="text-xl font-bold text-[#0a3b66]">Tài khoản đã được xóa</CardTitle>
@@ -65,7 +65,7 @@ export default function DeleteAccount() {
             </p>
           </CardContent>
           <CardFooter className="flex justify-center">
-            <Button className="bg-[#0a3b66] hover:bg-[#072a4a]" onClick={() => (window.location.href = "/")}>
+            <Button className="bg-[#0a3b66] hover:bg-[#072a4a]" onClick={() => (window.location.href = '/')}>
               Trở về trang chủ
             </Button>
           </CardFooter>
@@ -75,14 +75,14 @@ export default function DeleteAccount() {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto p-6">
+    <div className="mx-auto w-full max-w-4xl p-6">
       <Card className="border-red-200">
         <CardHeader>
-          <CardTitle className="text-xl font-bold text-[#0a3b66] pb-2 border-b uppercase flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 border-b pb-2 text-xl font-bold uppercase text-[#0a3b66]">
             <Trash2 className="h-5 w-5 text-[#ee7762]" />
             Xóa tài khoản
           </CardTitle>
-          <CardDescription className="text-red-500 mt-4 font-medium">
+          <CardDescription className="mt-4 font-medium text-red-500">
             Cảnh báo: Hành động này không thể hoàn tác
           </CardDescription>
         </CardHeader>
@@ -181,7 +181,7 @@ export default function DeleteAccount() {
             />
           </div>
 
-          <Alert className="bg-blue-50 border-blue-200">
+          <Alert className="border-blue-200 bg-blue-50">
             <Info className="h-4 w-4 text-blue-500" />
             <AlertTitle className="text-blue-700">Cần hỗ trợ?</AlertTitle>
             <AlertDescription>
@@ -201,10 +201,10 @@ export default function DeleteAccount() {
               <AlertDialogTrigger asChild>
                 <Button
                   variant="destructive"
-                  className="bg-[#ee7762] hover:bg-[#e06652] text-white px-8"
+                  className="bg-[#ee7762] px-8 text-white hover:bg-[#e06652]"
                   disabled={!canDelete}
                 >
-                  {deleteStatus === "loading" ? "Đang xử lý..." : "Xóa tài khoản"}
+                  {deleteStatus === 'loading' ? 'Đang xử lý...' : 'Xóa tài khoản'}
                 </Button>
               </AlertDialogTrigger>
               <AlertDialogContent>
@@ -217,7 +217,7 @@ export default function DeleteAccount() {
                 <AlertDialogFooter>
                   <AlertDialogCancel>Hủy</AlertDialogCancel>
                   <AlertDialogAction
-                    className="bg-[#ee7762] hover:bg-[#e06652] text-white"
+                    className="bg-[#ee7762] text-white hover:bg-[#e06652]"
                     onClick={handleDeleteAccount}
                   >
                     Xác nhận xóa
@@ -231,4 +231,3 @@ export default function DeleteAccount() {
     </div>
   )
 }
-

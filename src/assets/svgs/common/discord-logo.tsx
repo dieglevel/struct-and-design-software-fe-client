@@ -1,14 +1,7 @@
-import * as React from "react";
-import { SVGProps } from "react";
+import * as React from 'react'
+import { SVGProps } from 'react'
 export const DiscordIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    width="48"
-    height="48"
-    viewBox="0 0 48 48"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       d="M19.776 20.136C18.408 20.136 17.328 21.336 17.328 22.8C17.328 24.264 18.432 25.464 19.776 25.464C21.144 25.464 22.224 24.264 22.224 22.8C22.248 21.336 21.144 20.136 19.776 20.136ZM28.536 20.136C27.168 20.136 26.088 21.336 26.088 22.8C26.088 24.264 27.192 25.464 28.536 25.464C29.904 25.464 30.984 24.264 30.984 22.8C30.984 21.336 29.904 20.136 28.536 20.136Z"
       fill="white"
@@ -18,4 +11,4 @@ export const DiscordIcon = (props: SVGProps<SVGSVGElement>) => (
       fill="white"
     />
   </svg>
-);
+)

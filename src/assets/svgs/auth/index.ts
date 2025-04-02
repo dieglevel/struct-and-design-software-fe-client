@@ -1,1 +1,1 @@
-export * from "./tick-success-change-password";
+export * from './tick-success-change-password'
