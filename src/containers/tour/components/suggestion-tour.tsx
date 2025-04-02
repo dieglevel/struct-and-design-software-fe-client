@@ -44,6 +44,8 @@ export const SuggestionTourContainerComponent = () => {
         },
     ];
 
+    
+
     return (
         <div>
             <h1 className="text-colorbrand-midnightBlue-900 text-xl md:text-2xl font-bold uppercase my-6 md:my-16 ">

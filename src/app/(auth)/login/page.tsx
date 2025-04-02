@@ -1,13 +1,7 @@
 "use client";
-import { LoginRequestDTO } from "@/models/request";
-import { LogoICon } from "../../../assets/svgs";
-import { useForm } from "react-hook-form";
-import api from "@/libs/axios/axios.config";
-import { useEffect, useState } from "react";
 import {
     AlertDialog,
     AlertDialogAction,
-    AlertDialogCancel,
     AlertDialogContent,
     AlertDialogDescription,
     AlertDialogFooter,
@@ -15,6 +9,11 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import api from "@/libs/axios/axios.config";
+import { LoginRequestDTO } from "@/models/request";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { LogoICon } from "../../../assets/svgs";
 const LoginPage = () => {
     const { register, handleSubmit } = useForm<LoginRequestDTO>();
     const [isModalOpen, setModalOpen] = useState(false); // Trạng thái modal
@@ -27,10 +26,15 @@ const LoginPage = () => {
     }, []);
 
     const onSubmit = async (data: LoginRequestDTO) => {
+        const MINUTE_TOKEN = 60;
         try {
             const res = await api.post(`${process.env.NEXT_PUBLIC_USER_SERVICE}/auth/token`, data);
             if (res.data.data.token) {
-                localStorage.setItem("token", res.data.data.token);
+                const item = {
+                    token: res.data.data.token,
+                    expiry: new Date().getTime() + MINUTE_TOKEN * 1000 * 60,
+                };
+                localStorage.setItem("token", JSON.stringify(item));
                 window.location.reload();
             }
         } catch (error) {
@@ -82,22 +86,8 @@ const LoginPage = () => {
                         placeholder="Nhập mật khẩu"
                         className="border-2 border-colorbrand-grayWhite-200 rounded-md p-2 "
                     />
-                    <div className="flex flex-row justify-between items-center">
-                        <div className="flex items-center gap-2 my-2">
-                            <input
-                                type="radio"
-                                name="keepStatusLogin"
-                                id="keepStatusLogin"
-                                className="w-4 h-4"
-                            />
-                            <label
-                                htmlFor="keepStatusLogin"
-                                className="text-sm text-colorbrand-grayWhite-500"
-                            >
-                                Duy trì đăng nhập
-                            </label>
-                        </div>
-                        <a href="./forget-password" className="text-colorbrand-burntSienna-500">
+                    <div className="flex flex-row justify-end pt-2">
+                        <a href="./forget-password" className="text-colorbrand-burntSienna-500 ">
                             Quên mật khẩu?
                         </a>
                     </div>

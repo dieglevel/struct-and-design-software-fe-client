@@ -73,7 +73,7 @@ export const SummerTourContainerComponent = () => {
                             key={index}
                             className="bg-white rounded-lg shadow-lg hover:cursor-pointer"
                             onClick={() => {
-                                goDetail("hieudeptrai");
+                                goDetail("726a784b-3720-43f4-a2a4-c513734b3f1f");
                             }}
                         >
                             <div className="rounded-t-lg relative">
