@@ -8,7 +8,7 @@ import {
     TourSearchContainerComponent,
 } from "@/containers/tour/components";
 
-const TourPage = () => {
+export default function TourPage() {
     return (
         <>
             <TourSearchContainerComponent />
@@ -22,6 +22,4 @@ const TourPage = () => {
             </div>
         </>
     );
-};
-
-export default TourPage;
+}
