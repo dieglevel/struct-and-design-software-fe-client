@@ -17,8 +17,6 @@ import {
 const navigation = [
   { name: "TRANG CHỦ", href: "/home" },
   { name: "TOUR", href: "/tour" },
-  { name: "KHÁCH SẠN", href: "/khach-san" },
-  { name: "CẨM NANG DU LỊCH", href: "/cam-nang" },
   { name: "LIÊN HỆ", href: "/lien-he" },
 ];
 
@@ -81,7 +79,7 @@ export default function SiteHeader() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex md:space-x-4 lg:space-x-6 w-1/2 justify-around">
+            <nav className="hidden md:flex md:space-x-4 lg:space-x-6 w-1/3 justify-around">
               {navigation.map((item) => (
                 <Link
                   key={item.name}

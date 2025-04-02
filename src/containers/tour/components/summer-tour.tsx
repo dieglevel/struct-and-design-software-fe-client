@@ -83,7 +83,7 @@ export const SummerTourContainerComponent = () => {
                                              </h3>
                                              <Rating
                                                   name="text-feedback"
-                                                  value={item.rating}
+                                                  value={Number(item.rating) || 0}
                                                   readOnly
                                                   precision={0.5}
                                              />

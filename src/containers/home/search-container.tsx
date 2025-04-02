@@ -53,7 +53,6 @@ export const SearchComponent = () => {
                 mode="single"
                 selected={date}
                 onSelect={setDate}
-                initialFocus
                 locale={vi}
               />
             </PopoverContent>
@@ -81,7 +80,6 @@ export const SearchComponent = () => {
                 mode="single"
                 selected={date}
                 onSelect={setDate}
-                initialFocus
                 locale={vi}
               />
             </PopoverContent>

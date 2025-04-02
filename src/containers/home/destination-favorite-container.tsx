@@ -1,54 +1,34 @@
-import Image, { StaticImageData } from "next/image";
-import React from "react";
-import hoiAn from "@/assets/images/hoiAn.jpg";
-
-interface Destination {
-    id: number;
-    title: string;
-    subtitle: string;
-    image: StaticImageData;
-}
-
-const destinations: Destination[] = [
-  {
-    id: 1,
-    title: "Hội An",
-    subtitle: "1800+ lượt khách",
-    image: hoiAn,
-  },
-  {
-    id: 2,
-    title: "Hội An",
-    subtitle: "1800+ lượt khách",
-    image: hoiAn,
-  },
-  {
-    id: 3,
-    title: "Hội An",
-    subtitle: "1800+ lượt khách",
-    image: hoiAn,
-  },
-  {
-    id: 4,
-    title: "Hội An",
-    subtitle: "1800+ lượt khách",
-    image: hoiAn,
-  },
-  {
-    id: 5,
-    title: "Hội An",
-    subtitle: "1800+ lượt khách",
-    image: hoiAn,
-  },
-  {
-    id: 6,
-    title: "Hội An",
-    subtitle: "1800+ lượt khách",
-    image: hoiAn,
-  },
-];
+import api from "@/libs/axios/axios.config";
+import { IDestinationEntity } from "@/models/response/tour";
+import { BaseResponse } from "@/types";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 
 export const DestinationFavoriteContainer = () => {
+  const [destinations, setDestinations] =
+    useState<BaseResponse<IDestinationEntity[]>>();
+
+  const getDestinations = async () => {
+    try {
+      const res = await api.get(
+        `${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/destinations`
+      );
+      if (res.data.data) {
+        return res.data;
+      }
+    } catch (error) {
+      console.error("Lỗi khi gọi API lấy tour:", error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      const destinations = await getDestinations();
+      setDestinations(destinations);
+    };
+    fetchDestinations();
+  }, []);
+
   return (
     <section className="container mx-auto px-4 py-12">
       <div className="self-center text-center mb-16">
@@ -57,25 +37,29 @@ export const DestinationFavoriteContainer = () => {
         </h3>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-3 md:grid-rows-2 gap-8 h-[1060px]">
-        {destinations.map((destination, index) => (
+        {destinations?.data.slice(0, 6).map((destination, index) => (
           <button
-            className={`relative rounded-lg overflow-hidden bg-gradient-to-b from-[#ffffff5b]  to-[#1a191980] ${
-              index%2===0 && index > 0 ? "col-span-2" : ""}`}
-            key={destination.id}
-          >
+          className={`relative rounded-lg overflow-hidden ${
+            index % 2 === 0 && index > 0 ? "col-span-2" : ""
+          }`}
+          key={destination.destinationId}
+        >
+          <div className="absolute inset-0 z-0">
             <Image
               src={destination.image}
-              alt={destination.title}
+              alt={destination.name}
               fill
-              className="object-cover -z-10"
+              className="object-cover"
             />
-            <div className="absolute bottom-4 left-4">
-              <p className="text-white font-bold text-xl">
-                {destination.title}
-              </p>
-              <p className="text-[#FFC515] text-lg">{destination.subtitle}</p>
-            </div>
-          </button>
+          </div>
+        
+          <div className="absolute top-0 right-0 bottom-0 left-0 bg-gradient-to-b from-[#ffffff5b] to-[#1a191980] z-[1]"></div>
+        
+          <div className="absolute bottom-4 left-4 z-10">
+            <p className="text-white font-bold text-xl">{destination.name}</p>
+            <p className="text-[#FFC515] text-lg">{destination.description}</p>
+          </div>
+        </button>
         ))}
       </div>
     </section>
