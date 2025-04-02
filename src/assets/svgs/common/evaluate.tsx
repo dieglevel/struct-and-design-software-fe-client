@@ -1,14 +1,7 @@
-import * as React from "react";
-import { SVGProps } from "react";
+import * as React from 'react'
+import { SVGProps } from 'react'
 export const EvaluateIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    width="21"
-    height="21"
-    viewBox="0 0 21 21"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    {...props}
-  >
+  <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
     <path
       d="M10.5007 2.16667C7.73923 2.16667 5.50065 4.40524 5.50065 7.16667C5.50065 9.92809 7.73923 12.1667 10.5007 12.1667C13.2621 12.1667 15.5007 9.92809 15.5007 7.16667C15.5007 4.40524 13.2621 2.16667 10.5007 2.16667ZM3.83398 7.16667C3.83398 3.48477 6.81875 0.5 10.5007 0.5C14.1825 0.5 17.1673 3.48477 17.1673 7.16667C17.1673 10.8486 14.1825 13.8333 10.5007 13.8333C6.81875 13.8333 3.83398 10.8486 3.83398 7.16667Z"
       fill="#00315C"
@@ -18,4 +11,4 @@ export const EvaluateIcon = (props: SVGProps<SVGSVGElement>) => (
       fill="#00315C"
     />
   </svg>
-);
+)

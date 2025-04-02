@@ -1,68 +1,57 @@
-import Image from "next/image";
-import Link from "next/link";
-import avatar1 from "@/assets/images/avatar1.png";
-import { EvaluateIcon, FavoriteIcon, OrderIcon, UserIcon } from "@/assets/svgs";
-import { useState } from "react";
-import {
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarProvider,
-} from "@/components/ui/sidebar";
-import { SidebarCollapsibleItem } from "./side-bar-collapsible";
+import Image from 'next/image'
+import Link from 'next/link'
+import avatar1 from '@/assets/images/avatar1.png'
+import { EvaluateIcon, FavoriteIcon, OrderIcon, UserIcon } from '@/assets/svgs'
+import { useState } from 'react'
+import { SidebarMenu, SidebarMenuItem, SidebarProvider } from '@/components/ui/sidebar'
+import { SidebarCollapsibleItem } from './side-bar-collapsible'
 
 interface MenuItemProps {
-  href: string;
-  name: string;
+  href: string
+  name: string
 }
 
 const accountMenuItems: MenuItemProps[] = [
   {
-    href: "/profile/information",
-    name: "Thông tin cá nhân",
+    href: '/profile/information',
+    name: 'Thông tin cá nhân',
   },
   {
-    href: "/profile/change-password",
-    name: "Đổi mật khẩu",
+    href: '/profile/change-password',
+    name: 'Đổi mật khẩu',
   },
   {
-    href: "/profile/change-password",
-    name: "Thông tin thanh toán",
+    href: '/profile/change-password',
+    name: 'Thông tin thanh toán',
   },
   {
-    href: "/profile/delete-account",
-    name: "Xóa tài khoản",
+    href: '/profile/delete-account',
+    name: 'Xóa tài khoản',
   },
   {
-    href: "/profile/information",
-    name: "Đăng xuất",
+    href: '/profile/information',
+    name: 'Đăng xuất',
   },
-];
+]
 
 const orderMenuItems: MenuItemProps[] = [
   {
-    href: "#",
-    name: "Đặt tour",
+    href: '#',
+    name: 'Đặt tour',
   },
-];
+]
 
 export const SideBar = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0)
 
   return (
-    <div className="container w-full max-w-xs
-     p-4">
-      <div className="flex flex-col items-center mb-6">
-        <div className="relative w-24 h-24 mb-3">
-          <Image
-            src={avatar1}
-            alt="Profile picture"
-            width={96}
-            height={96}
-            className="rounded-full object-cover"
-          />
+    <div className="container w-full max-w-xs p-4">
+      <div className="mb-6 flex flex-col items-center">
+        <div className="relative mb-3 h-24 w-24">
+          <Image src={avatar1} alt="Profile picture" width={96} height={96} className="rounded-full object-cover" />
         </div>
         <h2 className="text-xl font-bold text-[#1a3c61]">Phung Anh Minh</h2>
-        <p className="text-gray-500 text-sm">dieglevel@gmail.com</p>
+        <p className="text-sm text-gray-500">dieglevel@gmail.com</p>
       </div>
       <SidebarProvider>
         <SidebarMenu>
@@ -82,18 +71,14 @@ export const SideBar = () => {
             indexOffset={accountMenuItems.length}
           />
           <SidebarMenuItem>
-            <Link href="#" className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-[#1a3c61]">
-                Yêu thích đã lưu
-              </h3>
+            <Link href="#" className="mb-4 flex items-center justify-between">
+              <h3 className="text-lg font-bold text-[#1a3c61]">Yêu thích đã lưu</h3>
               <FavoriteIcon className="h-5 w-5 text-[#1a3c61]" />
             </Link>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <Link href="#" className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-bold text-[#1a3c61]">
-                Đánh giá của bạn
-              </h3>
+            <Link href="#" className="mb-4 flex items-center justify-between">
+              <h3 className="text-lg font-bold text-[#1a3c61]">Đánh giá của bạn</h3>
               <EvaluateIcon className="h-5 w-5 text-[#1a3c61]" />
             </Link>
           </SidebarMenuItem>
@@ -151,5 +136,5 @@ export const SideBar = () => {
         </div>
       </div> */}
     </div>
-  );
-};
+  )
+}

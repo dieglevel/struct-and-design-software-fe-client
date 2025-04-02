@@ -1,6 +1,6 @@
-"use client";
+'use client'
 
-import React from "react";
+import React from 'react'
 import {
   BannerTourComponent,
   DestinationFavoriteContainer,
@@ -9,16 +9,15 @@ import {
   SearchComponent,
   SlideReview,
   TourPromotionComponent,
-  SubComponent
-} from "@/containers/home";
-
+  SubComponent,
+} from '@/containers/home'
 
 const Home = () => {
   return (
     <>
       {/* search */}
       <BannerTourComponent />
-      <div className="relative flex flex-col items-center justify-center ">
+      <div className="relative flex flex-col items-center justify-center">
         <SearchComponent />
         {/* About me */}
         <SubComponent />
@@ -28,10 +27,10 @@ const Home = () => {
         <DiscoverComponent />
         <DestinationFavoriteContainer />
         <ReviewContainer />
-        <SlideReview/>
+        <SlideReview />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

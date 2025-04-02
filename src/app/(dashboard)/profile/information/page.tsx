@@ -1,18 +1,18 @@
-"use client"
+'use client'
 
-import type React from "react"
+import type React from 'react'
 
-import { useState } from "react"
-import { format } from "date-fns"
-import { vi } from "date-fns/locale"
+import { useState } from 'react'
+import { format } from 'date-fns'
+import { vi } from 'date-fns/locale'
 
-import { cn } from "@/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { CalendarIcon } from "lucide-react"
+import { cn } from '@/utils'
+import { Button } from '@/components/ui/button'
+import { Calendar } from '@/components/ui/calendar'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { CalendarIcon } from 'lucide-react'
 
 interface FormData {
   fullName: string
@@ -23,20 +23,17 @@ interface FormData {
 
 export default function Information() {
   const [formData, setFormData] = useState<FormData>({
-    fullName: "Phung Anh Minh",
-    email: "Dieglevel@gmail.com",
-    phoneNumber: "0388 245 392",
-    date: new Date("2001-11-10"),
-  }
-)
-
-
+    fullName: 'Phung Anh Minh',
+    email: 'Dieglevel@gmail.com',
+    phoneNumber: '0388 245 392',
+    date: new Date('2001-11-10'),
+  })
 
   return (
-    <div className="w-full max-w-4xl lg:w-[896] self-center p-6 rounded-lg flex-1">
-      <h2 className="text-xl font-bold text-[#0a3b66] mb-6 pb-2 border-b uppercase">Thông tin cá nhân</h2>
-      <form className="space-y-6 w-full ">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="w-full max-w-4xl flex-1 self-center rounded-lg p-6 lg:w-[896]">
+      <h2 className="mb-6 border-b pb-2 text-xl font-bold uppercase text-[#0a3b66]">Thông tin cá nhân</h2>
+      <form className="w-full space-y-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="fullName" className="text-[#0a3b66]">
               Họ và tên
@@ -59,16 +56,21 @@ export default function Information() {
                 <Button
                   variant="outline"
                   className={cn(
-                    "w-full justify-start text-left font-normal border-gray-300",
-                    !formData.date && "text-muted-foreground",
+                    'w-full justify-start border-gray-300 text-left font-normal',
+                    !formData.date && 'text-muted-foreground',
                   )}
                 >
-                  {formData.date ? format(formData.date, "dd/MM/yyyy") : "Chọn ngày"}
+                  {formData.date ? format(formData.date, 'dd/MM/yyyy') : 'Chọn ngày'}
                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">
-                <Calendar mode="single" selected={formData.date} onSelect={(e) => setFormData({ ...formData,  date:e})} locale={vi} />
+                <Calendar
+                  mode="single"
+                  selected={formData.date}
+                  onSelect={(e) => setFormData({ ...formData, date: e })}
+                  locale={vi}
+                />
               </PopoverContent>
             </Popover>
           </div>
@@ -102,7 +104,7 @@ export default function Information() {
         </div>
 
         <div className="flex justify-end">
-          <Button type="submit" className="bg-[#ee7762] hover:bg-[#e06652] text-white px-8">
+          <Button type="submit" className="bg-[#ee7762] px-8 text-white hover:bg-[#e06652]">
             Cập nhật
           </Button>
         </div>
@@ -110,4 +112,3 @@ export default function Information() {
     </div>
   )
 }
-
