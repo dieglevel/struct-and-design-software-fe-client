@@ -14,7 +14,7 @@ import { LoginRequestDTO } from '@/models/request'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LogoICon } from '../../../assets/svgs'
-const LoginPage = () => {
+ const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginRequestDTO>()
   const [isModalOpen, setModalOpen] = useState(false) // Trạng thái modal
 
@@ -112,4 +112,4 @@ const LoginPage = () => {
     </div>
   )
 }
-export default LoginPage
+ export default LoginPage

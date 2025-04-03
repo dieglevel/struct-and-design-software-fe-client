@@ -10,7 +10,7 @@ import { Image } from '@heroui/image'
 import { Rating } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import { ReactNode, useEffect, useState } from 'react'
-export const CheapTourContainerComponent = () => {
+export const NewestTourContainerComponent = () => {
     const [data_summer, setData] = useState<TourResponseDTO[]>([])
   const route = useRouter()
   const goDetail = (id: string) => {

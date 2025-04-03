@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 export default function TourDetailPage() {
   const { id } = useParams()
-  const [detail, setDetail] = useState<TourResponseDTO[]>([])
+  const [detail, setDetail] = useState<TourResponseDTO>({})
   const fetchTourDetail = async () => {
     try {
       const response = await api(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/${id}`, {
@@ -17,7 +17,8 @@ export default function TourDetailPage() {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
-      // setDetail(response.data);
+      console.log('response', response.data.data)
+      setDetail(response.data);
     } catch (error) {
       console.error('Lỗi khi gọi API:', error)
     }
@@ -32,7 +33,7 @@ export default function TourDetailPage() {
       <div className="absolute inset-0 flex flex-col items-center justify-center bg-black text-center opacity-50">
         <h1 className="text-3xl font-bold text-white">Tour detail</h1>
         <p className="mt-2 text-sm text-white">
-          <a href="/tour">Tour</a> &gt; Tour Detail
+          <a href="/tour">Tour {JSON.stringify(detail)} </a> &gt; Tour Detail
         </p>
       </div>
     </div>
