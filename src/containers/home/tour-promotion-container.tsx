@@ -19,7 +19,6 @@ export const TourPromotionComponent = () => {
   const getTour = async () => {
     try {
       const res = await api.get(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours`);
-      console.log()
       if (res.data.data) {
         return res.data;
       }

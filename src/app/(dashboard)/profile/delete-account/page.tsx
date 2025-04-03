@@ -1,4 +1,4 @@
-import DeleteAccountModal from "../delete-account-modal"
+import DeleteAccountModal from "./delete-account-modal"
 import { AlertCircle } from "lucide-react"
 
 export default function DeleteAccountPage() {
