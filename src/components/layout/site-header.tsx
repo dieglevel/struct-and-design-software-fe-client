@@ -1,41 +1,33 @@
-"use client";
+'use client'
 
-import Link from "next/link";
-import { Menu, Phone, Mail } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import Link from 'next/link'
+import { Menu, Phone, Mail } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  DiscordIcon,
-  FacebookIcon,
-  GoogleIcon,
-  LogoICon,
-  YoutubeIcon,
-} from "@/assets/svgs";
+import { Button } from '@/components/ui/button'
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
+import { DiscordIcon, FacebookIcon, GoogleIcon, LogoICon, YoutubeIcon } from '@/assets/svgs'
 
 const navigation = [
-  { name: "TRANG CHỦ", href: "/home" },
-  { name: "TOUR", href: "/tour" },
-  { name: "LIÊN HỆ", href: "/lien-he" },
-];
+  { name: 'TRANG CHỦ', href: '/home' },
+  { name: 'TOUR', href: '/tour' },
+  { name: 'LIÊN HỆ', href: '/lien-he' },
+]
 
 export default function SiteHeader() {
-  const [activeItem, setActiveItem] = useState<string>("");
+  const [activeItem, setActiveItem] = useState<string>('')
 
   useEffect(() => {
-    const pathname = window.location.pathname;
-    setActiveItem(
-      navigation.find((item) => item.href === pathname)?.name || ""
-    );
-  }, []);
+    const pathname = window.location.pathname
+    setActiveItem(navigation.find((item) => item.href === pathname)?.name || '')
+  }, [])
 
   return (
     <header className="w-full">
       {/* Top Bar */}
       <div className="bg-[#003580] text-white">
         <div className="container mx-auto flex h-10 items-center justify-between px-4">
-          <div className="hidden space-x-4 md:flex justify-around w-2/6">
+          <div className="hidden w-2/6 justify-around space-x-4 md:flex">
             <div className="flex items-center space-x-2 text-sm">
               <Phone className="h-4 w-4" />
               <span>1800 0123</span>
@@ -60,10 +52,7 @@ export default function SiteHeader() {
                 <FacebookIcon className="h-4 w-4" />
               </Link>
             </div>
-            <Link
-              href={"/profile/information"}
-              className="text-white hover:text-gray-200 font-bold"
-            >
+            <Link href={'/profile/information'} className="font-bold text-white hover:text-gray-200">
               Tài khoản
             </Link>
           </div>
@@ -71,23 +60,21 @@ export default function SiteHeader() {
       </div>
 
       {/* Main Navigation */}
-      <div className="border-b bg-white ">
+      <div className="border-b bg-white">
         <div className="container mx-auto flex h-16 items-center px-4">
-          <div className="flex items-center flex-1 justify-between">
+          <div className="flex flex-1 items-center justify-between">
             <Link href="/" className="mr-6">
               <LogoICon height={60} />
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex md:space-x-4 lg:space-x-6 w-1/3 justify-around">
+            <nav className="hidden w-1/3 justify-around md:flex md:space-x-4 lg:space-x-6">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={`text-sm font-bold transition-colors hover:text-primary ${
-                    item.name === activeItem
-                      ? "text-[#F27052]"
-                      : "text-gray-700"
+                    item.name === activeItem ? 'text-[#F27052]' : 'text-gray-700'
                   }`}
                 >
                   {item.name}
@@ -131,5 +118,5 @@ export default function SiteHeader() {
         </div>
       </div>
     </header>
-  );
+  )
 }

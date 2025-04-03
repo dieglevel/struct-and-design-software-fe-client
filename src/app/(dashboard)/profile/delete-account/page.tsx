@@ -1,28 +1,28 @@
-import DeleteAccountModal from "./delete-account-modal"
-import { AlertCircle } from "lucide-react"
+import DeleteAccountModal from './delete-account-modal'
+import { AlertCircle } from 'lucide-react'
 
 export default function DeleteAccountPage() {
   return (
-    <div className="container mx-auto py-8 max-w-md">
-      <div className="bg-white rounded-lg shadow p-6">
-        <h1 className="text-xl font-bold mb-4 flex items-center gap-2">
+    <div className="container mx-auto max-w-md py-8">
+      <div className="rounded-lg bg-white p-6 shadow">
+        <h1 className="mb-4 flex items-center gap-2 text-xl font-bold">
           <span className="text-red-500">🗑️</span> XÓA TÀI KHOẢN
         </h1>
 
         <div className="border-t pt-4">
-          <p className="text-red-500 mb-4">Cảnh báo: Hành động này không thể hoàn tác.</p>
+          <p className="mb-4 text-red-500">Cảnh báo: Hành động này không thể hoàn tác.</p>
 
-          <div className="bg-red-50 border border-red-200 rounded-md p-4 mb-6">
+          <div className="mb-6 rounded-md border border-red-200 bg-red-50 p-4">
             <div className="flex gap-2">
-              <AlertCircle className="h-5 w-5 text-red-500 flex-shrink-0" />
-              <p className="text-red-600 text-sm">
+              <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-500" />
+              <p className="text-sm text-red-600">
                 Việc xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn và bạn sẽ không thể khôi phục lại.
               </p>
             </div>
           </div>
 
           <div className="mb-6">
-            <h2 className="font-medium mb-2">Hậu quả của việc xóa tài khoản:</h2>
+            <h2 className="mb-2 font-medium">Hậu quả của việc xóa tài khoản:</h2>
             <div className="space-y-2">
               <div className="flex items-start gap-2">
                 <input type="checkbox" id="confirm1" className="mt-1" />
@@ -52,4 +52,3 @@ export default function DeleteAccountPage() {
     </div>
   )
 }
-

@@ -1,1 +1,1 @@
-export * from "./response/auth";
+export * from './response/auth'
