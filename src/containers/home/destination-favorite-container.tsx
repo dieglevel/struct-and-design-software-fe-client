@@ -44,8 +44,8 @@ export const DestinationFavoriteContainer = () => {
             <div className="absolute bottom-0 left-0 right-0 top-0 z-[1] bg-gradient-to-b from-[#ffffff5b] to-[#1a191980]"></div>
 
             <div className="absolute bottom-4 left-4 z-10">
-              <p className="text-xl font-bold text-white">{destination.name}</p>
-              <p className="text-lg text-[#FFC515]">{destination.description}</p>
+              <p className="text-xl text-start font-bold text-white">{destination.name}</p>
+              <p className="text-lg text-start text-[#FFC515]">{destination.description}</p>
             </div>
           </button>
         ))}

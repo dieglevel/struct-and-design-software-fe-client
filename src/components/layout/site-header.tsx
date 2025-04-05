@@ -9,9 +9,10 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { DiscordIcon, FacebookIcon, GoogleIcon, LogoICon, YoutubeIcon } from '@/assets/svgs'
 
 const navigation = [
-  { name: 'TRANG CHỦ', href: '/home' },
-  { name: 'TOUR', href: '/tour' },
-  { name: 'LIÊN HỆ', href: '/lien-he' },
+  { name: 'trang chủ', href: '/home' },
+  { name: 'tour', href: '/tour' },
+  { name: 'liên hệ', href: '/contact' },
+  { name: 'tìm kiếm', href: '/search' },
 ]
 
 export default function SiteHeader() {
@@ -73,7 +74,7 @@ export default function SiteHeader() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-bold transition-colors hover:text-primary ${
+                  className={`text-sm font-bold transition-colors hover:text-primary uppercase ${
                     item.name === activeItem ? 'text-[#F27052]' : 'text-gray-700'
                   }`}
                 >
