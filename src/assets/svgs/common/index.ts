@@ -15,3 +15,4 @@ export * from './user'
 export * from './google-logo'
 export * from './arrow-top-right'
 export * from './un-favorite'
+export * from "./star"
