@@ -4,8 +4,8 @@ import { IBookedTourEntity } from '@/models/response/booked'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import dynamic from 'next/dynamic'
 
-// Dùng dynamic import để chỉ render ReactStars trên client
 const ReactStars = dynamic(() => import('react-stars'), { ssr: false })
+
 
 export const BookedList = (booking: IBookedTourEntity) => {
   return (
@@ -29,8 +29,9 @@ export const BookedList = (booking: IBookedTourEntity) => {
         </div>
 
         {/* Render ReactStars chỉ khi client */}
-        <div className="relative">
+        <div >
           <ReactStars value={5} edit={false} />
+          <p></p>
         </div>
       </div>
     </Card>

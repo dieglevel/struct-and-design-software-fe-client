@@ -1,19 +1,8 @@
 'use client'
 
-import { useState } from 'react'
-import { format } from 'date-fns'
-import { Calendar, CreditCard, Hotel, MapPin, Users } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Badge } from '@/components/ui/badge'
-import tour from '@/assets/images/tour-banner.png'
-import Image from 'next/image'
 import { IBookedTourEntity } from '@/models/response/booked/booked.interface'
 import { BookedList } from '@/containers/profile'
 
-// Mock data đặt phòng
 const bookedTours: IBookedTourEntity[] = [
   {
     bookingId: '1',
