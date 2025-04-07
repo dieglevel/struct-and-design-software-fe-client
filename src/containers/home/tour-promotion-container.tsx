@@ -62,9 +62,9 @@ export const TourPromotionComponent = () => {
                   <Image
                     src={tour.thumbnail}
                     alt={tour.name}
-                    width={280}
                     height={220}
-                    className="h-[220px] w-full self-center rounded-t-md object-cover"
+                    width={280}
+                    className="aspect-[4/3] w-full self-center rounded-t-md object-cover"
                   />
                 </CardHeader>
                 <CardContent>
