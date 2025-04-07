@@ -1,9 +1,4 @@
 'use client'
-import { LoginRequestDTO } from '@/models/request'
-import { LogoICon } from '../../../assets/svgs'
-import { useForm } from 'react-hook-form'
-import api from '@/libs/axios/axios.config'
-import { useEffect, useState } from 'react'
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,7 +9,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-const LoginPage = () => {
+import api from '@/libs/axios/axios.config'
+import { LoginRequestDTO } from '@/models/request'
+import { useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { LogoICon } from '../../../assets/svgs'
+ const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginRequestDTO>()
   const [isModalOpen, setModalOpen] = useState(false) // Trạng thái modal
 
@@ -26,10 +26,15 @@ const LoginPage = () => {
   }, [])
 
   const onSubmit = async (data: LoginRequestDTO) => {
+    const MINUTE_TOKEN = 60
     try {
       const res = await api.post(`${process.env.NEXT_PUBLIC_USER_SERVICE}/auth/token`, data)
       if (res.data.data.token) {
-        localStorage.setItem('token', res.data.data.token)
+        const item = {
+          token: res.data.data.token,
+          expiry: new Date().getTime() + MINUTE_TOKEN * 1000 * 60,
+        }
+        localStorage.setItem('token', JSON.stringify(item))
         window.location.reload()
       }
     } catch (error) {
@@ -43,9 +48,8 @@ const LoginPage = () => {
       <div className="pb-10">
         <h1 className="pt-10 text-center text-2xl font-bold text-colorbrand-midnightBlue-950">Đăng nhập</h1>
         <p className="text-center text-base font-thin text-colorbrand-grayWhite-500 md:text-nowrap">
-          Cùng V-Travel đồng h
+          Cùng V-Travel đồng h ành với bạn trong các chuyến đi.
         </p>
-        ành với bạn trong các chuyến đi.
       </div>
       <div className="">
         <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
@@ -70,13 +74,7 @@ const LoginPage = () => {
             placeholder="Nhập mật khẩu"
             className="rounded-md border-2 border-colorbrand-grayWhite-200 p-2"
           />
-          <div className="flex flex-row items-center justify-between">
-            <div className="my-2 flex items-center gap-2">
-              <input type="radio" name="keepStatusLogin" id="keepStatusLogin" className="h-4 w-4" />
-              <label htmlFor="keepStatusLogin" className="text-sm text-colorbrand-grayWhite-500">
-                Duy trì đăng nhập
-              </label>
-            </div>
+          <div className="flex flex-row justify-end pt-2">
             <a href="./forget-password" className="text-colorbrand-burntSienna-500">
               Quên mật khẩu?
             </a>
@@ -114,4 +112,4 @@ const LoginPage = () => {
     </div>
   )
 }
-export default LoginPage
+ export default LoginPage
