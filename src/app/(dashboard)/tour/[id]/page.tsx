@@ -17,7 +17,7 @@ export default function TourDetailPage() {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       })
-      console.log('response', response.data.data)
+      console.log('response', response.data)
       setDetail(response.data);
     } catch (error) {
       console.error('Lỗi khi gọi API:', error)

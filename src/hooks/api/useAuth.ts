@@ -17,7 +17,6 @@ function useAuth() {
     const handleLogin = async ({ username, password }: LoginRequestType) => {
         try {
             const res = await authService.login({ username, password })
-            console.log("💲💲💲 ~ handleLogin ~ res:", res)
 
             if (!res.token) {
                 enqueueSnackbar({ variant: "error", message: "Login failed, try again" })
@@ -27,7 +26,6 @@ function useAuth() {
                 token: res.token,
             }
             dispatch(setMe(res.user))
-            console.log("💲💲💲 ~ handleLogin ~ res.user:", res.user)
             localStorage.setItem('token', JSON.stringify(item))
             enqueueSnackbar({ variant: "success", message: "Login success" })
             router.push("/home")

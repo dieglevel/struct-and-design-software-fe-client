@@ -23,7 +23,6 @@ export const useUserSlice = createSlice({
     initialState: initUserSlice,
     reducers: {
         setMe: (state, action: PayloadAction<IUser>) => {
-            console.log("💲💲💲 ~ action:", action)
             state.me = action.payload;
         },
     },
