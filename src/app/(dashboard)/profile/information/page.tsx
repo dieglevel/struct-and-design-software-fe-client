@@ -2,7 +2,7 @@
 
 import type React from 'react'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { format } from 'date-fns'
 import { vi } from 'date-fns/locale'
 
@@ -13,6 +13,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { CalendarIcon } from 'lucide-react'
+import useAuth from '@/hooks/api/useAuth'
 
 interface FormData {
   fullName: string
@@ -22,6 +23,12 @@ interface FormData {
 }
 
 export default function Information() {
+  const { me, handleGetMe } = useAuth()
+  
+  useEffect(() => {
+    handleGetMe()
+  },[])
+
   const [formData, setFormData] = useState<FormData>({
     fullName: 'Phung Anh Minh',
     email: 'Dieglevel@gmail.com',
@@ -41,8 +48,8 @@ export default function Information() {
             <Input
               id="fullName"
               name="fullName"
-              onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-              value={formData.fullName}
+              // onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+              value={me.fullName}
               className="border-gray-300"
             />
           </div>
@@ -60,7 +67,7 @@ export default function Information() {
                     !formData.date && 'text-muted-foreground',
                   )}
                 >
-                  {formData.date ? format(formData.date, 'dd/MM/yyyy') : 'Chọn ngày'}
+                  {}
                   <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                 </Button>
               </PopoverTrigger>
