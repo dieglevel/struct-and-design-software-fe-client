@@ -9,14 +9,16 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import api from '@/libs/axios/axios.config'
 import { LoginRequestDTO } from '@/models/request'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { LogoICon } from '../../../assets/svgs'
- const LoginPage = () => {
+import useAuth from '@/hooks/api/useAuth'
+
+const LoginPage = () => {
   const { register, handleSubmit } = useForm<LoginRequestDTO>()
   const [isModalOpen, setModalOpen] = useState(false) // Trạng thái modal
+  const { handleLogin } = useAuth()
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -26,20 +28,7 @@ import { LogoICon } from '../../../assets/svgs'
   }, [])
 
   const onSubmit = async (data: LoginRequestDTO) => {
-    const MINUTE_TOKEN = 60
-    try {
-      const res = await api.post(`${process.env.NEXT_PUBLIC_USER_SERVICE}/auth/token`, data)
-      if (res.data.data.token) {
-        const item = {
-          token: res.data.data.token,
-          expiry: new Date().getTime() + MINUTE_TOKEN * 1000 * 60,
-        }
-        localStorage.setItem('token', JSON.stringify(item))
-        window.location.reload()
-      }
-    } catch (error) {
-      setModalOpen(true)
-    }
+    await handleLogin({ ...data })
   }
 
   return (
@@ -112,4 +101,4 @@ import { LogoICon } from '../../../assets/svgs'
     </div>
   )
 }
- export default LoginPage
+export default LoginPage
