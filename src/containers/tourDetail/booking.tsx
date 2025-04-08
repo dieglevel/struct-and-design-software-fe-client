@@ -1,5 +1,4 @@
 'use client'
-import tourDetailBanner from '@/assets/images/tour_detail_header.png'
 import { StarSvgIcon } from '@/assets/svgs'
 import { Button } from '@/components/ui'
 import { MAX_PRICE_TOUR, MIN_PRICE_TOUR } from '@/constants'
@@ -19,13 +18,15 @@ import { Divider } from '@heroui/divider'
 import { TimerIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-export const BookingTourDetailComponent = (valueObject: TourResponseDTO) => {
-  console.log('valueObject', valueObject)
+type Props = {
+  tourDetail: TourResponseDTO
+}
 
-  const [detail, setDetail] = useState<TourResponseDTO>({})
+export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
+  console.log('valueObject', tourDetail)
+
   const [tourSuggest, setTourSuggest] = useState<TourResponseDTO[]>([])
 
   const fetchTourSuggest = async () => {
@@ -49,7 +50,6 @@ export const BookingTourDetailComponent = (valueObject: TourResponseDTO) => {
   }
   useEffect(() => {
     fetchTourSuggest()
-    setDetail(valueObject)
   }, [])
   return (
     <div className="grid grid-cols-1 gap-3 md:grid-cols-5">
@@ -209,9 +209,9 @@ export const BookingTourDetailComponent = (valueObject: TourResponseDTO) => {
         </div>
       </div>
       {/* images */}
-      {detail && (
+      {tourDetail && (
         <div className="col-span-4 m-auto grid w-full grid-cols-3 gap-4 bg-white">
-          {detail?.tourImageResponses?.map((image, index) => {
+          {tourDetail?.tourImageResponses?.map((image, index) => {
             return (
               <div key={index} className="relative aspect-[4/3] w-full overflow-hidden rounded-md">
                 <Image
