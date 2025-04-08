@@ -24,7 +24,7 @@ export const CheapTourContainerComponent = () => {
           `${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/search?minPrice=${MIN_PRICE_TOUR}&maxPrice=${MAX_PRICE_TOUR}`,
         )
         setData(response.data)
-        console.log('fetchData',response.data)
+        console.log('fetchData', response.data.data)
       } catch (error) {
         console.error('Error fetching data:', error)
       }
