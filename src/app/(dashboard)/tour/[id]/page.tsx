@@ -1,7 +1,7 @@
 'use client'
 import tourDetailBanner from '@/assets/images/tour_detail_header.png'
 import { StarSvgIcon } from '@/assets/svgs'
-import { BookingTourDetailComponent } from '@/containers/tourDetail'
+import { AccordionTourSchedule, BookingTourDetailComponent } from '@/containers/tourDetail'
 import api from '@/libs/axios/axios.config'
 import { TourResponseDTO } from '@/models/response/dashboard'
 
@@ -68,6 +68,7 @@ export default function TourDetailPage() {
         </div>
         {/* layout */}
         <BookingTourDetailComponent tourDetail={detail} />
+        <AccordionTourSchedule tourDetail={detail} />
       </div>
     </div>
   )

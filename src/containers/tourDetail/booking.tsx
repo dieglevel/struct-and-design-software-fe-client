@@ -25,8 +25,6 @@ type Props = {
 }
 
 export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
-  console.log('valueObject', tourDetail)
-
   const [tourSuggest, setTourSuggest] = useState<TourResponseDTO[]>([])
 
   const fetchTourSuggest = async () => {
@@ -227,46 +225,50 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
         </div>
       )}
       {/* suggestion */}
-      <div className="md:col-span-6 md:hidden lg:col-span-1 lg:block">
-        <h1 className="mb-3 text-center font-serif text-lg font-bold text-colorbrand-midnightBlue-800">
-          Có thể bạn thích{' '}
-        </h1>
-        <div>
-          <div className="flex flex-col gap-3">
-            {tourSuggest?.map((tour, index) => {
-              if (index < 3) {
-                return (
-                  <div
-                    key={index}
-                    className="flex gap-3 rounded-md bg-white px-4 py-2 text-sm hover:cursor-pointer hover:opacity-70"
-                  >
-                    <div className="relative aspect-[4/3] basis-1/3 overflow-hidden rounded-lg">
-                      <Image
-                        alt="Hình ảnh địa điểm"
-                        src={tour.thumbnail as string}
-                        className="object-cover"
-                        key={index}
-                        fill
-                      />
-                    </div>
-                    <div className="flex basis-2/3 flex-col">
-                      <h3 className="line-clamp-1 text-sm font-black text-colorbrand-midnightBlue-900">{tour.name}</h3>
-                      <p className="flex">
-                        <TimerIcon />3 Ngày 2 đêm
-                      </p>
-                      <div className="flex">
-                        <StarSvgIcon className="w-4" /> <span>(4.9)</span>
+      {tourDetail?.tourImageResponses?.length != 0 && (
+        <div className="md:col-span-6 md:hidden lg:col-span-1 lg:block">
+          <h1 className="mb-3 text-center font-serif text-lg font-bold text-colorbrand-midnightBlue-800">
+            Có thể bạn thích{' '}
+          </h1>
+          <div>
+            <div className="flex flex-col gap-3">
+              {tourSuggest?.map((tour, index) => {
+                if (index < 3) {
+                  return (
+                    <div
+                      key={index}
+                      className="flex gap-3 rounded-md bg-white px-4 py-2 text-sm hover:cursor-pointer hover:opacity-70"
+                    >
+                      <div className="relative aspect-[4/3] basis-1/3 overflow-hidden rounded-lg">
+                        <Image
+                          alt="Hình ảnh địa điểm"
+                          src={tour.thumbnail as string}
+                          className="object-cover"
+                          key={index}
+                          fill
+                        />
                       </div>
-                      <h3 className="text-lg font-black text-colorbrand-midnightBlue-900">{FORMAT_MONEY(2945000)}</h3>
+                      <div className="flex basis-2/3 flex-col">
+                        <h3 className="line-clamp-1 text-sm font-black text-colorbrand-midnightBlue-900">
+                          {tour.name}
+                        </h3>
+                        <p className="flex">
+                          <TimerIcon />3 Ngày 2 đêm
+                        </p>
+                        <div className="flex">
+                          <StarSvgIcon className="w-4" /> <span>(4.9)</span>
+                        </div>
+                        <h3 className="text-lg font-black text-colorbrand-midnightBlue-900">{FORMAT_MONEY(2945000)}</h3>
+                      </div>
                     </div>
-                  </div>
-                )
-              }
-              return null
-            })}
+                  )
+                }
+                return null
+              })}
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 }
