@@ -1,7 +1,9 @@
+'use client'
 import { Button, Input } from '@/components/ui'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
 
 export default function Home() {
+ 
   return (
     <div className="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark min-h-screen">
       <div className="container mx-auto p-8">

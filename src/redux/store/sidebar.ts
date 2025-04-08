@@ -1,6 +1,5 @@
 import api from '@/libs/axios/axios.config'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
 
 export const fetchProducts = createAsyncThunk('tourMinMax', async () => {
   const response = await api.get(`${process.env.NEXT_BOOKING_SERVICE}`) // Thay URL API thật
