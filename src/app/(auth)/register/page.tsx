@@ -18,6 +18,7 @@ import {
 import { useState } from 'react'
 import { redirect } from 'next/navigation'
 import api from '@/libs/axios/axios.config'
+
 const registerSchema = yup.object().shape({
   fullName: yup.string().required('Họ và tên không được để trống'),
   email: yup.string().email('Email không hợp lệ').required('Email không được để trống'),

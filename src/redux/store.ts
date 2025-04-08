@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { SideBarReducer } from './store/sidebar'
+import useUserSlice from './slice/user.slice'
+import useAppSlice from './slice/app.slice'
 
 export const store = configureStore({
   reducer: {
-    sidebar: SideBarReducer, // Thêm reducer vào store
+    // sidebar: SideBarReducer,
+    userSlice: useUserSlice,
+    appSlice: useAppSlice,
   },
 })
 

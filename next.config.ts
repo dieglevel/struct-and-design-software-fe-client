@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
 
 module.exports = {
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['picsum.photos', 'res.cloudinary.com'],
   },
 }
 
