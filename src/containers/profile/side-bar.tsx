@@ -2,13 +2,22 @@ import Image from 'next/image'
 import Link from 'next/link'
 import avatar1 from '@/assets/images/avatar1.png'
 import { EvaluateIcon, FavoriteIcon, OrderIcon, UserIcon } from '@/assets/svgs'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { SidebarMenu, SidebarMenuItem, SidebarProvider } from '@/components/ui/sidebar'
 import { SidebarCollapsibleItem } from './side-bar-collapsible'
+import useAuth from '@/hooks/api/useAuth'
 
 interface MenuItemProps {
   href: string
   name: string
+}
+
+interface UserFormData {
+  fullName: string
+  email: string
+  phone: string
+  birthday: Date | undefined
+  image: string
 }
 
 const accountMenuItems: MenuItemProps[] = [
@@ -43,6 +52,31 @@ const orderMenuItems: MenuItemProps[] = [
 
 export const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const { me, handleGetMe } = useAuth()
+
+  useEffect(() => {
+    handleGetMe()
+  }, [handleGetMe])
+
+  const [userData, setUserData] = useState<UserFormData>({
+    fullName: '',
+    email: '',
+    phone: '',
+    birthday: undefined,
+    image: ''
+  })
+
+  useEffect(() => {
+    if (me) {
+      setUserData({
+        fullName: me.fullName || '',
+        email: me.email || '',
+        phone: me.phone || '',
+        birthday: me.birthday ? new Date(me.birthday) : undefined,
+        image: me.avatar_url
+      })
+    }
+  }, [me])
 
   return (
     <div className="container w-full max-w-xs p-4">
@@ -50,8 +84,8 @@ export const SideBar = () => {
         <div className="relative mb-3 h-24 w-24">
           <Image src={avatar1} alt="Profile picture" width={96} height={96} className="rounded-full object-cover" />
         </div>
-        <h2 className="text-xl font-bold text-[#1a3c61]">Phung Anh Minh</h2>
-        <p className="text-sm text-gray-500">dieglevel@gmail.com</p>
+        <h2 className="text-xl font-bold text-[#1a3c61]">{userData.fullName}</h2>
+        <p className="text-sm text-gray-500">{userData.image}</p>
       </div>
       <SidebarProvider>
         <SidebarMenu>
