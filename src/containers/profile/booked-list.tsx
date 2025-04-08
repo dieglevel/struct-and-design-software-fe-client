@@ -3,15 +3,17 @@ import React from 'react'
 import { IBookedTourEntity } from '@/models/response/booked'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import dynamic from 'next/dynamic'
+import { FORMAT_MONEY } from '@/utils/formatMoney'
+import { Button } from '@/components/ui'
 
 const ReactStars = dynamic(() => import('react-stars'), { ssr: false })
 
 
 export const BookedList = (booking: IBookedTourEntity) => {
   return (
-    <Card key={booking.bookingId} className="mt-8 flex h-full w-full overflow-hidden">
-      <div className="flex h-full w-full">
-        <div className="relative m-4 h-28 w-1/6 self-center">
+    <Card key={booking.bookingId} className="justif mt-8 flex h-full w-full justify-between overflow-hidden px-4">
+      <div className="flex w-full">
+        <div className="relative h-28 w-1/5 self-center">
           <Image src={booking.image} alt={booking.tourName} fill className="object-cover" />
         </div>
 
@@ -27,11 +29,19 @@ export const BookedList = (booking: IBookedTourEntity) => {
             </p>
           </CardContent>
         </div>
+      </div>
 
-        {/* Render ReactStars chỉ khi client */}
-        <div >
-          <ReactStars value={5} edit={false} />
-          <p></p>
+      {/* Render ReactStars chỉ khi client */}
+      <div className="flex w-2/5 items-center justify-between">
+        <div>
+          <ReactStars size={20} value={5} edit={false} />
+          <p className="text-base font-bold text-[#00315C] mt-4">{FORMAT_MONEY(booking.pricePerPerson)}</p>
+        </div>
+        <div className="flex flex-col">
+          <Button className="mb-4 bg-[#F27052] font-bold">Xem chi tiết</Button>
+          <Button variant="outline" className="border-[#F27052] font-bold text-[#F27052] hover:bg-[#f26f52a2] hover:text-white">
+            Đánh giá
+          </Button>
         </div>
       </div>
     </Card>

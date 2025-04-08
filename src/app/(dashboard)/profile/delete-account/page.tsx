@@ -86,13 +86,12 @@ export default function DeleteAccount() {
             Cảnh báo: Hành động này không thể hoàn tác
           </CardDescription>
         </CardHeader>
-
+        <CardContent>
         <div className="border-t pt-4">
           <p className="mb-4 text-red-500">Cảnh báo: Hành động này không thể hoàn tác.</p>
 
           <div className="mb-6 rounded-md border border-red-200 bg-red-50 p-4">
             <div className="flex gap-2">
-              <AlertCircle className="h-5 w-5 flex-shrink-0 text-red-500" />
               <p className="text-sm text-red-600">
                 Việc xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn và bạn sẽ không thể khôi phục lại.
               </p>

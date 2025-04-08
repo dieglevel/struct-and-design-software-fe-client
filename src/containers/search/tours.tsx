@@ -38,20 +38,6 @@ export const ResultComponent = () => {
   if (!clientTour) return null
   return (
     <section className="mx-auto px-4 py-12">
-      {/* title */}
-      <div className="flex items-center justify-between">
-        <h2 className="items-center text-2xl font-bold text-[#00315C]">ƯU ĐÃI HOT HÔM NAY</h2>
-        <div className="flex items-center">
-          <span className="pr-3 text-[#497E91]">CHƯƠNG TRÌNH DIỄN RA TRONG </span>
-          <div className="flex grid-cols-1">
-            <span className="rounded-sm bg-[#F27052] px-2 py-2 font-bold text-white">10</span>
-            <span className="flex items-center justify-center px-1 font-bold text-[#F27052]">:</span>
-            <span className="rounded-sm bg-[#F27052] px-2 py-2 font-bold text-white">20</span>
-            <span className="flex items-center justify-center px-1 font-bold text-[#F27052]">:</span>
-            <span className="rounded-sm bg-[#F27052] px-2 py-2 font-bold text-white">30</span>
-          </div>
-        </div>
-      </div>
       {/* tour */}
       <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {clientTour.data.slice(0, 8).map((tour) => {

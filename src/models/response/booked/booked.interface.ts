@@ -6,7 +6,6 @@ export interface IBookedTourEntity {
   totalAdults: number
   totalChildren: number
   pricePerPerson: number
-  currency: string
   image: string 
   location: string
 }

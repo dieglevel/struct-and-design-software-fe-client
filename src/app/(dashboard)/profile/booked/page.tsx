@@ -13,7 +13,6 @@ const bookedTours: IBookedTourEntity[] = [
     totalAdults: 2,
     totalChildren: 1,
     pricePerPerson: 5000000,
-    currency: 'VND',
     image: 'http://res.cloudinary.com/dwip7dplu/image/upload/v1743495910/travel/aiozwipu7gmsnzoedjdw.webp',
   },
   {
@@ -25,7 +24,6 @@ const bookedTours: IBookedTourEntity[] = [
     totalAdults: 3,
     totalChildren: 0,
     pricePerPerson: 4255000,
-    currency: 'VND',
     image: 'http://res.cloudinary.com/dwip7dplu/image/upload/v1743495910/travel/aiozwipu7gmsnzoedjdw.webp',
   },
 ]
