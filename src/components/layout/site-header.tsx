@@ -9,11 +9,10 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { DiscordIcon, FacebookIcon, GoogleIcon, LogoICon, YoutubeIcon } from '@/assets/svgs'
 
 const navigation = [
-  { name: 'TRANG CHỦ', href: '/home' },
-  { name: 'TOUR', href: '/tour' },
-  { name: 'KHÁCH SẠN', href: '/khach-san' },
-  { name: 'CẨM NANG DU LỊCH', href: '/cam-nang' },
-  { name: 'LIÊN HỆ', href: '/lien-he' },
+  { name: 'trang chủ', href: '/home' },
+  { name: 'tour', href: '/tour' },
+  { name: 'liên hệ', href: '/contact' },
+  { name: 'tìm kiếm', href: '/search' },
 ]
 
 export default function SiteHeader() {
@@ -70,12 +69,12 @@ export default function SiteHeader() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden w-1/2 justify-around md:flex md:space-x-4 lg:space-x-6">
+            <nav className="hidden w-1/3 justify-around md:flex md:space-x-4 lg:space-x-6">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-bold transition-colors hover:text-primary ${
+                  className={`text-sm font-bold transition-colors hover:text-primary uppercase ${
                     item.name === activeItem ? 'text-[#F27052]' : 'text-gray-700'
                   }`}
                 >

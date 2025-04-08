@@ -36,7 +36,7 @@ const accountMenuItems: MenuItemProps[] = [
 
 const orderMenuItems: MenuItemProps[] = [
   {
-    href: '#',
+    href: '/profile/booked',
     name: 'Đặt tour',
   },
 ]

@@ -86,70 +86,38 @@ export default function DeleteAccount() {
             Cảnh báo: Hành động này không thể hoàn tác
           </CardDescription>
         </CardHeader>
+        <CardContent>
+        <div className="border-t pt-4">
+          <p className="mb-4 text-red-500">Cảnh báo: Hành động này không thể hoàn tác.</p>
 
-        <CardContent className="space-y-6">
-          <Alert variant="destructive" className="border-red-300 bg-red-50">
-            <AlertTriangle className="h-4 w-4" />
-            <AlertTitle>Cảnh báo</AlertTitle>
-            <AlertDescription>
-              Việc xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn và bạn sẽ không thể khôi phục lại.
-            </AlertDescription>
-          </Alert>
+          <div className="mb-6 rounded-md border border-red-200 bg-red-50 p-4">
+            <div className="flex gap-2">
+              <p className="text-sm text-red-600">
+                Việc xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn và bạn sẽ không thể khôi phục lại.
+              </p>
+            </div>
+          </div>
 
-          <div className="space-y-4">
-            <h3 className="font-semibold text-[#0a3b66]">Hậu quả của việc xóa tài khoản:</h3>
-
-            <div className="space-y-3">
-              <div className="flex items-start space-x-2">
-                <Checkbox
-                  id="data-acknowledgement"
-                  checked={acknowledgements.data}
-                  onCheckedChange={(checked) => setAcknowledgements((prev) => ({ ...prev, data: checked === true }))}
-                />
-                <div className="grid gap-1.5 leading-none">
-                  <Label
-                    htmlFor="data-acknowledgement"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Tôi hiểu rằng tất cả dữ liệu cá nhân, lịch sử hoạt động và tài liệu của tôi sẽ bị xóa vĩnh viễn.
-                  </Label>
-                </div>
+          <div className="mb-6">
+            <h2 className="mb-2 font-medium">Hậu quả của việc xóa tài khoản:</h2>
+            <div className="space-y-2">
+              <div className="flex items-start gap-2">
+                <input type="checkbox" id="confirm1" className="mt-1" />
+                <label htmlFor="confirm1" className="text-sm">
+                  Tôi hiểu rằng tất cả dữ liệu cá nhân, lịch sử hoạt động và tài liệu của tôi sẽ bị xóa vĩnh viễn.
+                </label>
               </div>
-
-              <div className="flex items-start space-x-2">
-                <Checkbox
-                  id="subscriptions-acknowledgement"
-                  checked={acknowledgements.subscriptions}
-                  onCheckedChange={(checked) =>
-                    setAcknowledgements((prev) => ({ ...prev, subscriptions: checked === true }))
-                  }
-                />
-                <div className="grid gap-1.5 leading-none">
-                  <Label
-                    htmlFor="subscriptions-acknowledgement"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Tôi hiểu rằng tất cả các đăng ký và thanh toán định kỳ sẽ bị hủy.
-                  </Label>
-                </div>
+              <div className="flex items-start gap-2">
+                <input type="checkbox" id="confirm2" className="mt-1" />
+                <label htmlFor="confirm2" className="text-sm">
+                  Tôi hiểu rằng tất cả các đăng ký và thanh toán định kỳ sẽ bị hủy.
+                </label>
               </div>
-
-              <div className="flex items-start space-x-2">
-                <Checkbox
-                  id="permanent-acknowledgement"
-                  checked={acknowledgements.permanent}
-                  onCheckedChange={(checked) =>
-                    setAcknowledgements((prev) => ({ ...prev, permanent: checked === true }))
-                  }
-                />
-                <div className="grid gap-1.5 leading-none">
-                  <Label
-                    htmlFor="permanent-acknowledgement"
-                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  >
-                    Tôi hiểu rằng hành động này là vĩnh viễn và không thể hoàn tác.
-                  </Label>
-                </div>
+              <div className="flex items-start gap-2">
+                <input type="checkbox" id="confirm3" className="mt-1" />
+                <label htmlFor="confirm3" className="text-sm">
+                  Tôi hiểu rằng hành động này là vĩnh viễn và không thể hoàn tác.
+                </label>
               </div>
             </div>
           </div>

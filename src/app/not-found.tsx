@@ -1,3 +1,6 @@
+import { Link } from "lucide-react";
+import Image from "next/image";
+
 export default function NotFound() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">

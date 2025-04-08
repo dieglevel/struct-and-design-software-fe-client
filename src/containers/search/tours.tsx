@@ -8,7 +8,7 @@ import api from '@/libs/axios/axios.config'
 import { BaseResponse } from '@/types'
 import { ITourEntity } from '@/models/response/tour'
 
-export const TourPromotionComponent = () => {
+export const ResultComponent = () => {
   const [clientTour, setClientTour] = useState<BaseResponse<ITourEntity[]>>()
 
   const formatPrice = (price: number) => {
@@ -37,23 +37,9 @@ export const TourPromotionComponent = () => {
 
   if (!clientTour) return null
   return (
-    <section className="container mx-auto px-4 py-12">
-      {/* title */}
-      <div className="flex items-center justify-between">
-        <h2 className="items-center text-2xl font-bold text-[#00315C]">ƯU ĐÃI HOT HÔM NAY</h2>
-        <div className="flex items-center">
-          <span className="pr-3 text-[#497E91]">CHƯƠNG TRÌNH DIỄN RA TRONG </span>
-          <div className="flex grid-cols-1">
-            <span className="rounded-sm bg-[#F27052] px-2 py-2 font-bold text-white">10</span>
-            <span className="flex items-center justify-center px-1 font-bold text-[#F27052]">:</span>
-            <span className="rounded-sm bg-[#F27052] px-2 py-2 font-bold text-white">20</span>
-            <span className="flex items-center justify-center px-1 font-bold text-[#F27052]">:</span>
-            <span className="rounded-sm bg-[#F27052] px-2 py-2 font-bold text-white">30</span>
-          </div>
-        </div>
-      </div>
+    <section className="mx-auto px-4 py-12">
       {/* tour */}
-      <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
         {clientTour.data.slice(0, 8).map((tour) => {
           return (
             <div key={tour.tourId} className="group overflow-hidden">
@@ -62,9 +48,9 @@ export const TourPromotionComponent = () => {
                   <Image
                     src={tour.thumbnail}
                     alt={tour.name}
-                    height={220}
                     width={280}
-                    className="aspect-[4/3] w-full self-center rounded-t-md object-cover"
+                    height={220}
+                    className="h-[220px] w-full self-center rounded-t-md object-cover"
                   />
                 </CardHeader>
                 <CardContent>
