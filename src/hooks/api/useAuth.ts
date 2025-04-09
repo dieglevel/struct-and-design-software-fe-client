@@ -2,7 +2,7 @@
 import { RootState } from '@/redux/store';
 import { useSnackbar } from 'notistack'
 import { useDispatch, useSelector } from 'react-redux';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import authService from '@/services/Auth.service';
 import { LoginRequestType } from '@/types/entities/Auth';
 import { setMe } from '@/redux/slice/user.slice';

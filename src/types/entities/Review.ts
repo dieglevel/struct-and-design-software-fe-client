@@ -1,6 +1,6 @@
 import { IUser } from "./User";
 
-export type IReviewResponseType = Pick<IUser, 'username' | 'userId'> & {
+export type IReview = Pick<IUser, 'username' | 'userId'> & {
     tourScheduleId: string,
     reviewDate: string,
     content: string
@@ -9,6 +9,11 @@ export type IReviewResponseType = Pick<IUser, 'username' | 'userId'> & {
     videUrl: string[],
     imageUrl: string[]
 }
+
+export type ReviewResponseType = {
+    data: IReview[]
+}
+
 
 
 
