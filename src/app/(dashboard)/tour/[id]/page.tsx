@@ -1,7 +1,9 @@
 'use client'
 import tourDetailBanner from '@/assets/images/tour_detail_header.png'
 import { StarSvgIcon } from '@/assets/svgs'
-import { BookingTourDetailComponent } from '@/containers/tourDetail'
+import { AccordionTourSchedule, BookingTourDetailComponent } from '@/containers/tourDetail'
+import CustomerReviews from '@/containers/tourDetail/review'
+import useReview from '@/hooks/api/useReview'
 import api from '@/libs/axios/axios.config'
 import { TourResponseDTO } from '@/models/response/dashboard'
 
@@ -12,6 +14,12 @@ export default function TourDetailPage() {
   const { id } = useParams()
   const [detail, setDetail] = useState<TourResponseDTO>({})
   const [schedule, setSchedule] = useState<string[]>([])
+
+  const { reviews, handleGetReviewByTourId } = useReview()
+  console.log('💲💲💲 ~ TourDetailPage ~ reviews:', reviews)
+  useEffect(() => {
+    handleGetReviewByTourId(`${id}`)
+  }, [])
   const fetchTourDetail = async () => {
     try {
       const response = await api(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/${id}`, {
@@ -22,7 +30,7 @@ export default function TourDetailPage() {
         },
       })
       console.log('response', response.data)
-      setDetail(response.data);
+      setDetail(response.data)
     } catch (error) {
       console.error('Lỗi khi gọi API:', error)
     }
@@ -67,6 +75,8 @@ export default function TourDetailPage() {
         </div>
         {/* layout */}
         <BookingTourDetailComponent tourDetail={detail} />
+        <AccordionTourSchedule tourDetail={detail} />
+        <CustomerReviews />
       </div>
     </div>
   )
