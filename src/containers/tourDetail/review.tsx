@@ -41,20 +41,19 @@ const CustomerReviews: React.FC = () => {
   ]
 
   return (
-    <div className="mx-auto max-w-max bg-white px-10 py-6 ">
+    <div className="mx-auto max-w-max py-6">
       {/* Header */}
       <h2 className="mb-4 text-xl font-semibold text-blue-900">Đánh giá của khách hàng</h2>
 
       {/* Rating and Criteria Section */}
-      <div className="mb-6 flex flex-col items-center rounded-lg bg-gray-100 p-4 md:flex-row">
+      <div className="mb-6 flex flex-col items-center  rounded-lg bg-gray-200 px-10 py-4 md:flex-row">
         {/* Rating */}
         <div className="mb-4 flex flex-col items-center md:mb-0 md:mr-8">
           <span className="text-4xl font-bold text-blue-900">4.9</span>
           <div className="flex items-center">
-            <span className="text-2xl text-yellow-400">★</span>
-            <span className="ml-2 text-gray-600">Tuyệt vời</span>
+            <span className="text-xl text-yellow-500">★</span>
+            <span className="ml-1 text-gray-600">Tuyệt vời</span>
           </div>
-          <span className="text-gray-500">Kém</span>
         </div>
 
         {/* Criteria Progress Bars */}

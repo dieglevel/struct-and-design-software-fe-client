@@ -6,7 +6,6 @@ function useReview() {
     const [reviews, setReviews] = useState<IReview[]>([])
     const handleGetReviewByTourId = async (tourId: string) => {
         const res = await reviewService.getReviewByTourId(tourId)
-        console.log("💲💲💲 ~ handleGetReviewByTourId ~ res:", res)
         setReviews(res.data)
     }
     return {

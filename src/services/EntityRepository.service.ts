@@ -6,7 +6,7 @@ export abstract class EntityRepository<T> {
     constructor(endPoint: string) {
         this.END_POINT = endPoint
     }
-    public async getById(id: string) {
+    public async getById(id?: string) {
         return await api.get(`${this.END_POINT}/${id}`)
     }
     public async getAll() {
