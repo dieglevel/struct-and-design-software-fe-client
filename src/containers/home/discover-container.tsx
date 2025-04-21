@@ -1,15 +1,25 @@
 import { TickIcon } from '@/assets/svgs'
 import Image from 'next/image'
 import cover from '@/assets/images/cover.png'
-
+import CountUp from 'react-countup'
+import { motion } from 'motion/react'
+import { useState } from 'react'
 export const DiscoverComponent = () => {
+  const [startCount, setStartCount] = useState(false)
+
   return (
     <section className="container mx-auto px-4 py-12">
       <div className="mb-16 self-center text-center">
         <p className="text-base text-[#497E91]">CHẤT LƯỢNG VÀ UY TÍN LÀ ƯU TIÊN HÀNG ĐẦU</p>
         <h3 className="mb-2 text-3xl font-bold text-blue-900">HỢP TÁC CÙNG CHÚNG TÔI</h3>
       </div>
-      <div className="container flex items-center justify-between">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        onViewportEnter={() => setStartCount(true)}
+        className="container flex items-center justify-between"
+      >
         <div>
           <div className="py-4">
             <div className="flex items-center py-3">
@@ -27,14 +37,20 @@ export const DiscoverComponent = () => {
           </div>
           <div className="flex flex-col justify-between gap-10 sm:flex-row sm:gap-20 lg:justify-start">
             <div className="flex max-w-[282px] flex-col items-center">
-              <p className="text-8xl font-bold text-[#F27052]">20K+</p>
+              {/* <p className="text-6xl font-bold text-[#F27052]">20K+</p> */}
+              <p className="text-6xl font-bold text-[#F27052]">
+                {startCount && <CountUp end={20000} duration={2} separator="," />}+
+              </p>
               <p className="mx-auto mt-4 max-w-[200px] text-center text-base text-[#888888]">
                 Nhà cung cấp dịch vụ du lịch, nhà hàng
               </p>
             </div>
             <div className="hidden h-20 self-center border border-[#E7E7E7] sm:block"></div>
             <div className="flex max-w-[282px] flex-col items-center">
-              <p className="text-8xl font-bold text-[#F27052]">15K+</p>
+              {/* <p className="text-6xl font-bold text-[#F27052]">15K+</p> */}
+              <p className="text-6xl font-bold text-[#F27052]">
+                {startCount && <CountUp end={15000} duration={2} separator="," />}+
+              </p>
               <p className="mt-4 text-center text-base text-[#888888]">Khách hàng tiếp cận</p>
             </div>
           </div>
@@ -50,7 +66,8 @@ export const DiscoverComponent = () => {
             />
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
+    // </motion.div>
   )
 }

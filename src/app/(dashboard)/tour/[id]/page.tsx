@@ -5,13 +5,11 @@ import { AccordionTourSchedule, BookingTourDetailComponent } from '@/containers/
 import CustomerReviews from '@/containers/tourDetail/review'
 import useReview from '@/hooks/api/useReview'
 import useTour from '@/hooks/api/useTour'
-import api from '@/libs/axios/axios.config'
-import { TourResponseDTO } from '@/models/response/dashboard'
 
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 export default function TourDetailPage() {
   const { id } = useParams()

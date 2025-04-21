@@ -1,3 +1,4 @@
+'use client'
 import { Button } from '@/components/ui'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
@@ -9,14 +10,15 @@ import { BaseResponse } from '@/types'
 import { ITourEntity } from '@/models/response/tour'
 import { FORMAT_MONEY } from '@/utils/formatMoney'
 import { useRouter } from 'next/navigation'
+import TourLoading from '@/components/ui/loading'
 
 export const TourPromotionComponent = () => {
   const [clientTour, setClientTour] = useState<BaseResponse<ITourEntity[]>>()
-    const route = useRouter()
-    const goDetail = (id: string) => {
-      route.push(`tour/${id}`)
-    }
-  
+  const [loading, setLoading] = useState(false)
+  const route = useRouter()
+  const goDetail = (id: string) => {
+    route.push(`tour/${id}`)
+  }
 
   const getTour = async () => {
     try {
@@ -30,13 +32,14 @@ export const TourPromotionComponent = () => {
   }
 
   useEffect(() => {
-    const fetchTour = async () => {  
+    const fetchTour = async () => {
+      setLoading(true)
       await getTour()
+      setLoading(false)
     }
     fetchTour()
   }, [])
 
-  if (!clientTour) return null
   return (
     <section className="container mx-auto px-4 py-12">
       {/* title */}
@@ -54,44 +57,56 @@ export const TourPromotionComponent = () => {
         </div>
       </div>
       {/* tour */}
-      <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        {clientTour.slice(0, 8).map((tour: ITourEntity) => {
-          return (
-            <div key={tour.tourId} className="group overflow-hidden">
-              <Card className="rounded-md border-none bg-white/80 shadow-sm">
-                <CardHeader className="relative p-0">
-                  <Image
-                    src={tour.thumbnail}
-                    alt={tour.name}
-                    height={220}
-                    width={280}
-                    className="aspect-[4/3] w-full self-center rounded-t-md object-cover"
-                  />
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col space-y-2">
-                    <h3 className="mt-4 line-clamp-2 min-h-12 self-start font-light text-[#00315C]">{tour.name}</h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <ClockIcon />
-                        <p className="text-sm font-light text-[#707070]">{tour.duration}</p>
+      {loading ? (
+        <TourLoading />
+      ) : (
+        <>
+          <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {clientTour?.slice(0, 8).map((tour: ITourEntity) => {
+              return (
+                <div key={tour.tourId} className="group overflow-hidden">
+                  <Card
+                    onClick={() => goDetail(tour.tourId)}
+                    className="hovr:shadow-md rounded-md border-none bg-white/80 shadow-sm transition duration-300"
+                  >
+                    <CardHeader className="relative p-0">
+                      <Image
+                        src={tour.thumbnail}
+                        alt={tour.name}
+                        height={220}
+                        width={280}
+                        className="aspect-[4/3] w-full self-center rounded-t-md object-cover"
+                      />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-col space-y-2">
+                        <h3 className="mt-4 line-clamp-2 min-h-12 self-start font-light text-[#00315C]">{tour.name}</h3>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <ClockIcon />
+                            <p className="text-sm font-light text-[#707070]">{tour.duration}</p>
+                          </div>
+                          <ReactStars value={5} edit={false} />
+                        </div>
                       </div>
-                      <ReactStars value={5} edit={false} />
-                    </div>
-                  </div>
-                  <div className="my-4 w-full border bg-[#D1D1D1]"></div>
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-[#00315C]">{FORMAT_MONEY(tour.price)}</span>
-                    <Button className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50" onClick={() => goDetail(tour.tourId)}>
-                      Xem chi tiết
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )
-        })}
-      </div>
+                      <div className="my-4 w-full border bg-[#D1D1D1]"></div>
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-[#00315C]">{FORMAT_MONEY(tour.price)}</span>
+                        <Button
+                          className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50"
+                          onClick={() => goDetail(tour.tourId)}
+                        >
+                          Xem chi tiết
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )
+            })}
+          </div>
+        </>
+      )}
     </section>
   )
 }

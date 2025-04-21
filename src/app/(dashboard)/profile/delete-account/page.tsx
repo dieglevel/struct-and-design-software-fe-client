@@ -87,68 +87,68 @@ export default function DeleteAccount() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-        <div className="border-t pt-4">
-          <p className="mb-4 text-red-500">Cảnh báo: Hành động này không thể hoàn tác.</p>
+          <div className="border-t pt-4">
+            <p className="mb-4 text-red-500">Cảnh báo: Hành động này không thể hoàn tác.</p>
 
-          <div className="mb-6 rounded-md border border-red-200 bg-red-50 p-4">
-            <div className="flex gap-2">
-              <p className="text-sm text-red-600">
-                Việc xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn và bạn sẽ không thể khôi phục lại.
-              </p>
+            <div className="mb-6 rounded-md border border-red-200 bg-red-50 p-4">
+              <div className="flex gap-2">
+                <p className="text-sm text-red-600">
+                  Việc xóa tài khoản sẽ xóa vĩnh viễn tất cả dữ liệu của bạn và bạn sẽ không thể khôi phục lại.
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="mb-6">
-            <h2 className="mb-2 font-medium">Hậu quả của việc xóa tài khoản:</h2>
+            <div className="mb-6">
+              <h2 className="mb-2 font-medium">Hậu quả của việc xóa tài khoản:</h2>
+              <div className="space-y-2">
+                <div className="flex items-start gap-2">
+                  <input type="checkbox" id="confirm1" className="mt-1" />
+                  <label htmlFor="confirm1" className="text-sm">
+                    Tôi hiểu rằng tất cả dữ liệu cá nhân, lịch sử hoạt động và tài liệu của tôi sẽ bị xóa vĩnh viễn.
+                  </label>
+                </div>
+                <div className="flex items-start gap-2">
+                  <input type="checkbox" id="confirm2" className="mt-1" />
+                  <label htmlFor="confirm2" className="text-sm">
+                    Tôi hiểu rằng tất cả các đăng ký và thanh toán định kỳ sẽ bị hủy.
+                  </label>
+                </div>
+                <div className="flex items-start gap-2">
+                  <input type="checkbox" id="confirm3" className="mt-1" />
+                  <label htmlFor="confirm3" className="text-sm">
+                    Tôi hiểu rằng hành động này là vĩnh viễn và không thể hoàn tác.
+                  </label>
+                </div>
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <div className="flex items-start gap-2">
-                <input type="checkbox" id="confirm1" className="mt-1" />
-                <label htmlFor="confirm1" className="text-sm">
-                  Tôi hiểu rằng tất cả dữ liệu cá nhân, lịch sử hoạt động và tài liệu của tôi sẽ bị xóa vĩnh viễn.
-                </label>
-              </div>
-              <div className="flex items-start gap-2">
-                <input type="checkbox" id="confirm2" className="mt-1" />
-                <label htmlFor="confirm2" className="text-sm">
-                  Tôi hiểu rằng tất cả các đăng ký và thanh toán định kỳ sẽ bị hủy.
-                </label>
-              </div>
-              <div className="flex items-start gap-2">
-                <input type="checkbox" id="confirm3" className="mt-1" />
-                <label htmlFor="confirm3" className="text-sm">
-                  Tôi hiểu rằng hành động này là vĩnh viễn và không thể hoàn tác.
-                </label>
-              </div>
+              <Label htmlFor="password" className="text-[#0a3b66]">
+                Nhập mật khẩu để xác nhận
+              </Label>
+              <Input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="border-gray-300"
+                placeholder="Nhập mật khẩu của bạn"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="confirm-text" className="text-[#0a3b66]">
+                Nhập "XÓA TÀI KHOẢN" để xác nhận
+              </Label>
+              <Input
+                id="confirm-text"
+                value={confirmText}
+                onChange={(e) => setConfirmText(e.target.value)}
+                className="border-gray-300"
+                placeholder="XÓA TÀI KHOẢN"
+              />
             </div>
           </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="password" className="text-[#0a3b66]">
-              Nhập mật khẩu để xác nhận
-            </Label>
-            <Input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="border-gray-300"
-              placeholder="Nhập mật khẩu của bạn"
-            />
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="confirm-text" className="text-[#0a3b66]">
-              Nhập "XÓA TÀI KHOẢN" để xác nhận
-            </Label>
-            <Input
-              id="confirm-text"
-              value={confirmText}
-              onChange={(e) => setConfirmText(e.target.value)}
-              className="border-gray-300"
-              placeholder="XÓA TÀI KHOẢN"
-            />
-          </div>
-
           <Alert className="border-blue-200 bg-blue-50">
             <Info className="h-4 w-4 text-blue-500" />
             <AlertTitle className="text-blue-700">Cần hỗ trợ?</AlertTitle>

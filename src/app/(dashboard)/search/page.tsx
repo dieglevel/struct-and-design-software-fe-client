@@ -1,16 +1,15 @@
-"use client";
+'use client'
 
-import { BannerTourComponent, ResultComponent } from "@/containers/search";
-import SideBarComponent from "@/containers/search/sidebar";
-
+import { BannerTourComponent, ResultComponent } from '@/containers/search'
+import SideBarComponent from '@/containers/search/sidebar'
 
 export default function TourPage() {
   return (
     <>
-      <BannerTourComponent/>  
-      <div className="container mx-auto flex flex-row  py-8">
-          <SideBarComponent/>
-          <ResultComponent/>
+      <BannerTourComponent />
+      <div className="container flex flex-row px-10 py-8">
+        <SideBarComponent />
+        <ResultComponent />
       </div>
     </>
   )
