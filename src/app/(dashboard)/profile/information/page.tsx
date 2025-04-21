@@ -55,7 +55,7 @@ export default function Information() {
   }
 
   return (
-    <div className="w-full max-w-4xl flex-1 self-center rounded-lg p-6 lg:w-[896]">
+    <div className="w-full max-w-4xl flex-1 self-center rounded-lg px-10 py-12 lg:w-[896]">
       <h2 className="mb-6 border-b pb-2 text-xl font-bold uppercase text-[#0a3b66]">Thông tin cá nhân</h2>
       <form className="w-full space-y-6" onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

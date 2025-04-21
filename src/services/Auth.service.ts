@@ -11,6 +11,15 @@ class AuthService {
         });
         return response.data;
     }
+
+    async loginGoogle() {
+        const response = await api.get<LoginResponseType>(`${this.END_POINT}/google/login`);
+        return response.data
+    }
+    async loginGitHub() {
+        const response = await api.get<LoginResponseType>(`${this.END_POINT}/github/login`);
+        return response.data
+    }
     async logout({ token }: LogoutRequestType) {
         return await api.post(`${this.END_POINT}/logout`, { token })
     }

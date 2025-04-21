@@ -52,7 +52,7 @@ const orderMenuItems: MenuItemProps[] = [
 
 export const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(0)
-  const { me, handleGetMe } = useAuth()
+  const { me, handleGetMe, handleLogout } = useAuth()
 
   useEffect(() => {
     handleGetMe()
@@ -63,7 +63,7 @@ export const SideBar = () => {
     email: '',
     phone: '',
     birthday: undefined,
-    image: ''
+    image: '',
   })
 
   useEffect(() => {
@@ -73,13 +73,20 @@ export const SideBar = () => {
         email: me.email || '',
         phone: me.phone || '',
         birthday: me.birthday ? new Date(me.birthday) : undefined,
-        image: me.avatar_url
+        image: me.avatar_url,
       })
     }
   }, [me])
 
+  const handleActiveIndex = (activeItem: number) => {
+    setActiveIndex(activeItem)
+    if (activeItem === 4) {
+      handleLogout()
+    }
+  }
+
   return (
-    <div className="container w-full max-w-xs p-4">
+    <div className="w- container max-w-xs bg-white p-4">
       <div className="mb-6 flex flex-col items-center">
         <div className="relative mb-3 h-24 w-24">
           <Image src={avatar1} alt="Profile picture" width={96} height={96} className="rounded-full object-cover" />
@@ -94,7 +101,7 @@ export const SideBar = () => {
             Icon={UserIcon}
             items={accountMenuItems}
             activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
+            setActiveIndex={handleActiveIndex}
           />
           <SidebarCollapsibleItem
             title="Đơn hàng"

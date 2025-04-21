@@ -1,7 +1,7 @@
 import { RootState } from '@/redux/store'
 import { useSnackbar } from 'notistack'
 import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import authService from '@/services/Auth.service';
 import { LoginRequestType } from '@/types/entities/Auth';
 import { setMe } from '@/redux/slice/user.slice';
@@ -13,6 +13,7 @@ function useAuth() {
   const router = useRouter()
   const { me } = userStore
   const { enqueueSnackbar } = useSnackbar()
+
 
   //TODO: [LOGIN]
   const handleLogin = async ({ username, password }: LoginRequestType) => {
@@ -35,6 +36,57 @@ function useAuth() {
     }
   }
 
+  const handleLoginGoogle = async () => {
+    try {
+      const res = await authService.loginGoogle()
+
+      if (!res.token) {
+        enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
+        return
+      }
+      const item = {
+        token: res.token,
+      }
+      dispatch(setMe(res.user))
+      localStorage.setItem('token', JSON.stringify(item))
+      enqueueSnackbar({ variant: 'success', message: 'Login success' })
+      router.push('/home')
+    } catch (error) {
+      enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
+    }
+  }
+
+  const handleLoginGitHub = async () => {
+    try {
+      const res = await authService.loginGitHub()
+      console.log("💲💲💲 ~ handleLoginGitHub ~ res:", res)
+
+      if (!res.token) {
+        enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
+        return
+      }
+      const item = {
+        token: res.token,
+      }
+      dispatch(setMe(res.user))
+      localStorage.setItem('token', JSON.stringify(item))
+      enqueueSnackbar({ variant: 'success', message: 'Login success' })
+      router.push('/home')
+    } catch (error) {
+      enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
+    }
+  }
+  const handleNavigateAccount = async () => {
+    const tokenItem = localStorage.getItem('token')
+    return tokenItem ? redirect('/profile/information') : redirect('/login')
+  }
+
+  const handleLogout = async () => {
+    localStorage.clear()
+    dispatch(setMe({}))
+    redirect("/login")
+  }
+
   const handleGetMe = async () => {
     try {
       const tokenItem = localStorage.getItem('token')
@@ -46,9 +98,8 @@ function useAuth() {
       localStorage.removeItem('token')
     }
   }
-  const handleRegister = async () => {}
-  const handleLogout = async () => {}
-  return { me, handleLogin, handleGetMe, handleRegister, handleLogout }
+  const handleRegister = async () => { }
+  return { me, handleLogin, handleGetMe, handleRegister, handleLogout, handleNavigateAccount, handleLoginGoogle, handleLoginGitHub }
 }
 
 export default useAuth

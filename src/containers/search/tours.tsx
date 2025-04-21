@@ -1,3 +1,4 @@
+'use client'
 import { Button } from '@/components/ui'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
@@ -5,15 +6,21 @@ import { ClockIcon } from '@/assets/svgs'
 import { useState, useEffect, useMemo } from 'react'
 import ReactStars from 'react-stars'
 import api from '@/libs/axios/axios.config'
-import { BaseResponse } from '@/types'
 import { ITourEntity } from '@/models/response/tour'
 import { FORMAT_MONEY } from '@/utils/formatMoney'
+import TourLoading from '@/components/ui/loading'
+import { useRouter } from 'next/navigation'
 
 export const ResultComponent = () => {
   const [clientTour, setClientTour] = useState<ITourEntity[]>([])
   const [loading, setLoading] = useState(true)
   const [currentPage, setCurrentPage] = useState(1)
   const toursPerPage = 12
+
+  const route = useRouter()
+  const handleNavigation = (id: string) => {
+    route.push(`tour/${id}`)
+  }
 
   const getTour = async () => {
     try {
@@ -45,7 +52,12 @@ export const ResultComponent = () => {
     return Math.ceil(clientTour.length / toursPerPage)
   }, [clientTour, toursPerPage])
 
-  if (loading) return <div className="flex justify-center py-10">Đang tải tour...</div>
+  if (loading)
+    return (
+      <div className="flex w-full items-center justify-center">
+        <TourLoading />
+      </div>
+    )
   if (!clientTour.length) return <div className="flex justify-center py-10">Không tìm thấy tour nào</div>
 
   return (
@@ -55,7 +67,10 @@ export const ResultComponent = () => {
         {currentTours.map((tour: ITourEntity) => {
           return (
             <div key={tour.tourId} className="group overflow-hidden">
-              <Card className="rounded-md border-none bg-white/80 shadow-sm">
+              <Card
+                onClick={() => handleNavigation(tour.tourId)}
+                className="rounded-md border-none bg-white/80 shadow-sm"
+              >
                 <CardHeader className="relative p-0">
                   <Image
                     src={tour.thumbnail}
@@ -79,7 +94,10 @@ export const ResultComponent = () => {
                   <div className="my-4 w-full border bg-[#D1D1D1]"></div>
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-[#00315C]">{FORMAT_MONEY(tour.price)}</span>
-                    <Button className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50">
+                    <Button
+                      onClick={() => handleNavigation(tour.tourId)}
+                      className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50"
+                    >
                       Xem chi tiết
                     </Button>
                   </div>

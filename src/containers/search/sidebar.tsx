@@ -6,7 +6,6 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { PriceRangeFilter } from '@/components/ui/price-range-filter'
 import { Search } from 'lucide-react'
 import { useEffect, useReducer, useState } from 'react'
-
 interface IFilter {
   priceRange: [number, number]
   category: string
@@ -79,7 +78,6 @@ export default function SideBarComponent() {
 
   function handleSearch() {
     console.log('Searching with filters:', state)
-    // Implement your search logic here
   }
 
   function handleReset() {
@@ -90,12 +88,13 @@ export default function SideBarComponent() {
     console.log(state)
   }, [state])
 
+
   return (
-    <div className="h-full min-w-72 rounded-lg border bg-white p-4">
-      <h2 className="mb-4 text-lg font-bold uppercase">Bộ lọc tìm kiếm</h2>
+    <div className="sticky top-10 h-full min-w-72 rounded-lg border bg-white p-4">
+      <h2 className="mb-4 text-lg font-bold uppercase text-slate-600">Bộ lọc tìm kiếm</h2>
       <div className="space-y-4">
         <div>
-          <h3 className="mb-2 text-sm font-semibold">Ngân sách:</h3>
+          <h3 className="mb-2 text-sm font-semibold text-slate-500">Ngân sách:</h3>
           <div>
             <PriceRangeFilter
               minPrice={initialState.priceRange[0]}
@@ -106,7 +105,7 @@ export default function SideBarComponent() {
         </div>
 
         <div>
-          <h3 className="mb-2 text-sm font-semibold">Danh mục:</h3>
+          <h3 className="mb-2 text-sm font-semibold text-slate-500">Danh mục:</h3>
           <div>
             <DropdownMenu>
               <DropdownMenuTrigger
@@ -136,7 +135,7 @@ export default function SideBarComponent() {
         </div>
 
         <div>
-          <h3 className="mb-2 text-sm font-semibold">Điểm đến:</h3>
+          <h3 className="mb-2 text-sm font-semibold text-slate-500">Điểm đến:</h3>
           <div>
             <DropdownMenu>
               <DropdownMenuTrigger
@@ -165,7 +164,7 @@ export default function SideBarComponent() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 pt-4">
+        <div className="flex flex-col gap-4 pt-10">
           <button
             onClick={handleSearch}
             className="flex w-full items-center justify-center gap-2 rounded-md bg-[#F27052] py-3 font-medium text-white transition-colors hover:bg-[#e05e3e] active:bg-[#d04e2e]"
@@ -176,7 +175,7 @@ export default function SideBarComponent() {
 
           <button
             onClick={handleReset}
-            className="w-full rounded-md border border-gray-300 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-50"
+            className="w-full rounded-md border border-gray-300 py-2 text-sm text-gray-600 text-slate-500 transition-colors hover:bg-gray-50"
           >
             Đặt lại bộ lọc
           </button>
