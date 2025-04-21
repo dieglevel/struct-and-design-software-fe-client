@@ -8,9 +8,15 @@ import api from '@/libs/axios/axios.config'
 import { BaseResponse } from '@/types'
 import { ITourEntity } from '@/models/response/tour'
 import { FORMAT_MONEY } from '@/utils/formatMoney'
+import { useRouter } from 'next/navigation'
 
 export const TourPromotionComponent = () => {
   const [clientTour, setClientTour] = useState<BaseResponse<ITourEntity[]>>()
+    const route = useRouter()
+    const goDetail = (id: string) => {
+      route.push(`tour/${id}`)
+    }
+  
 
   const getTour = async () => {
     try {
@@ -49,7 +55,7 @@ export const TourPromotionComponent = () => {
       </div>
       {/* tour */}
       <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        {clientTour.slice(0, 8).map((tour:ITourEntity) => {
+        {clientTour.slice(0, 8).map((tour: ITourEntity) => {
           return (
             <div key={tour.tourId} className="group overflow-hidden">
               <Card className="rounded-md border-none bg-white/80 shadow-sm">
@@ -76,7 +82,7 @@ export const TourPromotionComponent = () => {
                   <div className="my-4 w-full border bg-[#D1D1D1]"></div>
                   <div className="flex items-center justify-between">
                     <span className="font-bold text-[#00315C]">{FORMAT_MONEY(tour.price)}</span>
-                    <Button className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50">
+                    <Button className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50" onClick={() => goDetail(tour.tourId)}>
                       Xem chi tiết
                     </Button>
                   </div>
