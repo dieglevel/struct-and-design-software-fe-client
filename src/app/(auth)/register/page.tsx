@@ -47,8 +47,7 @@ const RegisterPage = () => {
           role: 'USER',
         }),
       )
-      console.log(res.data)
-      if (res.data.data) {
+      if (res.data) {
         setIsSuccess(true)
       }
     } catch (error) {

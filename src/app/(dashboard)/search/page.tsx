@@ -8,7 +8,7 @@ export default function TourPage() {
   return (
     <>
       <BannerTourComponent/>  
-      <div className="mx-4 md:mx-16 container flex flex-row gap-4 py-8">
+      <div className="container mx-auto flex flex-row  py-8">
           <SideBarComponent/>
           <ResultComponent/>
       </div>

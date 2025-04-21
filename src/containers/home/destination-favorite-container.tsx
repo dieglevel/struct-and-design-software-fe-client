@@ -10,9 +10,7 @@ export const DestinationFavoriteContainer = () => {
   const getDestinations = async () => {
     try {
       const res = await api.get(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/destinations`)
-      if (res.data.data) {
-        return res.data
-      }
+      setDestinations(res.data)
     } catch (error) {
       console.error('Lỗi khi gọi API lấy tour:', error)
     }
@@ -20,8 +18,7 @@ export const DestinationFavoriteContainer = () => {
 
   useEffect(() => {
     const fetchDestinations = async () => {
-      const destinations = await getDestinations()
-      setDestinations(destinations)
+      getDestinations()
     }
     fetchDestinations()
   }, [])
@@ -32,7 +29,7 @@ export const DestinationFavoriteContainer = () => {
         <h3 className="mb-2 text-3xl font-bold uppercase text-blue-900">điểm đến yêu thích</h3>
       </div>
       <div className="grid h-[1060px] grid-cols-2 grid-rows-3 gap-8 md:grid-cols-4 md:grid-rows-2">
-        {destinations?.data.slice(0, 6).map((destination, index) => (
+        {destinations?.slice(0, 6).map((destination: IDestinationEntity, index:number) => (
           <button
             className={`relative overflow-hidden rounded-lg ${index % 2 === 0 && index > 0 ? 'col-span-2' : ''}`}
             key={destination.destinationId}
