@@ -7,10 +7,10 @@ export abstract class EntityRepository<T> {
         this.END_POINT = endPoint
     }
     public async getById(id?: string) {
-        return await api.get(`${this.END_POINT}/${id}`)
+        return await api.get<T>(`${this.END_POINT}/${id}`)
     }
     public async getAll() {
-        return await api.get(`${this.END_POINT}`)
+        return await api.get<T>(`${this.END_POINT}`)
     }
     public async create(data: T) {
         return api.post(`${this.END_POINT}`, { ...data })

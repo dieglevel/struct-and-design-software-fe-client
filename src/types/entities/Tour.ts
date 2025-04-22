@@ -1,4 +1,6 @@
-import { TourDestinationResponseDTO, TourImageResponseDTO } from "@/models/response/dashboard"
+import { ITourDestination } from "./TourDestination"
+import { ITourImage } from "./TourImage"
+import { ITourSchedule } from "./TourSchedule"
 
 export interface ITour {
     tourId?: string
@@ -7,8 +9,9 @@ export interface ITour {
     price?: number
     thumbnail?: string
     duration?: string
-    tourDestinationResponses?: TourDestinationResponseDTO[]
-    tourImageResponses?: TourImageResponseDTO[]
+    tourDestinationResponses?: ITourDestination[]
+    tourScheduleResponses?: ITourSchedule[]
+    tourImageResponses?: ITourImage[]
     isActive?: boolean
 }
 
