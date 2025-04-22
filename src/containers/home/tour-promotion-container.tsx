@@ -27,6 +27,7 @@ export const TourPromotionComponent = () => {
         setClientTour(res.data)
       }
     } catch (error) {
+      
       console.error('Lỗi khi gọi API lấy tour:', error)
     }
   }
@@ -67,7 +68,7 @@ export const TourPromotionComponent = () => {
                 <div key={tour.tourId} className="group overflow-hidden">
                   <Card
                     onClick={() => goDetail(tour.tourId)}
-                    className="hovr:shadow-md rounded-md border-none bg-white/80 shadow-sm transition duration-300"
+                    className="hover:shadow-md rounded-md border-none bg-white/80 shadow-sm transition duration-300"
                   >
                     <CardHeader className="relative p-0">
                       <Image
