@@ -3,7 +3,7 @@ import banner from '@/assets/images/banner.png'
 
 export const BannerTourComponent = () => {
   return (
-    <section className="relative flex min-h-[500px] w-full">
+    <section className="fixed flex h-full w-full">
       <Image src={banner} fill style={{ objectFit: 'cover', objectPosition: 'center' }} alt="Background" />
 
       {/* Content */}

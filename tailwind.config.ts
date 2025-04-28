@@ -8,7 +8,7 @@ export default {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/containers/**/*.{js,ts,jsx,tsx,mdx}',
-    './node_modules/@heroui/theme/dist/components/(divider|image).js',
+    './node_modules/@heroui/theme/dist/components/(accordion|divider|form|image).js',
   ],
   theme: {
     extend: {

@@ -1,7 +1,7 @@
 'use client'
 import { LogoICon } from '@/assets/svgs'
 import { RegisterRequestDTO } from '@/models/request/register.request.dto'
-import { TextField } from '@mui/material'
+import { input } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -47,8 +47,7 @@ const RegisterPage = () => {
           role: 'USER',
         }),
       )
-      console.log(res.data)
-      if (res.data.data) {
+      if (res.data) {
         setIsSuccess(true)
       }
     } catch (error: any) {
@@ -58,64 +57,85 @@ const RegisterPage = () => {
   }
 
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center rounded-md border-2 border-colorbrand-grayWhite-200 p-5">
-      <LogoICon className="w-30 h-40" />
-      <div className="pb-10">
-        <h1 className="pt-10 text-center text-2xl font-bold text-colorbrand-midnightBlue-950">Đăng ký</h1>
-        <p className="text-center text-base font-thin text-colorbrand-grayWhite-500">
+    <div className="flex w-[30%] flex-col items-center justify-center rounded-md bg-white pb-2 shadow-sm">
+      <LogoICon width={140} height={140} />
+      <div className="mb-2">
+        <h1 className="text-center text-2xl font-bold text-colorbrand-midnightBlue-950">Đăng ký</h1>
+        <p className="text-center text-sm font-thin text-colorbrand-grayWhite-500">
           Đồng hành với bạn trong các chuyến đi.
         </p>
       </div>
-      <div className="w-full lg:w-1/2">
+      <div className="w-full px-6">
         <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
           {/* Họ và Tên */}
-          <label className="my-2 text-base font-bold text-colorbrand-midnightBlue-950">Họ và tên *</label>
-          <TextField
+          <label className="my-1 text-sm font-bold text-colorbrand-midnightBlue-950">
+            Họ và tên
+            <span className="pl-1 text-lg text-colorbrand-burntSienna-600">*</span>
+          </label>
+          <input
             {...register('fullName')}
             placeholder="Nhập họ và tên"
-            className="w-full rounded-md border-2 border-gray-200 p-2"
+            className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
           />
-          <p className="text-sm text-red-500">{errors.fullName?.message}</p>
+          <p className="text-[12px] mt-1 text-red-500">{errors.fullName?.message}</p>
 
-          {/* Email */}
-          <label className="my-2 text-base font-bold text-colorbrand-midnightBlue-950">Email *</label>
-          <TextField
-            {...register('email')}
-            placeholder="Nhập email"
-            className="w-full rounded-md border-2 border-gray-200 p-2"
-          />
-          <p className="text-sm text-red-500">{errors.email?.message}</p>
+          <div className="my-1 flex gap-4">
+            {/* Email */}
+            <div className="flex-1">
+              <label className="text-sm font-bold text-colorbrand-midnightBlue-950">
+                Email
+                <span className="pl-1 text-lg text-colorbrand-burntSienna-600">*</span>
+              </label>
+              <input
+                {...register('email')}
+                placeholder="Nhập email"
+                className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
+              />
+              <p className="text-[12px] mt-1 text-red-500">{errors.email?.message}</p>
+            </div>
 
-          {/* Số điện thoại */}
-          <label className="my-2 text-base font-bold text-colorbrand-midnightBlue-950">Số điện thoại *</label>
-          <TextField
-            {...register('phone')}
-            placeholder="Nhập số điện thoại"
-            className="w-full rounded-md border-2 border-gray-200 p-2"
-          />
-          <p className="text-sm text-red-500">{errors.phone?.message}</p>
+            {/* Số điện thoại */}
+            <div className="flex-1">
+              <label className="text-sm font-bold text-colorbrand-midnightBlue-950">
+                Số điện thoại
+                <span className="pl-1 text-lg text-colorbrand-burntSienna-600">*</span>
+              </label>
+              <input
+                {...register('phone')}
+                placeholder="Nhập số điện thoại"
+                className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
+              />
+              <p className="text-[12px] mt-1 text-red-500">{errors.phone?.message}</p>
+            </div>
+          </div>
 
           {/* Username */}
-          <label className="my-2 text-base font-bold text-colorbrand-midnightBlue-950">Username *</label>
-          <TextField
+          <label className="my-1 text-sm font-bold text-colorbrand-midnightBlue-950">
+            Tên đăng nhập
+            <span className="pl-1 text-lg text-colorbrand-burntSienna-600">*</span>
+          </label>
+          <input
             {...register('username')}
             placeholder="Nhập username"
-            className="w-full rounded-md border-2 border-gray-200 p-2"
+            className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
           />
-          <p className="text-sm text-red-500">{errors.username?.message}</p>
+          <p className="text-[12px] mt-1 text-red-500">{errors.username?.message}</p>
 
           {/* Mật khẩu */}
-          <label className="my-2 text-base font-bold text-colorbrand-midnightBlue-950">Mật khẩu *</label>
-          <TextField
+          <label className="my-1 text-sm font-bold text-colorbrand-midnightBlue-950">
+            Mật khẩu
+            <span className="pl-1 text-lg text-colorbrand-burntSienna-600">*</span>
+          </label>
+          <input
             {...register('password')}
             type="password"
             placeholder="Nhập mật khẩu"
-            className="w-full rounded-md border-2 border-gray-200 p-2"
+            className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
           />
-          <p className="text-sm text-red-500">{errors.password?.message}</p>
+          <p className="text-[12px] mt-1 text-red-500">{errors.password?.message}</p>
 
           {/* Nút Đăng ký */}
-          <button type="submit" className="m-auto mt-10 w-1/2 rounded-md bg-colorbrand-burntSienna-500 p-2 text-white">
+          <button type="submit" className="m-auto mt-4 w-full rounded-md bg-colorbrand-burntSienna-500 p-2 text-white">
             Đăng ký
           </button>
 

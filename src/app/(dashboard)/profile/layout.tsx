@@ -3,9 +3,9 @@ import { SideBar } from '@/containers/profile'
 
 export default function LayoutUserProfile({ children }: { children: React.ReactNode }) {
   return (
-    <div className="container mx-auto flex">
+    <div className="container flex">
       <SideBar />
-      <main className="">{children}</main>
+      <main className="mt-2 w-full">{children}</main>
     </div>
   )
 }

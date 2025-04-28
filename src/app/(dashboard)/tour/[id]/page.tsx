@@ -1,35 +1,26 @@
 'use client'
 import tourDetailBanner from '@/assets/images/tour_detail_header.png'
 import { StarSvgIcon } from '@/assets/svgs'
-import { BookingTourDetailComponent } from '@/containers/tourDetail'
-import api from '@/libs/axios/axios.config'
-import { TourResponseDTO } from '@/models/response/dashboard'
+import { AccordionTourSchedule, BookingTourDetailComponent } from '@/containers/tourDetail'
+import CustomerReviews from '@/containers/tourDetail/review'
+import useReview from '@/hooks/api/useReview'
+import useTour from '@/hooks/api/useTour'
 
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+
 export default function TourDetailPage() {
   const { id } = useParams()
-  const [detail, setDetail] = useState<TourResponseDTO>({})
+  const { tour, handleGetTourById } = useTour()
+  const { reviews, handleGetReviewByTourId } = useReview()
+
   useEffect(() => {
-    const fetchTourDetail = async () => {
-      try {
-        const response = await api(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/${id}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        })
-        console.log('response', response.data)
-        setDetail(response.data)
-      } catch (error) {
-        console.error('Lỗi khi gọi API:', error)
-      }
-    }
-    fetchTourDetail()
+    handleGetReviewByTourId(`${id}`)
+    handleGetTourById()
   }, [id])
+
   return (
     <div className="m-auto">
       <div className="relative h-52 w-full">
@@ -37,33 +28,33 @@ export default function TourDetailPage() {
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black text-center opacity-50">
           <h1 className="text-3xl font-bold text-white">Tour detail</h1>
           <p className="mt-2 line-clamp-1 w-1/2 text-sm text-white opacity-100 md:text-lg">
-            <Link href="/tour">Tour </Link> &gt; {detail.name}
+            <Link href="/tour">Tour </Link> &gt; {tour?.name}
           </p>
         </div>
       </div>
       {/* body */}
-      <div className="m-auto my-8 flex w-11/12 flex-col gap-5">
+      <div className="m-auto my-8 mt-2 flex w-11/12 flex-col gap-5">
         {/* base info */}
-        <div className="">
+        <div className="mt-6">
           <div>
-            <h3 className="text-2xl font-bold capitalize text-colorbrand-midnightBlue-950">
-              tour phú quốc 2 ngày 1 đêm{' '}
-            </h3>
+            <h3 className="text-2xl font-bold capitalize text-colorbrand-midnightBlue-950">{tour?.name}</h3>
           </div>
-          <h3 className="text-2xl text-gray-500">HCM - Grand World - Câu Cá - Lặn Ngắm San Hô</h3>
-          <div className="mt-2 flex gap-40">
+          <h3 className="mt-1 text-xl text-gray-500">{tour?.description}</h3>
+          <div className="mt-10 flex gap-40">
             <h3 className="text-lg text-gray-500">Kiên Giang</h3>
             <div className="flex items-center justify-center gap-2">
               <StarSvgIcon width={22} />
               <h3>4.5</h3>
-              <a href="#" className="justify-center text-base text-colorbrand-burntSienna-500">
+              <a href="#" className="justify-center text-base text-colorbrand-burntSienna-500 underline">
                 (12 đánh giá)
               </a>
             </div>
           </div>
         </div>
         {/* layout */}
-        <BookingTourDetailComponent tourDetail={detail} />
+        <BookingTourDetailComponent tourDetail={tour} />
+        <AccordionTourSchedule tourDetail={tour} />
+        <CustomerReviews />
       </div>
     </div>
   )

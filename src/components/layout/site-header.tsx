@@ -3,26 +3,28 @@
 import Link from 'next/link'
 import { Menu, Phone, Mail } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation' // Thêm usePathname từ Next.js
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { DiscordIcon, FacebookIcon, GoogleIcon, LogoICon, YoutubeIcon } from '@/assets/svgs'
+import useAuth from '@/hooks/api/useAuth'
 
 const navigation = [
-  { name: 'TRANG CHỦ', href: '/home' },
-  { name: 'TOUR', href: '/tour' },
-  { name: 'KHÁCH SẠN', href: '/khach-san' },
-  { name: 'CẨM NANG DU LỊCH', href: '/cam-nang' },
-  { name: 'LIÊN HỆ', href: '/lien-he' },
+  { name: 'trang chủ', href: '/home' },
+  { name: 'tour', href: '/tour' },
+  { name: 'liên hệ', href: '/contact' },
+  { name: 'tìm kiếm', href: '/search' },
 ]
 
 export default function SiteHeader() {
+  const { handleNavigateAccount } = useAuth()
+  const pathname = usePathname()
   const [activeItem, setActiveItem] = useState<string>('')
 
   useEffect(() => {
-    const pathname = window.location.pathname
-    setActiveItem(navigation.find((item) => item.href === pathname)?.name || '')
-  }, [])
+    setActiveItem(pathname)
+  }, [pathname])
 
   return (
     <header className="w-full">
@@ -54,9 +56,9 @@ export default function SiteHeader() {
                 <FacebookIcon className="h-4 w-4" />
               </Link>
             </div>
-            <Link href={'/profile/information'} className="font-bold text-white hover:text-gray-200">
+            <button onClick={handleNavigateAccount} className="font-bold text-white hover:text-gray-200">
               Tài khoản
-            </Link>
+            </button>
           </div>
         </div>
       </div>
@@ -70,13 +72,13 @@ export default function SiteHeader() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden w-1/2 justify-around md:flex md:space-x-4 lg:space-x-6">
+            <nav className="hidden w-1/3 justify-around md:flex md:space-x-4 lg:space-x-6">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-bold transition-colors hover:text-primary ${
-                    item.name === activeItem ? 'text-[#F27052]' : 'text-gray-700'
+                  className={`text-sm font-bold uppercase transition-colors hover:text-[#F27052] ${
+                    activeItem === item.href ? 'text-[#F27052]' : 'text-gray-700'
                   }`}
                 >
                   {item.name}
@@ -99,7 +101,9 @@ export default function SiteHeader() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
+                    className={`text-sm font-medium transition-colors hover:text-[#F27052] ${
+                      activeItem === item.href ? 'text-[#F27052]' : 'text-gray-700'
+                    }`}
                   >
                     {item.name}
                   </Link>

@@ -1,140 +1,45 @@
+'use client'
 import { Button } from '@/components/ui'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
 import { ClockIcon } from '@/assets/svgs'
 import { useState, useEffect } from 'react'
 import ReactStars from 'react-stars'
-
-interface TourProps {
-  id: string
-  title: string
-  location: string
-  duration: string
-  nights: number
-  days: number
-  rating: number
-  price: number
-  image: string
-  discount?: number
-  isFavorite?: boolean
-}
-
-const tours: TourProps[] = [
-  {
-    id: '1',
-    title: 'Tour Phú Quốc',
-    location: 'Phú Quốc',
-    duration: '3 ngày 2 đêm',
-    nights: 2,
-    days: 3,
-    rating: 4,
-    price: 2980000,
-    image: 'https://picsum.photos/282/220',
-    discount: 10,
-    isFavorite: false,
-  },
-  {
-    id: '2',
-    title: 'Tour Hạ Long',
-    location: 'Hạ Long',
-    duration: '4 ngày 3 đêm',
-    nights: 3,
-    days: 4,
-    rating: 5,
-    price: 3940000,
-    image: 'https://picsum.photos/282/220',
-    isFavorite: true,
-  },
-  {
-    id: '3',
-    title: 'Tour Ninh Bình',
-    location: 'Ninh Bình',
-    duration: '3 ngày 2 đêm',
-    nights: 2,
-    days: 3,
-    rating: 5,
-    price: 2445000,
-    image: 'https://picsum.photos/282/220',
-    isFavorite: false,
-  },
-  {
-    id: '4',
-    title: 'Tour Hội An',
-    location: 'Hội An',
-    duration: '3 ngày 2 đêm',
-    nights: 2,
-    days: 3,
-    rating: 4,
-    price: 1945000,
-    image: 'https://picsum.photos/282/220',
-    discount: 10,
-    isFavorite: true,
-  },
-  {
-    id: '5',
-    title: 'Tour Hà Giang',
-    location: 'Hà Giang',
-    duration: '2 ngày 1 đêm',
-    nights: 1,
-    days: 2,
-    rating: 4,
-    price: 1530000,
-    image: 'https://picsum.photos/282/220',
-    isFavorite: true,
-  },
-  {
-    id: '6',
-    title: 'Tour Nha Trang',
-    location: 'Nha Trang',
-    duration: '5 ngày 4 đêm',
-    nights: 4,
-    days: 5,
-    rating: 5,
-    price: 5940000,
-    image: 'https://picsum.photos/282/220',
-    discount: 15,
-    isFavorite: false,
-  },
-  {
-    id: '7',
-    title: 'Tour Huế',
-    location: 'Huế',
-    duration: '4 ngày 3 đêm',
-    nights: 3,
-    days: 4,
-    rating: 5,
-    price: 3945000,
-    image: 'https://picsum.photos/282/220',
-    discount: 10,
-    isFavorite: false,
-  },
-  {
-    id: '8',
-    title: 'Tour Quy Nhơn',
-    location: 'Quy Nhơn',
-    duration: '6 ngày 5 đêm',
-    nights: 5,
-    days: 6,
-    rating: 5,
-    price: 7945000,
-    image: 'https://picsum.photos/282/220',
-    discount: 10,
-    isFavorite: false,
-  },
-]
+import api from '@/libs/axios/axios.config'
+import { BaseResponse } from '@/types'
+import { ITourEntity } from '@/models/response/tour'
+import { FORMAT_MONEY } from '@/utils/formatMoney'
+import { useRouter } from 'next/navigation'
+import TourLoading from '@/components/ui/loading'
 
 export const TourPromotionComponent = () => {
-  const [clientTour, setClientTour] = useState<TourProps[]>([])
+  const [clientTour, setClientTour] = useState<BaseResponse<ITourEntity[]>>()
+  const [loading, setLoading] = useState(false)
+  const route = useRouter()
+  const goDetail = (id: string) => {
+    route.push(`tour/${id}`)
+  }
 
-  const formatPrice = (price: number) => {
-    return new Intl.NumberFormat('vi-VN').format(price)
+  const getTour = async () => {
+    try {
+      const res = await api.get(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours`)
+      if (res.data) {
+        setClientTour(res.data)
+      }
+    } catch (error) {
+      console.error('Lỗi khi gọi API lấy tour:', error)
+    }
   }
 
   useEffect(() => {
-    setClientTour(tours)
+    const fetchTour = async () => {
+      setLoading(true)
+      await getTour()
+      setLoading(false)
+    }
+    fetchTour()
   }, [])
 
-  if (!clientTour) return null
   return (
     <section className="container mx-auto px-4 py-12">
       {/* title */}
@@ -152,44 +57,56 @@ export const TourPromotionComponent = () => {
         </div>
       </div>
       {/* tour */}
-      <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-        {clientTour.map((tour) => {
-          return (
-            <div key={tour.id} className="group overflow-hidden">
-              <Card className="rounded-md border-none bg-white/80 shadow-sm">
-                <CardHeader className="relative p-0">
-                  <Image
-                    src={tour.image}
-                    alt={tour.title}
-                    width={282}
-                    height={220}
-                    className="h-[220px] w-full self-center rounded-t-md object-cover"
-                  />
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col space-y-2">
-                    <h3 className="mt-4 self-start font-light text-[#00315C]">{tour.title}</h3>
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <ClockIcon />
-                        <p className="text-sm font-light text-[#707070]">{tour.duration}</p>
+      {loading ? (
+        <TourLoading />
+      ) : (
+        <>
+          <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {clientTour?.slice(0, 8).map((tour: ITourEntity) => {
+              return (
+                <div key={tour.tourId} className="group overflow-hidden">
+                  <Card
+                    onClick={() => goDetail(tour.tourId)}
+                    className="hovr:shadow-md rounded-md border-none bg-white/80 shadow-sm transition duration-300"
+                  >
+                    <CardHeader className="relative p-0">
+                      <Image
+                        src={tour.thumbnail}
+                        alt={tour.name}
+                        height={220}
+                        width={280}
+                        className="aspect-[4/3] w-full self-center rounded-t-md object-cover"
+                      />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="flex flex-col space-y-2">
+                        <h3 className="mt-4 line-clamp-2 min-h-12 self-start font-light text-[#00315C]">{tour.name}</h3>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-2">
+                            <ClockIcon />
+                            <p className="text-sm font-light text-[#707070]">{tour.duration}</p>
+                          </div>
+                          <ReactStars value={5} edit={false} />
+                        </div>
                       </div>
-                      <ReactStars value={tour.rating} edit={false} />
-                    </div>
-                  </div>
-                  <div className="my-4 w-full border bg-[#D1D1D1]"></div>
-                  <div className="flex items-center justify-between">
-                    <span className="font-bold text-[#00315C]">{formatPrice(tour.price)} đ</span>
-                    <Button className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50">
-                      Xem chi tiết
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          )
-        })}
-      </div>
+                      <div className="my-4 w-full border bg-[#D1D1D1]"></div>
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-[#00315C]">{FORMAT_MONEY(tour.price)}</span>
+                        <Button
+                          className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50"
+                          onClick={() => goDetail(tour.tourId)}
+                        >
+                          Xem chi tiết
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              )
+            })}
+          </div>
+        </>
+      )}
     </section>
   )
 }
