@@ -1,8 +1,6 @@
-import { Result } from 'postcss'
 import { createOpenAI } from '@ai-sdk/openai'
 
-// import { openai } from '@ai-sdk/openai'
-import { CoreSystemMessage, generateText, streamText, UIMessage } from 'ai'
+import { streamText, UIMessage } from 'ai'
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json()

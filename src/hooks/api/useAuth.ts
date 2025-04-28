@@ -1,7 +1,7 @@
 import { RootState } from '@/redux/store'
 import { useSnackbar } from 'notistack'
-import { useDispatch } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { useDispatch, useSelector } from 'react-redux';
+import { redirect, useRouter } from 'next/navigation';
 import authService from '@/services/Auth.service';
 import { LoginRequestType } from '@/types/entities/Auth';
 import { setMe } from '@/redux/slice/user.slice';
@@ -32,6 +32,7 @@ function useAuth() {
       enqueueSnackbar({ variant: 'success', message: 'Login success' })
       router.push('/home')
     } catch (error) {
+      console.log("💲💲💲 ~ handleLogin ~ error:", error)
       enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
     }
   }
@@ -51,7 +52,8 @@ function useAuth() {
       localStorage.setItem('token', JSON.stringify(item))
       enqueueSnackbar({ variant: 'success', message: 'Login success' })
       router.push('/home')
-    } catch (error) {
+    } catch (error: any) {
+      console.log("💲💲💲 ~ handleLoginGoogle ~ error:", error)
       enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
     }
   }
@@ -73,6 +75,7 @@ function useAuth() {
       enqueueSnackbar({ variant: 'success', message: 'Login success' })
       router.push('/home')
     } catch (error) {
+      console.log("💲💲💲 ~ handleLoginGitHub ~ error:", error)
       enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
     }
   }
@@ -95,6 +98,7 @@ function useAuth() {
       const response = await userService.getMe()
       dispatch(setMe(response.data))
     } catch (error) {
+      console.log("💲💲💲 ~ handleGetMe ~ error:", error)
       localStorage.removeItem('token')
     }
   }

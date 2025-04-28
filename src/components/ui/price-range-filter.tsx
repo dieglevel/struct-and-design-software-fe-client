@@ -2,7 +2,6 @@
 
 import * as React from 'react'
 import { DualRangeSlider } from '@/components/ui/dual-range-slider'
-import { Button } from '@/components/ui/button'
 import { FORMAT_MONEY } from '@/utils/formatMoney'
 
 interface PriceRangeFilterProps {
@@ -24,19 +23,11 @@ export function PriceRangeFilter({
   className,
 }: PriceRangeFilterProps) {
   const [values, setValues] = React.useState<[number, number]>([defaultMin, defaultMax])
-  const [displayValues, setDisplayValues] = React.useState<[number, number]>([defaultMin, defaultMax])
-
   const handleValueChange = (newValues: number[]) => {
     setValues([newValues[0], newValues[1]])
     if (onApply) {
       onApply([newValues[0], newValues[1]])
     }
-  }
-
-
-  // Format the display header
-  const formatHeader = () => {
-    return `${FORMAT_MONEY(displayValues[0])} - ${FORMAT_MONEY(displayValues[1])}${displayValues[1] >= maxPrice ? '+' : ''}`
   }
 
   return (

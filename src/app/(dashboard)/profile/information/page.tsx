@@ -93,7 +93,7 @@ export default function Information() {
                 <Calendar
                   mode="single"
                   selected={userData.birthday}
-                  onSelect={(date) => setUserData({ ...userData, birthday: date })}
+                  onSelect={(date: any) => setUserData({ ...userData, birthday: date })}
                   locale={vi}
                 />
               </PopoverContent>

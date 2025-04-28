@@ -17,7 +17,7 @@ interface UserFormData {
   email: string
   phone: string
   birthday: Date | undefined
-  image: string
+  avatarUrl: string
 }
 
 const accountMenuItems: MenuItemProps[] = [
@@ -63,7 +63,7 @@ export const SideBar = () => {
     email: '',
     phone: '',
     birthday: undefined,
-    image: '',
+    avatarUrl: '',
   })
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export const SideBar = () => {
         email: me.email || '',
         phone: me.phone || '',
         birthday: me.birthday ? new Date(me.birthday) : undefined,
-        image: me.avatar_url,
+        avatarUrl: me?.avatarUrl as string,
       })
     }
   }, [me])
@@ -92,7 +92,7 @@ export const SideBar = () => {
           <Image src={avatar1} alt="Profile picture" width={96} height={96} className="rounded-full object-cover" />
         </div>
         <h2 className="text-xl font-bold text-[#1a3c61]">{userData.fullName}</h2>
-        <p className="text-sm text-gray-500">{userData.image}</p>
+        <p className="text-sm text-gray-500">{userData?.avatarUrl}</p>
       </div>
       <SidebarProvider>
         <SidebarMenu>

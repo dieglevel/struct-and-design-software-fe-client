@@ -1,8 +1,6 @@
 'use client'
-
 import * as React from 'react'
 import * as SliderPrimitive from '@radix-ui/react-slider'
-
 import { cn } from '@/utils'
 
 interface DualRangeSliderProps extends React.ComponentProps<typeof SliderPrimitive.Root> {
@@ -12,15 +10,12 @@ interface DualRangeSliderProps extends React.ComponentProps<typeof SliderPrimiti
 
 const DualRangeSlider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, DualRangeSliderProps>(
   ({ className, label, labelPosition = 'top', ...props }, ref) => {
-    // Get initial values and set default min/max if not provided
     const initialValue = Array.isArray(props.defaultValue || props.value)
-      ? props.defaultValue || props.value
+      ? ((props.defaultValue || props.value) as number[])
       : [props.min || 0, props.max || 100]
 
-    // Store current values in state
-    const [currentValues, setCurrentValues] = React.useState(initialValue)
+    const [currentValues, setCurrentValues] = React.useState<number[]>(initialValue)
 
-    // Override the onValueChange to implement custom behavior
     const onValueChangeOriginal = props.onValueChange
 
     const MIN_LIMIT = 0
@@ -36,7 +31,6 @@ const DualRangeSlider = React.forwardRef<React.ElementRef<typeof SliderPrimitive
         max = min + 1
       }
 
-      // Đảm bảo min không nhỏ hơn giới hạn tối thiểu
       if (min < MIN_LIMIT) {
         min = MIN_LIMIT
         max = MIN_LIMIT + 1
@@ -49,7 +43,6 @@ const DualRangeSlider = React.forwardRef<React.ElementRef<typeof SliderPrimitive
         onValueChangeOriginal(safeValues)
       }
     }
-
 
     return (
       <SliderPrimitive.Root
@@ -66,13 +59,7 @@ const DualRangeSlider = React.forwardRef<React.ElementRef<typeof SliderPrimitive
         {/* Min Handle */}
         <SliderPrimitive.Thumb className="relative block h-4 w-4 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
           {label && (
-            <span
-              className={cn(
-                'absolute flex w-full justify-center',
-                labelPosition === 'top' && '-top-7',
-                labelPosition === 'bottom' && 'top-4',
-              )}
-            >
+            <span className={cn('absolute flex w-full justify-center', labelPosition === 'top' ? '-top-7' : 'top-4')}>
               {label(currentValues[0])}
             </span>
           )}
@@ -81,13 +68,7 @@ const DualRangeSlider = React.forwardRef<React.ElementRef<typeof SliderPrimitive
         {/* Max Handle */}
         <SliderPrimitive.Thumb className="relative block h-4 w-4 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
           {label && (
-            <span
-              className={cn(
-                'absolute flex w-full justify-center',
-                labelPosition === 'top' && '-top-7',
-                labelPosition === 'bottom' && 'top-4',
-              )}
-            >
+            <span className={cn('absolute flex w-full justify-center', labelPosition === 'top' ? '-top-7' : 'top-4')}>
               {label(currentValues[1])}
             </span>
           )}

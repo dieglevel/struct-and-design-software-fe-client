@@ -1,7 +1,6 @@
 'use client'
 import { LogoICon } from '@/assets/svgs'
 import { RegisterRequestDTO } from '@/models/request/register.request.dto'
-import { input } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
@@ -77,7 +76,7 @@ const RegisterPage = () => {
             placeholder="Nhập họ và tên"
             className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
           />
-          <p className="text-[12px] mt-1 text-red-500">{errors.fullName?.message}</p>
+          <p className="mt-1 text-[12px] text-red-500">{errors.fullName?.message}</p>
 
           <div className="my-1 flex gap-4">
             {/* Email */}
@@ -91,7 +90,7 @@ const RegisterPage = () => {
                 placeholder="Nhập email"
                 className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
               />
-              <p className="text-[12px] mt-1 text-red-500">{errors.email?.message}</p>
+              <p className="mt-1 text-[12px] text-red-500">{errors.email?.message}</p>
             </div>
 
             {/* Số điện thoại */}
@@ -105,7 +104,7 @@ const RegisterPage = () => {
                 placeholder="Nhập số điện thoại"
                 className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
               />
-              <p className="text-[12px] mt-1 text-red-500">{errors.phone?.message}</p>
+              <p className="mt-1 text-[12px] text-red-500">{errors.phone?.message}</p>
             </div>
           </div>
 
@@ -119,7 +118,7 @@ const RegisterPage = () => {
             placeholder="Nhập username"
             className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
           />
-          <p className="text-[12px] mt-1 text-red-500">{errors.username?.message}</p>
+          <p className="mt-1 text-[12px] text-red-500">{errors.username?.message}</p>
 
           {/* Mật khẩu */}
           <label className="my-1 text-sm font-bold text-colorbrand-midnightBlue-950">
@@ -132,7 +131,7 @@ const RegisterPage = () => {
             placeholder="Nhập mật khẩu"
             className="bg-colorbrand-burnSienna-50 w-full rounded-sm border-1 border-slate-200 px-4 py-2 outline-none"
           />
-          <p className="text-[12px] mt-1 text-red-500">{errors.password?.message}</p>
+          <p className="mt-1 text-[12px] text-red-500">{errors.password?.message}</p>
 
           {/* Nút Đăng ký */}
           <button type="submit" className="m-auto mt-4 w-full rounded-md bg-colorbrand-burntSienna-500 p-2 text-white">
