@@ -25,32 +25,12 @@ pipeline {
                 }
             }
         }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh '''
-                    docker-compose build
-                    '''
-                }
-            }
-        }
-
-        stage('Remove Old Containers') {
+         stage('Build and Restart Docker Containers') {
             steps {
                 script {
                     sh '''
                     docker-compose down
-                    '''
-                }
-            }
-        }
-
-        stage('Deploy Application') {
-            steps {
-                script {
-                    sh '''
-                    docker-compose up -d
+                    docker-compose up --build -d
                     '''
                 }
             }

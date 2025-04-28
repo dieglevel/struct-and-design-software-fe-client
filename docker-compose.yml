@@ -4,6 +4,6 @@ services:
       context: .
     container_name: travelsummornersrift
     ports:
-      - "3000:3000"
+      - '3000:3000'
     env_file:
       - .env
