@@ -16,7 +16,7 @@ pipeline {
 
         stage('Setup Environment Variables') {
             steps {
-                configFileProvider([configFile(fileId: 'struct-and-design-software-fe-client-production', targetLocation: '.env')]) {
+                configFileProvider([configFile(fileId: 'struct-and-design-software-fe-client', targetLocation: '.env')]) {
                     sh '''
                     echo "Environment file (.env) copied successfully!"
                     ls -la
