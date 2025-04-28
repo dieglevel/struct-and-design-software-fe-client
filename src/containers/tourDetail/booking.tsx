@@ -89,7 +89,7 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
                 {''}
                 <Link
                   href={'#'}
-                  onClick={(e) => {
+                  onClick={() => {
                     window.history.back()
                   }}
                 >

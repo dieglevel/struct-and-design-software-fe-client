@@ -1,14 +1,12 @@
 
-import { RootState } from '@/redux/store';
 import { useSnackbar } from 'notistack'
-import { useDispatch, useSelector } from 'react-redux';
-import { redirect, useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/navigation';
 import authService from '@/services/Auth.service';
 import { LoginRequestType } from '@/types/entities/Auth';
 import { setMe } from '@/redux/slice/user.slice';
 
 function useAuth() {
-    const userStore = useSelector((state: RootState) => state.userSlice)
     const dispatch = useDispatch();
     const router = useRouter();
     const { enqueueSnackbar } = useSnackbar();
@@ -30,6 +28,7 @@ function useAuth() {
             enqueueSnackbar({ variant: "success", message: "Login success" })
             router.push("/home")
         } catch (error) {
+            console.log("💲💲💲 ~ handleLogin ~ error:", error)
             enqueueSnackbar({ variant: "error", message: "Login failed, try again" })
         }
 

@@ -68,7 +68,7 @@ export default function Information() {
                 <Calendar
                   mode="single"
                   selected={formData.date}
-                  onSelect={(e) => setFormData({ ...formData, date: e })}
+                  onSelect={(e: any) => setFormData({ ...formData, date: e })}
                   locale={vi}
                 />
               </PopoverContent>

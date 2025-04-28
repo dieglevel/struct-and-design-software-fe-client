@@ -6,31 +6,28 @@ import api from '@/libs/axios/axios.config'
 import { TourResponseDTO } from '@/models/response/dashboard'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 export default function TourDetailPage() {
   const { id } = useParams()
   const [detail, setDetail] = useState<TourResponseDTO>({})
-  const [schedule, setSchedule] = useState<string[]>([])
-  const fetchTourDetail = async () => {
-    try {
-      const response = await api(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/${id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      })
-      console.log('response', response.data)
-      setDetail(response.data);
-    } catch (error) {
-      console.error('Lỗi khi gọi API:', error)
-    }
-  }
-
-  // const calTour
-
   useEffect(() => {
+    const fetchTourDetail = async () => {
+      try {
+        const response = await api(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/${id}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+        console.log('response', response.data)
+        setDetail(response.data)
+      } catch (error) {
+        console.error('Lỗi khi gọi API:', error)
+      }
+    }
     fetchTourDetail()
   }, [id])
   return (
@@ -40,7 +37,7 @@ export default function TourDetailPage() {
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black text-center opacity-50">
           <h1 className="text-3xl font-bold text-white">Tour detail</h1>
           <p className="mt-2 line-clamp-1 w-1/2 text-sm text-white opacity-100 md:text-lg">
-            <a href="/tour">Tour </a> &gt; {detail.name}
+            <Link href="/tour">Tour </Link> &gt; {detail.name}
           </p>
         </div>
       </div>

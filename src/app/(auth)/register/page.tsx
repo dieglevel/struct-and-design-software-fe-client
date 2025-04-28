@@ -51,7 +51,8 @@ const RegisterPage = () => {
       if (res.data.data) {
         setIsSuccess(true)
       }
-    } catch (error) {
+    } catch (error: any) {
+      console.log('💲💲💲 ~ onSubmit ~ error:', error)
       setModalOpen(true)
     }
   }

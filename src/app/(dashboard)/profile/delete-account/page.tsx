@@ -46,7 +46,8 @@ export default function DeleteAccount() {
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       setDeleteStatus('success')
-    } catch (error) {
+    } catch (error: any) {
+      console.log("💲💲💲 ~ handleDeleteAccount ~ error:", error)
       setDeleteStatus('error')
     }
   }
@@ -170,7 +171,7 @@ export default function DeleteAccount() {
 
           <div className="space-y-2">
             <Label htmlFor="confirm-text" className="text-[#0a3b66]">
-              Nhập "XÓA TÀI KHOẢN" để xác nhận
+              Nhập &quot;XÓA TÀI KHOẢN&quot; để xác nhận
             </Label>
             <Input
               id="confirm-text"
