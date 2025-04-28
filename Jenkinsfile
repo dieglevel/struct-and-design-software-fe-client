@@ -14,7 +14,7 @@ pipeline {
 
         stage('Checkout Source Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/dieglevel/struct-and-design-software-fe-client.git'
+                git branch: 'PROD', url: 'https://github.com/dieglevel/struct-and-design-software-fe-client.git'
             }
         }
 
@@ -25,12 +25,32 @@ pipeline {
                 }
             }
         }
-         stage('Build and Restart Docker Containers') {
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh '''
+                    docker-compose build
+                    '''
+                }
+            }
+        }
+
+        stage('Remove Old Containers') {
             steps {
                 script {
                     sh '''
                     docker-compose down
-                    docker-compose up --build -d
+                    '''
+                }
+            }
+        }
+
+        stage('Deploy Application') {
+            steps {
+                script {
+                    sh '''
+                    docker-compose up -d
                     '''
                 }
             }
