@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { AlertTriangle, CheckCircle, Info, Trash2 } from 'lucide-react'
+import {  CheckCircle, Info, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -17,7 +17,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { Checkbox } from '@/components/ui/checkbox'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 
 export default function DeleteAccount() {
@@ -28,6 +27,7 @@ export default function DeleteAccount() {
     subscriptions: false,
     permanent: false,
   })
+  console.log("💲💲💲 ~ DeleteAccount ~ setAcknowledgements:", setAcknowledgements)
   const [deleteStatus, setDeleteStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const allAcknowledged = Object.values(acknowledgements).every(Boolean)
@@ -46,7 +46,8 @@ export default function DeleteAccount() {
       await new Promise((resolve) => setTimeout(resolve, 1500))
 
       setDeleteStatus('success')
-    } catch (error) {
+    } catch (error: any) {
+      console.log("💲💲💲 ~ handleDeleteAccount ~ error:", error)
       setDeleteStatus('error')
     }
   }
@@ -138,7 +139,7 @@ export default function DeleteAccount() {
 
             <div className="space-y-2">
               <Label htmlFor="confirm-text" className="text-[#0a3b66]">
-                Nhập "XÓA TÀI KHOẢN" để xác nhận
+                Nhập &quot;XÓA TÀI KHOẢN&quot; để xác nhận
               </Label>
               <Input
                 id="confirm-text"

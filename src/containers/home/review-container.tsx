@@ -36,8 +36,8 @@ export const ReviewContainer = () => {
 
                 <p className="mb-4 text-xs text-gray-600 md:mb-6 md:text-sm lg:text-base">
                   Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                  industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                  scrambled it to make a type specimen book.
+                  industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                  and scrambled it to make a type specimen book.
                 </p>
                 <div className="text-right">
                   <p className="text-sm font-bold text-[#00315C] md:text-base">_Esther Howard_</p>

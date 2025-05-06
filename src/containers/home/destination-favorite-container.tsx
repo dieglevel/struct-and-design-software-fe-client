@@ -37,7 +37,7 @@ export const DestinationFavoriteContainer = () => {
             <h3 className="mb-2 text-3xl font-bold uppercase text-blue-900">điểm đến yêu thích</h3>
           </div>
           <div className="grid h-[1060px] grid-cols-2 grid-rows-3 gap-8 md:grid-cols-4 md:grid-rows-2">
-            {destinations?.slice(0, 6).map((destination: IDestinationEntity, index: number) => (
+            {destinations?.data?.slice(0, 6).map((destination: IDestinationEntity, index: number) => (
               <button
                 className={`relative overflow-hidden rounded-lg ${index % 2 === 0 && index > 0 ? 'col-span-2' : ''}`}
                 key={destination.destinationId}

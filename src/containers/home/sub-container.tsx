@@ -3,7 +3,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import notify from '@/assets/images/notify.png'
 import share from '@/assets/images/share.png'
 import location from '@/assets/images/location.png'
-import { motion, useScroll } from 'motion/react'
+import { motion } from 'motion/react'
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },

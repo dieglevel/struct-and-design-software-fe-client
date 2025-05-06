@@ -9,19 +9,16 @@ import { ITourSchedule } from '@/types/entities/TourSchedule'
 import { FORMAT_MONEY } from '@/utils/formatMoney'
 
 import {
-  ArrowLeftOutlined,
   FieldTimeOutlined,
   HomeOutlined,
-  IdcardOutlined,
   ScheduleOutlined,
   UsergroupDeleteOutlined,
 } from '@ant-design/icons'
 import { Divider } from '@heroui/divider'
 import { TimerIcon } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type Props = {
   tourDetail?: ITour
@@ -42,7 +39,6 @@ type Props = {
 //   },
 // ]
 export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
-  const [loading, setLoading] = useState()
   const [tourSuggest, setTourSuggest] = useState<ITour[]>([])
 
   const fetchTourSuggest = async () => {

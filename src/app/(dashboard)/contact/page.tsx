@@ -12,15 +12,14 @@ export default function ContactPage() {
     message: '',
   })
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault()
     console.log('Form submitted:', formData)
-    // Add your form submission logic here (e.g., API call)
   }
 
   return (
@@ -122,12 +121,11 @@ export default function ContactPage() {
         <div className="flex flex-col gap-6 md:flex-row">
           {/* Map Placeholder */}
           <div className="flex h-64 items-center justify-center rounded-lg bg-gray-200 md:w-2/3">
-            <div class="relative">
-              <div class="relative h-0 overflow-hidden pb-[75%]">
+            <div className="relative">
+              <div className="relative h-0 overflow-hidden pb-[75%]">
                 <iframe
-                  class="absolute left-0 top-0 h-full w-full border-0"
+                  className="absolute left-0 top-0 h-full w-full border-0"
                   loading="lazy"
-                  allowfullscreen
                   src="https://maps.google.com/maps?q=Nguyen+Van+Bao%2C+Go+Vap&output=embed"
                 ></iframe>
               </div>
@@ -135,7 +133,7 @@ export default function ContactPage() {
                 href="http://aiyoutubetitlegenerator.com/"
                 rel="noopener"
                 target="_blank"
-                class="absolute m-[-1px] h-px w-px overflow-hidden whitespace-nowrap border-0 p-0"
+                className="absolute m-[-1px] h-px w-px overflow-hidden whitespace-nowrap border-0 p-0"
               >
                 aiyoutubetitlegenerator.com
               </a>

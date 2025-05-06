@@ -19,13 +19,7 @@ interface TravelerType {
   minCount: number
 }
 
-
 export default function TourBookingForm() {
-  const [adultCount, setAdultCount] = useState(1)
-    const [verifyId, setVerifyId] = useState(false)
-  const [childCount, setChildCount] = useState(0)
-  const [additionalTravelers, setAdditionalTravelers] = useState<{ id: number; type: string }[]>([])
-  const [totalPrice, setTotalPrice] = useState(23990000)
   const [travelers, setTravelers] = useState<TravelerType[]>([
     {
       id: 'adult',
@@ -68,26 +62,6 @@ export default function TourBookingForm() {
     )
   }
 
-  const handleAddTraveler = (type: string) => {
-    setAdditionalTravelers([...additionalTravelers, { id: Date.now(), type }])
-  }
-
-  const increaseCount = (type: 'adult' | 'child') => {
-    if (type === 'adult') {
-      setAdultCount(adultCount + 1)
-    } else {
-      setChildCount(childCount + 1)
-    }
-  }
-
-  const decreaseCount = (type: 'adult' | 'child') => {
-    if (type === 'adult' && adultCount > 1) {
-      setAdultCount(adultCount - 1)
-    } else if (type === 'child' && childCount > 0) {
-      setChildCount(childCount - 0)
-    }
-  }
-
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-8 text-center text-2xl font-bold text-orange-500">ĐẶT TOUR</h1>
@@ -116,7 +90,6 @@ export default function TourBookingForm() {
                 </Label>
                 <Input id="fullName" placeholder="Nhập họ tên" className="mt-1" />
               </div>
-
             </div>
           </div>
 
@@ -161,95 +134,94 @@ export default function TourBookingForm() {
               </CardContent>
             </Card>
 
-              <div className="space-y-6">
-                <h2 className="text-base font-medium text-gray-700">THÔNG TIN HÀNH KHÁCH</h2>
+            <div className="space-y-6">
+              <h2 className="text-base font-medium text-gray-700">THÔNG TIN HÀNH KHÁCH</h2>
 
-                {travelers.map((traveler, index) => (
-                  <Card key={traveler.id} className="border shadow-sm">
-                    <CardContent className="p-4">
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-2">
-                          {traveler.icon}
-                          {/* <span className="font-medium">{traveler.}</span> */}
-                          <span className="text-xs text-gray-500">({traveler.ageDescription})</span>
+              {travelers.map((traveler) => (
+                <Card key={traveler.id} className="border shadow-sm">
+                  <CardContent className="p-4">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        {traveler.icon}
+                        {/* <span className="font-medium">{traveler.}</span> */}
+                        <span className="text-xs text-gray-500">({traveler.ageDescription})</span>
+                      </div>
+
+                      <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
+                        <div className="md:col-span-1">
+                          <Label htmlFor={`name-${traveler.id}`} className="mb-1 block text-sm">
+                            Họ tên <span className="text-red-500">*</span>
+                          </Label>
+                          <Input id={`name-${traveler.id}`} placeholder="Nhập họ tên" />
                         </div>
 
-                        <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
-                          <div className="md:col-span-1">
-                            <Label htmlFor={`name-${traveler.id}`} className="mb-1 block text-sm">
-                              Họ tên <span className="text-red-500">*</span>
-                            </Label>
-                            <Input id={`name-${traveler.id}`} placeholder="Nhập họ tên" />
-                          </div>
+                        <div className="md:col-span-1">
+                          <Label htmlFor={`gender-${traveler.id}`} className="mb-1 block text-sm">
+                            Giới tính <span className="text-red-500">*</span>
+                          </Label>
+                          <Select>
+                            <SelectTrigger id={`gender-${traveler.id}`}>
+                              <SelectValue placeholder="Nam" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              <SelectItem value="male">Nam</SelectItem>
+                              <SelectItem value="female">Nữ</SelectItem>
+                            </SelectContent>
+                          </Select>
+                        </div>
 
-                          <div className="md:col-span-1">
-                            <Label htmlFor={`gender-${traveler.id}`} className="mb-1 block text-sm">
-                              Giới tính <span className="text-red-500">*</span>
-                            </Label>
+                        <div className="md:col-span-2">
+                          <Label htmlFor={`dob-${traveler.id}`} className="mb-1 block text-sm">
+                            Ngày sinh <span className="text-red-500">*</span>
+                          </Label>
+                          <div className="flex gap-2">
                             <Select>
-                              <SelectTrigger id={`gender-${traveler.id}`}>
-                                <SelectValue placeholder="Nam" />
+                              <SelectTrigger>
+                                <SelectValue placeholder="Ngày" />
                               </SelectTrigger>
                               <SelectContent>
-                                <SelectItem value="male">Nam</SelectItem>
-                                <SelectItem value="female">Nữ</SelectItem>
+                                {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
+                                  <SelectItem key={day} value={day.toString()}>
+                                    {day}
+                                  </SelectItem>
+                                ))}
                               </SelectContent>
                             </Select>
-                          </div>
-
-                          <div className="md:col-span-2">
-                            <Label htmlFor={`dob-${traveler.id}`} className="mb-1 block text-sm">
-                              Ngày sinh <span className="text-red-500">*</span>
-                            </Label>
-                            <div className="flex gap-2">
-                              <Select>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Ngày" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
-                                    <SelectItem key={day} value={day.toString()}>
-                                      {day}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                              <Select>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Tháng" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                                    <SelectItem key={month} value={month.toString()}>
-                                      {month}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                              <Select>
-                                <SelectTrigger>
-                                  <SelectValue placeholder="Năm" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((year) => (
-                                    <SelectItem key={year} value={year.toString()}>
-                                      {year}
-                                    </SelectItem>
-                                  ))}
-                                </SelectContent>
-                              </Select>
-                              <button className="rounded border p-2">
-                                <Calendar className="h-4 w-4" />
-                              </button>
-                            </div>
+                            <Select>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Tháng" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
+                                  <SelectItem key={month} value={month.toString()}>
+                                    {month}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <Select>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Năm" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                {Array.from({ length: 100 }, (_, i) => new Date().getFullYear() - i).map((year) => (
+                                  <SelectItem key={year} value={year.toString()}>
+                                    {year}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                            <button className="rounded border p-2">
+                              <Calendar className="h-4 w-4" />
+                            </button>
                           </div>
                         </div>
-
                       </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
 
             {/* Terms and Conditions */}
             <div className="space-y-3">
@@ -333,7 +305,7 @@ export default function TourBookingForm() {
                 <div className="flex items-center justify-between">
                   <span className="font-semibold">Tổng tiền</span>
                   <span className="text-xl font-bold text-orange-500">
-                    {new Intl.NumberFormat('vi-VN').format(totalPrice)} đ
+                    {new Intl.NumberFormat('vi-VN').format(23990000)} đ
                   </span>
                 </div>
                 <div className="mt-1 text-right text-xs text-gray-500">Đã bao gồm thuế và phí</div>

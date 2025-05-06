@@ -14,12 +14,16 @@ import { useEffect } from 'react'
 export default function TourDetailPage() {
   const { id } = useParams()
   const { tour, handleGetTourById } = useTour()
-  const { reviews, handleGetReviewByTourId } = useReview()
+  const { handleGetReviewByTourId } = useReview()
 
   useEffect(() => {
     handleGetReviewByTourId(`${id}`)
     handleGetTourById()
-  }, [id])
+    return () => {
+      handleGetReviewByTourId(`${id}`)
+      handleGetTourById()
+    }
+  }, [id, handleGetReviewByTourId, handleGetTourById])
 
   return (
     <div className="m-auto">

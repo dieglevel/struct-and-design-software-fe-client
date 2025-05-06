@@ -7,6 +7,8 @@ export default function NotFound() {
       <Image
         src="https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif"
         alt="Not Found"
+        width={320}
+        height={320}
         className="w-64 md:w-80"
       />
       <h1 className="mt-6 text-3xl font-bold text-gray-800 md:text-4xl">Oops! Không tìm thấy tour này.</h1>

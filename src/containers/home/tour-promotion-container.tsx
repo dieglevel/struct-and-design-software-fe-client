@@ -63,7 +63,7 @@ export const TourPromotionComponent = () => {
       ) : (
         <>
           <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {clientTour?.slice(0, 8).map((tour: ITourEntity) => {
+            {clientTour?.data?.slice(0, 8).map((tour: ITourEntity) => {
               return (
                 <div key={tour.tourId} className="group overflow-hidden">
                   <Card

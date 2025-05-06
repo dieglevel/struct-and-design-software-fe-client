@@ -1,6 +1,5 @@
 'use client'
 import { Image } from '@heroui/image'
-import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 export const DiscoverContainerComponent = () => {
   const data = [
