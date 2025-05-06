@@ -18,7 +18,7 @@ export function ChatBubble() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-            className="absolute bottom-16 right-0 min-w-[350px] max-w-[400px] md:max-w-[450px]"
+            className="absolute bottom-16 right-0 min-w-[400px] max-w-[450px] md:max-w-[500px]"
           >
             <div className="overflow-hidden rounded-lg border bg-background shadow-xl">
               <div className="flex items-center justify-between border-b p-4">

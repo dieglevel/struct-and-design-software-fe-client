@@ -7,9 +7,21 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Avatar } from '@/components/ui/avatar'
 import { SendIcon, BotIcon, UserIcon } from 'lucide-react'
+import ReactMarkdown from 'react-markdown'
 
 export function Chatbot() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat()
+  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+    api: '/api/chat',
+    onResponse: (response) => {
+      console.log('Received response:', response)
+    },
+    onFinish: (message) => {
+      console.log('Chat finished with message:', message)
+    },
+    onError: (error) => {
+      console.error('Chat error:', error)
+    },
+  })
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Auto-scroll to bottom when new messages arrive
@@ -32,26 +44,36 @@ export function Chatbot() {
         ) : (
           <div className="space-y-4">
             {messages.map((message) => (
-              <div key={message.id} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className="flex max-w-[80%] items-start gap-2">
-                  {message.role !== 'user' && (
-                    <Avatar className="h-8 w-8 bg-primary/10">
-                      <BotIcon className="h-4 w-4" />
+              <div key={message.id} className={`flex items-start ${message.role === 'user' ? 'justify-end' : ''}`}>
+                {message.role === 'assistant' ? (
+                  <div className="flex items-center space-x-2">
+                    <Avatar>
+                      <BotIcon />
                     </Avatar>
-                  )}
-                  <div
-                    className={`rounded-lg px-3 py-2 ${
-                      message.role === 'user' ? 'bg-primary text-primary-foreground' : 'bg-muted'
-                    }`}
-                  >
-                    <p className="whitespace-pre-wrap">{message.content}</p>
+                    <div className="max-w-[70%] rounded-lg bg-gray-100 p-2 text-gray-800">
+                      {message.toolInvocations && message.toolInvocations[0]?.result ? (
+                        message.toolInvocations[0].result.map((item, index) => (
+                          <ReactMarkdown key={index}>{item.formattedText}</ReactMarkdown>
+                        ))
+                      ) : message.content === '' ? (
+                        <div className="flex items-center space-x-2">
+                          <div className="h-2 w-2 animate-bounce rounded-full bg-gray-500 [animation-delay:0s]" />
+                          <div className="h-2 w-2 animate-bounce rounded-full bg-gray-500 [animation-delay:0.2s]" />
+                          <div className="h-2 w-2 animate-bounce rounded-full bg-gray-500 [animation-delay:0.4s]" />
+                        </div>
+                      ) : (
+                        <ReactMarkdown>{message.content}</ReactMarkdown>
+                      )}
+                    </div>
                   </div>
-                  {message.role === 'user' && (
-                    <Avatar className="h-8 w-8 bg-primary">
-                      <UserIcon className="h-4 w-4" />
+                ) : (
+                  <div className="flex items-center space-x-2">
+                    <Avatar>
+                      <UserIcon />
                     </Avatar>
-                  )}
-                </div>
+                    <div className="max-w-[70%] rounded-lg bg-blue-500 p-2 text-white">{message.content}</div>
+                  </div>
+                )}
               </div>
             ))}
             <div ref={messagesEndRef} />
