@@ -9,7 +9,7 @@ function PaymentSuccessPage() {
       <div className="flex flex-col items-center space-y-1">
         <LogoICon className="w-30 m-auto h-40" />
       </div>
-      <div className="text-6xl text-[#F3774E]">
+      <div className="text-6xl text-colorbrand-burntSienna-600">
         <Image src={checked} height={120} width={120} alt="check-payment" />
       </div>
 
@@ -18,7 +18,7 @@ function PaymentSuccessPage() {
         onClick={() => {
           redirect('/home')
         }}
-        className="rounded bg-[#F3774E] px-6 py-2 font-semibold text-white transition-all hover:bg-[#e7673f]"
+        className="bg-text-colorbrand-burntSienna-600 rounded px-6 py-2 font-semibold text-white transition-all hover:bg-colorbrand-burntSienna-400"
       >
         Quay lại trang chủ
       </button>
