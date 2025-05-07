@@ -4,9 +4,9 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { debounce } from 'lodash';
 import { ChangeEvent } from 'react';
 
-type QueryType = 'limit' | 'page' | 'searchField' | 'keywords' | 'sort' | 'totalPage' | string;
+type QueryType = 'limit' | 'page' | 'searchField' | 'keywords' | 'sort' | 'totalPage' | 'min' | 'max' | 'category' | 'destination' | 'day' | string;
 
-enum QueryEnum {
+export enum QueryEnum {
     LIMIT = 'limit',
     PAGE = 'page',
     SEARCH_FIELD = 'searchField',
@@ -14,6 +14,11 @@ enum QueryEnum {
     FILTER = 'filters',
     TOTALPAGE = 'totalPage',
     SORT = 'sort',
+    MIN = 'min',
+    MAX = 'max',
+    CATEGORY = 'category',
+    DESTINATION = 'destination',
+    DAY = 'day'
 }
 
 function useSearch() {
@@ -41,10 +46,26 @@ function useSearch() {
     const setTypeSort = (type: string) => {
         updateQuery(QueryEnum.SORT, type);
     };
-
+    const setQueryField = (type: QueryType, value: string) => {
+        updateQuery(type, value)
+    }
     const getQueryField = (type: QueryType): string => {
         return params.get(type) ?? '';
     };
+    const setMinMaxQuery = (min: string, max: string) => {
+        const current = new URLSearchParams(Array.from(params.entries()));
+
+        if (min === undefined || max === '' || max === undefined || min === '') {
+            current.delete(QueryEnum.MAX);
+            current.delete(QueryEnum.MIN);
+            current.delete(QueryEnum.PAGE);
+        } else {
+            current.set(QueryEnum.MAX, max)
+            current.set(QueryEnum.MIN, min)
+            current.set(QueryEnum.PAGE, '1')
+        }
+        router.replace(`?${current.toString()}`);
+    }
 
     const onSearchChange = debounce((e: ChangeEvent<HTMLInputElement>) => {
         const text = e.target.value;
@@ -72,6 +93,8 @@ function useSearch() {
         setTypeSort,
         setLimit,
         setTotalPage,
+        setQueryField,
+        setMinMaxQuery
     };
 }
 
