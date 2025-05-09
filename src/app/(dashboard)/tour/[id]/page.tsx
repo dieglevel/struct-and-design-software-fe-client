@@ -18,12 +18,12 @@ export default function TourDetailPage() {
 
   useEffect(() => {
     handleGetReviewByTourId(`${id}`)
-    handleGetTourById()
+    handleGetTourById(`${id}`)
     return () => {
       handleGetReviewByTourId(`${id}`)
       handleGetTourById()
     }
-  }, [id, handleGetReviewByTourId, handleGetTourById])
+  }, [id])
 
   return (
     <div className="m-auto">

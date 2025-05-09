@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { DiscordIcon, FacebookIcon, GoogleIcon, LogoICon, YoutubeIcon } from '@/assets/svgs'
 import useAuth from '@/hooks/api/useAuth'
+import { Avatar } from '@mui/material'
 
 const navigation = [
   { name: 'trang chủ', href: '/home' },
@@ -21,6 +22,8 @@ export default function SiteHeader() {
   const { handleNavigateAccount } = useAuth()
   const pathname = usePathname()
   const [activeItem, setActiveItem] = useState<string>('')
+
+  const { me } = useAuth()
 
   useEffect(() => {
     setActiveItem(pathname)
@@ -56,9 +59,16 @@ export default function SiteHeader() {
                 <FacebookIcon className="h-4 w-4" />
               </Link>
             </div>
-            <button onClick={handleNavigateAccount} className="font-bold text-white hover:text-gray-200">
-              Tài khoản
-            </button>
+            {!me ? (
+              <button onClick={handleNavigateAccount} className="font-bold text-white hover:text-gray-200">
+                Tài khoản
+              </button>
+            ) : (
+              <button onClick={handleNavigateAccount} className="flex items-center text-sm text-slate-300 gap-2">
+                <Avatar src={me?.avatarUrl} sx={{ width: 20, height: 20 }} />
+                Hi, {me.fullName}
+              </button>
+            )}
           </div>
         </div>
       </div>
