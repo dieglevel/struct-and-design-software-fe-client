@@ -74,8 +74,6 @@ export const calculateTotalPrice = (travelers: TravelerType[], tourSchedule: ITo
 }
 
 
-
-
 //TODO: summary price
 export const calculatePriceBreakdown = (
     travelers: TravelerType[],

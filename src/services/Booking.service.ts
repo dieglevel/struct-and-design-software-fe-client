@@ -14,14 +14,7 @@ class BookingService {
     }
     async createPayment(amount: number, bankcode: string, bookingId: string) {
         const paymentResponse = await api.post(
-            `${END_POINT_VNPAY}/create-payment-url`,
-            {
-                params: {
-                    amount: amount,
-                    bankcode,
-                    bookingId,
-                },
-            }
+            `${END_POINT_VNPAY}/create-payment-url?amount=${amount * 100}&bankCode=${bankcode}&bookingId=${bookingId}`
         )
         return paymentResponse
     }
