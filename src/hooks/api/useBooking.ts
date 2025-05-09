@@ -17,13 +17,15 @@ function useBooking() {
         setError(null)
         try {
             const bookingResponse: any = await bookingService.createBooking(bookingData)
-            const { bookingId } = bookingResponse
+
+            const { bookingId } = bookingResponse.data
+
             if (!bookingId) {
                 throw new Error('Booking ID not returned from server')
             }
             const paymentResponse = await bookingService.createPayment(totalAmount, bankCode, bookingId)
-            const { paymentUrl }: any = paymentResponse.data
-            return paymentUrl
+            const { data }: any = paymentResponse
+            return data
         } catch (err: any) {
             console.log("💲💲💲 ~ useBooking ~ err:", err)
             setError('Payment failed')

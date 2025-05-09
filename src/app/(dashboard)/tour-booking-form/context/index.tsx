@@ -203,12 +203,11 @@ export function BookingFormProvider({ children }: { children: React.ReactNode })
         }
       }),
     }
-
-    const result = await handlePayment(bookingData, totalBeforeDiscount)
-    if (result.paymentUrl) {
-      window.location.href = result.paymentUrl
+    const result = await handlePayment(bookingData, totalPrice)
+    if (result) {
+      window.location.href = result as string
     } else {
-      setValidate([{ message: result.error || 'Failed to process payment' }])
+      setValidate([{ message: result || 'Failed to process payment' }])
     }
   }
   return (
