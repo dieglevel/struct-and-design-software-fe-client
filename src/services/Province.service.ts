@@ -5,7 +5,6 @@ const API =
 
 const apiGetProvinces = async () => {
     const response = await api.get(`${API}/province`)
-
     return response
 }
 

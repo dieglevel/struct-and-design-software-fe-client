@@ -1,44 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { Button } from '@/components/ui'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import Image from 'next/image'
 import { ClockIcon } from '@/assets/svgs'
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import ReactStars from 'react-stars'
-import api from '@/libs/axios/axios.config'
-import { BaseResponse } from '@/types'
-import { ITourEntity } from '@/models/response/tour'
 import { FORMAT_MONEY } from '@/utils/formatMoney'
 import { useRouter } from 'next/navigation'
 import TourLoading from '@/components/ui/loading'
+import useTour from '@/hooks/api/useTour'
+import { ITour } from '@/types/entities/Tour'
 
 export const TourPromotionComponent = () => {
-  const [clientTour, setClientTour] = useState<BaseResponse<ITourEntity[]>>()
-  const [loading, setLoading] = useState(false)
+  const { loading, tours, handleGetTours } = useTour()
   const route = useRouter()
   const goDetail = (id: string) => {
     route.push(`tour/${id}`)
   }
-
-  const getTour = async () => {
-    try {
-      const res = await api.get(`${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours`)
-      if (res.data) {
-        setClientTour(res.data)
-      }
-    } catch (error) {
-      
-      console.error('Lỗi khi gọi API lấy tour:', error)
-    }
-  }
-
   useEffect(() => {
-    const fetchTour = async () => {
-      setLoading(true)
-      await getTour()
-      setLoading(false)
-    }
-    fetchTour()
+    handleGetTours()
   }, [])
 
   return (
@@ -63,17 +44,17 @@ export const TourPromotionComponent = () => {
       ) : (
         <>
           <div className="mt-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
-            {clientTour?.data?.slice(0, 8).map((tour: ITourEntity) => {
+            {tours?.slice(0, 8).map((tour: ITour) => {
               return (
                 <div key={tour.tourId} className="group overflow-hidden">
                   <Card
-                    onClick={() => goDetail(tour.tourId)}
-                    className="hover:shadow-md rounded-md border-none bg-white/80 shadow-sm transition duration-300"
+                    onClick={() => goDetail(tour?.tourId as string)}
+                    className="rounded-md border-none bg-white/80 shadow-sm transition duration-300 hover:shadow-md"
                   >
                     <CardHeader className="relative p-0">
                       <Image
-                        src={tour.thumbnail}
-                        alt={tour.name}
+                        src={`${tour?.thumbnail}`}
+                        alt={`${tour?.name}`}
                         height={220}
                         width={280}
                         className="aspect-[4/3] w-full self-center rounded-t-md object-cover"
@@ -92,10 +73,10 @@ export const TourPromotionComponent = () => {
                       </div>
                       <div className="my-4 w-full border bg-[#D1D1D1]"></div>
                       <div className="flex items-center justify-between">
-                        <span className="font-bold text-[#00315C]">{FORMAT_MONEY(tour.price)}</span>
+                        <span className="font-bold text-[#00315C]">{FORMAT_MONEY(tour?.price as number)}</span>
                         <Button
                           className="border-orange-500 bg-white font-bold text-orange-500 hover:bg-orange-50"
-                          onClick={() => goDetail(tour.tourId)}
+                          onClick={() => goDetail(tour?.tourId as string)}
                         >
                           Xem chi tiết
                         </Button>
