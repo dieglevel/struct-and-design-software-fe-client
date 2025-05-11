@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import tourDetailBanner from '@/assets/images/tour_detail_header.png'
 import { StarSvgIcon } from '@/assets/svgs'
@@ -14,13 +15,11 @@ import { useEffect } from 'react'
 export default function TourDetailPage() {
   const { id } = useParams()
   const { tour, handleGetTourById } = useTour()
-  const { handleGetReviewByTourId } = useReview()
-
+  const { reviews, totalRating, loading, handleGetReviewByTourId } = useReview()
   useEffect(() => {
-    handleGetReviewByTourId(`${id}`)
     handleGetTourById(`${id}`)
+    handleGetReviewByTourId(`${id}`)
     return () => {
-      handleGetReviewByTourId(`${id}`)
       handleGetTourById()
     }
   }, [id])
@@ -31,7 +30,7 @@ export default function TourDetailPage() {
         <Image src={tourDetailBanner} alt="Tour Banner" className="h-full w-full object-cover" />
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black text-center opacity-50">
           <h1 className="text-3xl font-bold text-white">Tour detail</h1>
-          <p className="mt-2 line-clamp-1 w-1/2 text-sm text-white opacity-100 md:text-lg">
+          <p className="line-clamp-1 w-1/2 text-sm text-white opacity-100 md:text-lg">
             <Link href="/tour">Tour </Link> &gt; {tour?.name}
           </p>
         </div>
@@ -39,18 +38,18 @@ export default function TourDetailPage() {
       {/* body */}
       <div className="m-auto my-8 mt-2 flex w-11/12 flex-col gap-5">
         {/* base info */}
-        <div className="mt-6">
+        <div className="mt-2">
           <div>
             <h3 className="text-2xl font-bold capitalize text-colorbrand-midnightBlue-950">{tour?.name}</h3>
           </div>
           <h3 className="mt-1 text-xl text-gray-500">{tour?.description}</h3>
-          <div className="mt-10 flex gap-40">
+          <div className="mt-2 flex gap-2">
             <h3 className="text-lg text-gray-500">Kiên Giang</h3>
             <div className="flex items-center justify-center gap-2">
               <StarSvgIcon width={22} />
-              <h3>4.5</h3>
+              <h3>{isNaN(totalRating) ? 0 : totalRating}</h3>
               <a href="#" className="justify-center text-base text-colorbrand-burntSienna-500 underline">
-                (12 đánh giá)
+                ({reviews?.length ?? 0} đánh giá)
               </a>
             </div>
           </div>
@@ -58,7 +57,12 @@ export default function TourDetailPage() {
         {/* layout */}
         <BookingTourDetailComponent tourDetail={tour} />
         <AccordionTourSchedule tourDetail={tour} />
-        <CustomerReviews />
+        <CustomerReviews
+          tourScheduleId={`${(tour?.tourScheduleResponses as { tourScheduleId: string }[] | undefined)?.[0]?.tourScheduleId}`}
+          totalRating={totalRating}
+          loading={loading}
+          reviews={reviews}
+        />
       </div>
     </div>
   )

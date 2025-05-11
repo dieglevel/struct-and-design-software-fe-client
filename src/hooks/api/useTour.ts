@@ -6,6 +6,8 @@ import { useState } from "react"
 function useTour() {
     const { enqueueSnackbar } = useSnackbar()
     const [tour, setTour] = useState<ITour>()
+    const [tours, setTours] = useState<ITour[]>([])
+    const [loading, setLoading] = useState(false)
 
 
     const handleGetTourById = async (id?: string) => {
@@ -22,9 +24,26 @@ function useTour() {
         }
         return response.data
     }
+    const handleGetTours = async () => {
+        setLoading(true)
+        try {
+            const res: any = await tourService.getAll()
+            if (res?.statusCode > 200) {
+                enqueueSnackbar({ variant: 'error', message: "Server bug" })
+            }
+            setTours(res.data)
+        } catch (error) {
+            console.log("💲💲💲 ~ handleGetTours ~ error:", error)
+            enqueueSnackbar({ variant: 'error', message: "Client bug" })
+        }
+        finally {
+            setLoading(false)
+        }
+    }
     return {
-        tour,
+        tour, tours,loading,
         handleGetTourById,
+        handleGetTours,
         handleSearchTourMinMax
     }
 }

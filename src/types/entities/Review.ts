@@ -1,13 +1,10 @@
-import { IUser } from "./User";
 
-export type IReview = Pick<IUser, 'username' | 'userId'> & {
-    tourScheduleId: string,
-    reviewDate: string,
-    content: string
-    isActive: boolean,
-    rating: number,
-    videUrl: string[],
-    imageUrl: string[]
+export type IReview = {
+    user: string
+    date: string
+    rating: number
+    comment: string
+    files?: { file_url: string; file_order: number }[]
 }
 
 export type ReviewResponseType = {

@@ -55,7 +55,8 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
                           onClick={() => handleClickTourScheduleBtn(detail)}
                           className={`font-500 w-full px-1 text-sm lg:text-base`}
                         >
-                          {detail?.name}
+                          {new Date(`${detail.startDate}`).toLocaleDateString('vi-VN')} - {' '}
+                          {new Date(`${detail.endDate}`).toLocaleDateString('vi-VN')}
                         </button>
                       </div>
                     ))}
@@ -126,7 +127,7 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
                       </div>
                     </div>
                   </div>
-                  <div className="mt-8 rounded-md border-1 bg-yellow-100 px-4 py-2 text-colorbrand-burntSienna-600">
+                  <div className="mt-8 rounded-md border-1 bg-yellow-50 px-4 py-2 text-colorbrand-burntSienna-400">
                     Chỉ nhận khách quốc tịch nước ngoài hoặc khách đã có visa Hàn Quốc còn hiệu lực. Tour bao gồm visa
                     đoàn nhập cảnh (không phải visa cá nhân). Tham quan đầy đủ theo chương trình, không tách đoàn. Chưa
                     bao gồm tiền tip hướng dẫn viên và tài xế: 153.000 VND/ngày/khách (tương đương 6 USD/ngày/khách).
