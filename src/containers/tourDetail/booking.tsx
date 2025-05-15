@@ -55,7 +55,7 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
                           onClick={() => handleClickTourScheduleBtn(detail)}
                           className={`font-500 w-full px-1 text-sm lg:text-base`}
                         >
-                          {new Date(`${detail.startDate}`).toLocaleDateString('vi-VN')} - {' '}
+                          {new Date(`${detail.startDate}`).toLocaleDateString('vi-VN')} -{' '}
                           {new Date(`${detail.endDate}`).toLocaleDateString('vi-VN')}
                         </button>
                       </div>
@@ -63,7 +63,7 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
                 </div>
               </div>
               {tourDetail?.tourScheduleResponses?.length === 0 ? (
-                <div className="col-span-11 w-full text-center text-sm text-gray-500">
+                <div className="col-span-11 w-full items-center justify-center h-full text-center text-sm text-gray-500">
                   Hiện tại chưa có lịch khởi hành.
                 </div>
               ) : (
@@ -139,8 +139,8 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
           <div className="col-span-2 lg:col-span-1">
             <>
               {tourDetail?.tourScheduleResponses?.length === 0 ? (
-                <div className="col-span-11 w-full text-center text-sm text-gray-500">
-                  Hiện tại chưa có lịch khởi hành.
+                <div className="col-span-11 flex h-64 w-full items-center justify-center bg-white text-center text-sm text-gray-500">
+                  Thông tin đang được cập nhật
                 </div>
               ) : (
                 <div className="bg-white px-4 pb-2 pt-4">
@@ -210,7 +210,7 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
             </>
           </div>
           {tourDetail && (
-            <div className="col-span-4 m-auto my-10 grid w-full grid-cols-3 gap-4 bg-white">
+            <div className="col-span-4 m-auto my-10 grid w-full grid-cols-3 gap-4 bg-white px-2 py-2">
               {tourDetail?.tourImageResponses?.map((image, index) => {
                 return (
                   <div key={index} className="relative aspect-[4/3] w-full overflow-hidden rounded-md">
