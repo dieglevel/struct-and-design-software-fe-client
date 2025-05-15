@@ -12,7 +12,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       defaultTheme="light"
       enableSystem
       disableTransitionOnChange
-      themes={['light', 'dark']}
+      forcedTheme="light"
     >
       <Provider store={store}>
         <ThemeSnackBarProvider>{children}</ThemeSnackBarProvider>

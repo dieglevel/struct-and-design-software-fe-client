@@ -84,19 +84,13 @@ const LoginPage = () => {
             <div className="flex gap-2">
               <button
                 className="m-auto flex w-full items-center justify-center gap-2 rounded-md border-[1px] border-slate-200 bg-white p-2 text-slate-700"
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleLoginGoogle()
-                }}
+                onClick={handleLoginGoogle}
               >
                 <Image alt="" height={24} width={24} src={googleIcon} />
                 Đăng nhập google
               </button>{' '}
               <button
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleLoginGitHub()
-                }}
+                onClick={handleLoginGitHub}
                 className="m-auto flex w-full items-center justify-center gap-2 rounded-md border-[1px] border-slate-200 bg-white p-2 text-slate-700"
               >
                 <Image alt="" height={24} width={24} src={github} />

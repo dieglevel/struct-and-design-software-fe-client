@@ -37,47 +37,11 @@ function useAuth() {
     }
   }
 
-  const handleLoginGoogle = async () => {
-    try {
-      const res = await authService.loginGoogle()
-
-      if (!res.token) {
-        enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
-        return
-      }
-      const item = {
-        token: res.token,
-      }
-      dispatch(setMe(res.user))
-      localStorage.setItem('token', JSON.stringify(item))
-      enqueueSnackbar({ variant: 'success', message: 'Login success' })
-      router.push('/home')
-    } catch (error: any) {
-      console.log("💲💲💲 ~ handleLoginGoogle ~ error:", error)
-      enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
-    }
+  const handleLoginGoogle = () => {
+    window.location.href = "https://travelsummonerrift.me/api/v1/user-service/auth/google/login"
   }
-
-  const handleLoginGitHub = async () => {
-    try {
-      const res = await authService.loginGitHub()
-      console.log("💲💲💲 ~ handleLoginGitHub ~ res:", res)
-
-      if (!res.token) {
-        enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
-        return
-      }
-      const item = {
-        token: res.token,
-      }
-      dispatch(setMe(res.user))
-      localStorage.setItem('token', JSON.stringify(item))
-      enqueueSnackbar({ variant: 'success', message: 'Login success' })
-      router.push('/home')
-    } catch (error) {
-      console.log("💲💲💲 ~ handleLoginGitHub ~ error:", error)
-      enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
-    }
+  const handleLoginGitHub = () => {
+    window.location.href = "https://travelsummonerrift.me/api/v1/user-service/auth/github/login"
   }
   const handleNavigateAccount = async () => {
     const tokenItem = localStorage.getItem('token')
