@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { MapPin, Mail, Phone } from 'lucide-react'
 
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { GooglePayIcon, MasterCardIcon, PaypalIcon, VisaIcon } from '@/assets/svgs'
 
@@ -61,15 +59,6 @@ export default function SiteFooter() {
               </div>
             </div>
 
-            {/* Email Subscription */}
-            <div className="space-y-2">
-              <div className="flex max-w-sm space-x-2">
-                <Input type="email" placeholder="Nhập email của bạn..." className="flex-1" />
-                <Button variant="default" style={{ backgroundColor: '#F27052' }}>
-                  Xác nhận
-                </Button>
-              </div>
-            </div>
           </div>
         </div>
 
