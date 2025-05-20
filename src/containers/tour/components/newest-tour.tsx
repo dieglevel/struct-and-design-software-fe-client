@@ -23,8 +23,7 @@ export const NewestTourContainerComponent = () => {
         const response = await api.get(
           `${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/search?minPrice=${MIN_PRICE_TOUR}&maxPrice=${MAX_PRICE_TOUR}`,
         )
-        setData(response.data.data)
-        console.log('fetchData', response.data.data)
+        setData(response.data)
       } catch (error) {
         console.error('Error fetching data:', error)
       }

@@ -1,10 +1,10 @@
 import {
-  AchievementComponent,
+  // AchievementComponent,
   BannerTourComponent,
   CheapTourContainerComponent,
   DiscoverContainerComponent,
-  HotTourContainerComponent,
-  NewestTourContainerComponent,
+  // HotTourContainerComponent,
+  // NewestTourContainerComponent,
   TourSearchContainerComponent,
 } from '@/containers/tour/components'
 
@@ -16,9 +16,9 @@ export default function TourPage() {
         <DiscoverContainerComponent />
         <CheapTourContainerComponent />
         <BannerTourComponent />
-        <NewestTourContainerComponent />
-        <AchievementComponent />
-        <HotTourContainerComponent />
+        {/* <NewestTourContainerComponent /> */}
+        {/* <AchievementComponent /> */}
+        {/* <HotTourContainerComponent /> */}
       </div>
     </>
   )

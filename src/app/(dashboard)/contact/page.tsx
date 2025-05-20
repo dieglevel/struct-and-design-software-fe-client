@@ -114,63 +114,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      {/* Detailed Information Section */}
-      <section className="mx-auto max-w-4xl">
-        <h2 className="mb-8 text-center text-3xl font-bold text-[#003580]">THÔNG TIN CHI TIẾT</h2>
-        <div className="flex flex-col gap-6 md:flex-row">
-          {/* Map Placeholder */}
-          <div className="flex h-64 items-center justify-center rounded-lg bg-gray-200 md:w-2/3">
-            <div className="relative">
-              <div className="relative h-0 overflow-hidden pb-[75%]">
-                <iframe
-                  className="absolute left-0 top-0 h-full w-full border-0"
-                  loading="lazy"
-                  src="https://maps.google.com/maps?q=Nguyen+Van+Bao%2C+Go+Vap&output=embed"
-                ></iframe>
-              </div>
-              <a
-                href="http://aiyoutubetitlegenerator.com/"
-                rel="noopener"
-                target="_blank"
-                className="absolute m-[-1px] h-px w-px overflow-hidden whitespace-nowrap border-0 p-0"
-              >
-                aiyoutubetitlegenerator.com
-              </a>
-            </div>
-          </div>
-          {/* Contact Details */}
-          <div className="space-y-4 md:w-1/3">
-            <div className="rounded-lg bg-white p-4 shadow-md">
-              <div className="flex items-start space-x-3">
-                <span className="mt-1 text-[#003580]">📍</span>
-                <div>
-                  <h3 className="text-sm font-bold text-[#003580]">Phương đăng ký du lịch Hà Nội:</h3>
-                  <p className="text-sm text-gray-700">18 Hoàng Cầu, Đống Đa, Hà Nội</p>
-                </div>
-              </div>
-            </div>
-            <div className="rounded-lg bg-white p-4 shadow-md">
-              <div className="flex items-start space-x-3">
-                <span className="mt-1 text-[#003580]">📞</span>
-                <div>
-                  <h3 className="text-sm font-bold text-[#003580]">Hotline:</h3>
-                  <p className="text-sm text-gray-700">1800 10 21 11 – 84-28 39 487 038</p>
-                </div>
-              </div>
-            </div>
-            <div className="rounded-lg bg-white p-4 shadow-md">
-              <div className="flex items-start space-x-3">
-                <span className="mt-1 text-[#003580]">✉️</span>
-                <div>
-                  <h3 className="text-sm font-bold text-[#003580]">Email:</h3>
-                  <p className="text-sm text-gray-700">information@vtravel.com</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }

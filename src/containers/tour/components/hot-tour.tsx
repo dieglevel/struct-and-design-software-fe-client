@@ -23,7 +23,7 @@ export const HotTourContainerComponent = () => {
         const response = await api.get(
           `${process.env.NEXT_PUBLIC_BOOKING_SERVICE}/tours/search?minPrice=${MIN_PRICE_TOUR}&maxPrice=${MAX_PRICE_TOUR}`,
         )
-        setData(response.data.data)
+        setData(response.data)
         console.log('fetchData', response.data.data)
       } catch (error) {
         console.error('Error fetching data:', error)
@@ -48,19 +48,6 @@ export const HotTourContainerComponent = () => {
                   goDetail(item.tourId as string)
                 }}
               >
-                {/* discount and favorite */}
-                {/* <div className="rounded-t-lg relative">
-                                <div className=" px-4 absolute translate-y-3 top-0 left-0 right-0 z-[11] flex justify-between ">
-                                    <div className="bg-white rounded-lg p-2">
-                                        <h3 className="font-bold font-serif">{`-${item.discount}%`}</h3>
-                                    </div>
-                                    {item.isFavorite ? (
-                                        <FavoriteIcon className="w-6 md:w-8" />
-                                    ) : (
-                                        <UnFavoriteIcon className="w-6 md:w-8" />
-                                    )}
-                                </div>
-                            </div> */}
                 <div className="h-32 w-full overflow-hidden rounded-t-lg md:h-40 lg:h-60">
                   <Image
                     alt="Hình ảnh địa điểm"
