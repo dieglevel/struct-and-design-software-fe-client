@@ -30,14 +30,12 @@ export const ReviewContainer = () => {
                     &ldquo;
                   </span>
                   <h3 className="mb-2 translate-y-2 text-lg font-bold text-gray-800 md:mb-4 md:translate-y-5 md:text-2xl lg:text-4xl">
-                    Lorem Ipsum is simply dummy printing
+                   Trải nghiệm mà V-Travel mang đến thật thú vị
                   </h3>
                 </div>
 
                 <p className="mb-4 text-xs text-gray-600 md:mb-6 md:text-sm lg:text-base">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                  industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it to make a type specimen book.
+                  Sinh ra và lớn lên ở Thủy điện, lần đầu đặt chân đến Việt Name và được trải nghiệm tour của V-travel, tôi đã được thấy những kì quan và khu du lịch rất dẹp ở Việt Nam. Nơi đây cho tôi nhiều cảm hứng và cũng như cảm thấy rất gắn kết với văn hóa và truyền thống tại Việt Nam, nếu có dịp tôi mong có thể ghé lại đây một lần nữa, cảm ơn V-travel.
                 </p>
                 <div className="text-right">
                   <p className="text-sm font-bold text-[#00315C] md:text-base">_Esther Howard_</p>

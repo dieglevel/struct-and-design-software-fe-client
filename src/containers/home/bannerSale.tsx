@@ -2,8 +2,10 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import banner from '@/assets/images/banner.png'
+import { useRouter } from 'next/navigation'
 
 const BannerSale = () => {
+  const route = useRouter()
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -29,7 +31,8 @@ const BannerSale = () => {
             transition={{ delay: 0.8, duration: 0.5, ease: 'easeOut' }}
             className="font-bold text-[#F97916]"
           >
-            {' '}GIẢM ĐẾN 50%
+            {' '}
+            GIẢM ĐẾN 50%
           </motion.span>
         </motion.h1>
         <motion.p
@@ -43,6 +46,7 @@ const BannerSale = () => {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
+          onClick={() => route.push('/search')}
           className="rounded-full bg-orange-500 px-6 py-3 font-semibold text-white shadow-lg transition hover:bg-orange-600"
         >
           Khám phá ngay
