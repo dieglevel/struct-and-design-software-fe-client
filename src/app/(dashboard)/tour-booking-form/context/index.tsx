@@ -203,7 +203,7 @@ export function BookingFormProvider({ children }: { children: React.ReactNode })
         }
       }),
     }
-    const result = await handlePayment(bookingData, totalPrice)
+    const result = await handlePayment(bookingData, totalPrice / 100)
     if (result) {
       window.location.href = result as string
     } else {
