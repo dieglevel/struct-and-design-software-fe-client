@@ -22,6 +22,10 @@ function PaymentSuccessPage() {
       >
         Quay lại trang chủ
       </button>
+      <a href="intent://login#Intent;scheme=travelsummornersrift;package=com.anonymous.structureanddesignsoftware;end">
+        Open App
+      </a>
+      <a href="https://travelsummornersrift.quindart.shop/login">Mở app</a>
     </div>
   )
 }
