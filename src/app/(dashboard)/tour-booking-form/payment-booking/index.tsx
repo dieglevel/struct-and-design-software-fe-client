@@ -114,7 +114,7 @@ function PaymentBookingPage() {
                 <div className="flex items-center justify-between pt-2">
                   <span>Mã giảm giá: </span>
                   <div className="ml-2 flex items-center gap-2">
-                    <Input placeholder="Nhập mã giảm giá" className="h-8 text-sm" />
+                    <Input placeholder="Nhập mã giảm giá" className="h-8 text-sm" onChange={() => {}} />
                     <Button size="sm" variant="outline" className="h-8">
                       Áp dụng
                     </Button>

@@ -1,12 +1,11 @@
 import { BookingData, PaymentResponse } from "@/app/(dashboard)/tour-booking-form/context/types"
-import BookingService from "@/services/Booking.service"
+import bookingService from "@/services/Booking.service"
+import { BookingResponse } from "@/types/entities/Booking"
 import { useState } from "react"
 
 function useBooking() {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
-
-    const bookingService = new BookingService()
 
     const handlePayment = async (
         bookingData: BookingData,
@@ -35,10 +34,30 @@ function useBooking() {
         }
     }
 
+    const getBooking = async (): Promise<BookingResponse> => {
+        setLoading(true)
+        setError(null)
+        try {
+            const bookingResponse: any = await bookingService.getMyBooking()
+
+            if (!bookingResponse.data) {
+            throw new Error('Booking data not returned from server')
+            }
+            return bookingResponse.data
+        } catch (err: any) {
+            console.log('💲💲💲 ~ useBooking ~ err:', err)
+            setError('Payment failed')
+            return null as unknown as BookingResponse
+        } finally {
+            setLoading(false)
+        }
+    }
+
     return {
-        handlePayment,
-        loading,
-        error,
+      getBooking,
+      handlePayment,
+      loading,
+      error,
     }
 }
 

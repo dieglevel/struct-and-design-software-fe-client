@@ -1,45 +1,63 @@
-import Image from 'next/image'
 import React from 'react'
-import { IBookedTourEntity } from '@/models/response/booked'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card } from '@/components/ui/card'
 import dynamic from 'next/dynamic'
-import { FORMAT_MONEY } from '@/utils/formatMoney'
 import { Button } from '@/components/ui'
+import { IBooking } from '@/types/entities/Booking'
 
 const ReactStars = dynamic(() => import('react-stars'), { ssr: false })
 
 
-export const BookedList = (booking: IBookedTourEntity) => {
+export const BookedList = (booking: IBooking) => {
   return (
-    <Card key={booking.bookingId} className="justif mt-8 flex h-full w-full justify-between overflow-hidden px-4">
-      <div className="flex w-full">
-        <div className="relative h-28 w-1/5 self-center">
-          <Image src={booking.image} alt={booking.tourName} fill className="object-cover" />
-        </div>
-
+    <Card key={booking.bookingId} className="mt-8 flex w-full flex-col overflow-hidden p-4 shadow-md">
+      <div className="mb-4 flex items-center justify-between">
         <div>
-          <CardHeader className="px-4 pb-2">
-            <CardTitle className="line-clamp-1 w-3/4">{booking.tourName}</CardTitle>
-          </CardHeader>
-          <CardContent className="px-4">
-            <p className="text-base text-[#707070]">
-              Số vé: {booking.totalAdults} người lớn {booking.totalChildren} trẻ em <br />
-              Ngày bắt đầu: {booking.startDate} <br />
-              Ngày kết thúc: {booking.endDate}
-            </p>
-          </CardContent>
+          <h2 className="text-xl font-bold text-[#00315C]">{booking.userFullName}</h2>
+          <p className="text-sm text-gray-500">
+            Trạng thái: <span className="font-medium text-green-600">{booking.status}</span>
+          </p>
+        </div>
+        <div className="text-right text-sm text-gray-500">
+          <p>Booking ID:</p>
+          <p className="font-mono text-xs text-gray-400">{booking.bookingId}</p>
         </div>
       </div>
 
-      {/* Render ReactStars chỉ khi client */}
-      <div className="flex w-2/5 items-center justify-between">
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold text-[#F27052]">{booking.tourSchedule.name}</h3>
+        <p className="text-sm text-gray-600">{booking.tourSchedule.description}</p>
+        <p className="mt-1 text-sm text-gray-500">
+          Từ ngày: <span className="font-medium">{new Date(booking.tourSchedule.startDate || "").toLocaleDateString()}</span>{' '}
+          - đến ngày: <span className="font-medium">{new Date(booking.tourSchedule.endDate || "").toLocaleDateString()}</span>
+        </p>
+      </div>
+
+      <div className="mb-4 text-sm text-gray-700">
+        <p>Số lượng vé:</p>
+        <ul className="list-inside list-disc">
+          <li>Người lớn: {booking.tickets.filter((t) => t.ticketType === 'ADULT').length}</li>
+          <li>Trẻ em: {booking.tickets.filter((t) => t.ticketType === 'CHILD').length}</li>
+        </ul>
+      </div>
+
+      <div className="mb-4 text-sm text-gray-700">
+        <p>
+          <span className="font-medium">Yêu cầu:</span> {booking.note || 'Không có yêu cầu nào'}
+        </p>
+      </div>
+
+      <div className="flex items-center justify-between">
         <div>
           <ReactStars size={20} value={5} edit={false} />
-          <p className="text-base font-bold text-[#00315C] mt-4">{FORMAT_MONEY(booking.pricePerPerson)}</p>
+          <p className="mt-2 text-lg font-bold text-[#00315C]">{booking.totalPrice.toLocaleString()} VND</p>
         </div>
-        <div className="flex flex-col">
-          <Button className="mb-4 bg-[#F27052] font-bold">Xem chi tiết</Button>
-          <Button variant="outline" className="border-[#F27052] font-bold text-[#F27052] hover:bg-[#f26f52a2] hover:text-white">
+
+        <div className="flex flex-col gap-2">
+          <Button className="bg-[#F27052] font-bold">Xem chi tiết</Button>
+          <Button
+            variant="outline"
+            className="border-[#F27052] font-bold text-[#F27052] hover:bg-[#f26f52a2] hover:text-white"
+          >
             Đánh giá
           </Button>
         </div>
