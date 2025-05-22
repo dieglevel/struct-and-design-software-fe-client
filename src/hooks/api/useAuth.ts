@@ -6,6 +6,7 @@ import authService from '@/services/Auth.service';
 import { LoginRequestType, LoginSuccessType } from '@/types/entities/Auth';
 import { setMe } from '@/redux/slice/user.slice';
 import userService from '@/services/User.service'
+import { registerServiceWorker, requestPermissionAndGetToken } from '@/services/firebase.service';
 
 function useAuth() {
   const userStore = useSelector((state: RootState) => state.userSlice)
@@ -19,7 +20,7 @@ function useAuth() {
   const handleLogin = async ({ username, password }: LoginRequestType) => {
     try {
       const res = await authService.login({ username, password })
-
+      
       if (!res.token) {
         enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
         return
@@ -27,8 +28,11 @@ function useAuth() {
       const item = {
         token: res.token,
       }
+
       dispatch(setMe(res.user))
       localStorage.setItem('token', JSON.stringify(item))
+      console.log("💲💲💲 ~ handleLogin ~ res:", res)
+      await handleSendTokenToServer({ userId: res.user.userId || "" })
       enqueueSnackbar({ variant: 'success', message: 'Login success' })
       router.push('/home')
     } catch (error) {
@@ -74,6 +78,15 @@ function useAuth() {
     localStorage.clear()
     dispatch(setMe({}))
     redirect("/login")
+  }
+
+  const handleSendTokenToServer = async (params?: { userId: string }) => {
+    console.log(params)
+    await registerServiceWorker(); 
+    const token = await requestPermissionAndGetToken(); 
+    console.log("Token FCM của bạn:", token);
+    await authService.sendTokenToServer(token, params?.userId as string)
+    return
   }
 
   const handleGetMe = async () => {
