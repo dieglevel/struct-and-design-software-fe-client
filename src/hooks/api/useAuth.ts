@@ -25,13 +25,14 @@ function useAuth() {
         enqueueSnackbar({ variant: 'error', message: 'Login failed, try again' })
         return
       }
-      const item = {
+      const item = {  
         token: res.token,
       }
 
       dispatch(setMe(res.user))
-      localStorage.setItem('token', JSON.stringify(item))
-      console.log("💲💲💲 ~ handleLogin ~ res:", res)
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('token', JSON.stringify(item))
+      }
       await handleSendTokenToServer({ userId: res.user.userId || "" })
       enqueueSnackbar({ variant: 'success', message: 'Login success' })
       router.push('/home')
@@ -85,7 +86,7 @@ function useAuth() {
     await registerServiceWorker(); 
     const token = await requestPermissionAndGetToken(); 
     console.log("Token FCM của bạn:", token);
-    await authService.sendTokenToServer(token, params?.userId as string)
+    await authService.sendTokenToServer(token || "", params?.userId as string)
     return
   }
 

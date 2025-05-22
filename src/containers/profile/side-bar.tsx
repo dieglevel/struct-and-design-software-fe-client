@@ -88,7 +88,7 @@ export const SideBar = () => {
 
   const handleActiveIndex = (activeItem: number) => {
     setActiveIndex(activeItem)
-    if (activeItem === 4) {
+    if (activeItem === 3) {
       handleLogout()
     }
   }
