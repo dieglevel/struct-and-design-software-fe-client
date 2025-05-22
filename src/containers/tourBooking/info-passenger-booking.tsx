@@ -64,7 +64,7 @@ function InfoPassengerBooking({ handleSetAddress }: any) {
               <Label htmlFor="note" className="font-500 text-slate-700">
                 Ghi chú
               </Label>
-              <Input name="note" placeholder="Ghi chú" value={'Không có ghi chú'} />
+              <Input name="note" placeholder="Ghi chú" value={'Không có ghi chú'} onChange={() => {}} />
             </div>
           </div>
           <div className="flex flex-1 flex-col items-start gap-1">

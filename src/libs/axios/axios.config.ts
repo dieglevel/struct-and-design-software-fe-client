@@ -1,10 +1,18 @@
 import axios from "axios"
+import rateLimit from 'axios-rate-limit'
 
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
-  validateStatus: (status) => status >= 200 && status <= 302,
-  timeout: 50000,
-})
+
+const api = rateLimit(
+  axios.create({
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
+    validateStatus: (status) => status >= 200 && status <= 302,
+    timeout: 50000,
+  }),
+  {
+    maxRequests: 2,
+    perMilliseconds: 1000,
+  },
+)
 
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token')

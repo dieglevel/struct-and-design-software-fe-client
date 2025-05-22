@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { SidebarMenu, SidebarMenuItem, SidebarProvider } from '@/components/ui/sidebar'
 import { SidebarCollapsibleItem } from './side-bar-collapsible'
 import useAuth from '@/hooks/api/useAuth'
+import { usePathname } from 'next/navigation'
 
 interface MenuItemProps {
   href: string
@@ -30,10 +31,6 @@ const accountMenuItems: MenuItemProps[] = [
     name: 'Đổi mật khẩu',
   },
   {
-    href: '/profile/change-password',
-    name: 'Thông tin thanh toán',
-  },
-  {
     href: '/profile/delete-account',
     name: 'Xóa tài khoản',
   },
@@ -53,6 +50,8 @@ const orderMenuItems: MenuItemProps[] = [
 export const SideBar = () => {
   const [activeIndex, setActiveIndex] = useState(0)
   const { me, handleGetMe, handleLogout } = useAuth()
+  const mergedMenuItems: MenuItemProps[] = [...accountMenuItems, ...orderMenuItems]
+
 
   useEffect(() => {
     handleGetMe()
@@ -77,6 +76,15 @@ export const SideBar = () => {
       })
     }
   }, [me])
+
+  const pathname = usePathname()
+
+  useEffect(() => {
+    const index = mergedMenuItems.findIndex((item) => item.href === pathname)
+    if (index !== -1) {
+      setActiveIndex(index)
+    }
+  }, [pathname])
 
   const handleActiveIndex = (activeItem: number) => {
     setActiveIndex(activeItem)
