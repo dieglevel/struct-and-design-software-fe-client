@@ -3,24 +3,22 @@
 import { BookedList } from '@/containers/profile'
 import bookingService from '@/services/Booking.service'
 import { IBooking } from '@/types/entities/Booking'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 
 export default function BookedPage() {
 //   const [activeTab, setActiveTab] = useState<string>('all')
   const [bookedTours, setBookedTours] = useState<IBooking[]>([])
-  const router = useRouter()
-
+  const pathname = usePathname()
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await bookingService.getMyBooking()
-      console.log(response)
       setBookedTours(response)
     }
     fetchData()
-  }, [router.asPath])
+  }, [pathname])
 
   return (
     <div className="w-full max-w-4xl flex-1  p-6 lg:w-[896px]">

@@ -17,7 +17,6 @@ class BookingService {
   }
   async getMyBooking() {
     const bookingResponse = await api.get(`${END_POINT_BOOKING}/my-bookings`)
-    console.log("asss", bookingResponse)
     return bookingResponse.data
   }
 }
