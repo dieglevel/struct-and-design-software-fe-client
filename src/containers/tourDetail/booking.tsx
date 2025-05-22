@@ -219,6 +219,7 @@ export const BookingTourDetailComponent = ({ tourDetail }: Props) => {
                       src={image.imageUrl || (process.env.NEXT_PUBLIC_IMAGE as string)}
                       className="object-cover"
                       fill={true}
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       alt="Hình vị trí tour"
                     />
                   </div>

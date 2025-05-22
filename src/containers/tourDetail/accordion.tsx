@@ -19,7 +19,7 @@ export const AccordionTourSchedule = ({ tourDetail }: Props) => {
                       className="mt-1 font-bold"
                       aria-label={`destination-${index}`}
                       startContent={<Avatar alt="Ảnh điểm đến" src={destination.image} />}
-                      title={`Ngày ${index}: ${destination.name}` || `Địa điểm ${index + 1}`}
+                      title={`Ngày ${index+1}: ${destination.name}` || `Địa điểm ${index + 1}`}
                     >
                       <h1 className="px-4 font-thin">{destination?.description}</h1>
                     </AccordionItem>
