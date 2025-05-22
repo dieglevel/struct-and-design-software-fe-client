@@ -12,6 +12,14 @@ class AuthService {
         return response.data;
     }
 
+    async sendTokenToServer(token:string,userId:string) {
+         const response = await api.post<LoginResponseType>(`${this.END_POINT}/notification`, {
+            token,
+            userId
+        });
+        return response;
+    }
+
     async loginGoogle() {
         const response = await api.get<LoginResponseType>(`${this.END_POINT}/google/login`);
         return response.data
