@@ -8,19 +8,41 @@ import TravelList from './travel-list'
 import PaymentBookingPage from './payment-booking'
 import useAuth from '@/hooks/api/useAuth'
 import LoginRequiredDialog from '@/containers/tourBooking/LoginRequiredDialog'
+import { Spinner } from '@heroui/react'
+
 
 export default function TourBookingPage() {
   const [isPayment, setIsPayment] = useState(false)
   const [showDialog, setShowDialog] = useState(false)
+  
   const { me } = useAuth()
+  
+  const isLoadingMe = !me || !me.email
 
   useEffect(() => {
-    if (me.email ==='') {
+    const token = localStorage.getItem('token')
+    if (!token) {
       setShowDialog(true)
+    } else if (me && me.email) {
+      setShowDialog(false)
     }
   }, [me])
+  
 
   const nextPayment = () => setIsPayment(true)
+
+  if (isLoadingMe) return (
+    <div className="flex h-screen items-center justify-center">
+      <Spinner
+        size="lg"
+        color="primary"
+        classNames={{
+          base: 'h-12 w-12 border-4 border-t-transparent rounded-full animate-spin',
+        }}
+      />
+    </div>
+  )
+
 
   return (
     <Suspense fallback={null}>
