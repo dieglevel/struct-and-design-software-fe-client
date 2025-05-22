@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation' // Thêm usePathname từ Next.js
 
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { DiscordIcon, FacebookIcon, GoogleIcon, LogoICon, YoutubeIcon } from '@/assets/svgs'
+import { GoogleIcon, LogoICon } from '@/assets/svgs'
 import useAuth from '@/hooks/api/useAuth'
 import { Avatar } from '@mui/material'
 
@@ -37,11 +37,11 @@ export default function SiteHeader() {
           <div className="hidden w-2/6 justify-around space-x-4 md:flex">
             <div className="flex items-center space-x-2 text-sm">
               <Phone className="h-4 w-4" />
-              <span>1800 0123</span>
+              <span>052 220 6965</span>
             </div>
             <div className="flex items-center space-x-2 text-sm">
               <Mail className="h-4 w-4" />
-              <span>information@travel@gmail.com</span>
+              <span>tranvy.art@gmail.com</span>
             </div>
           </div>
           <div className="flex items-center space-x-4">
@@ -49,22 +49,13 @@ export default function SiteHeader() {
               <Link href="#" className="hover:text-gray-200">
                 <GoogleIcon className="h-4 w-4" />
               </Link>
-              <Link href="#" className="hover:text-gray-200">
-                <YoutubeIcon className="h-4 w-4" />
-              </Link>
-              <Link href="#" className="hover:text-gray-200">
-                <DiscordIcon className="h-4 w-4" />
-              </Link>
-              <Link href="#" className="hover:text-gray-200">
-                <FacebookIcon className="h-4 w-4" />
-              </Link>
             </div>
             {!me ? (
               <button onClick={handleNavigateAccount} className="font-bold text-white hover:text-gray-200">
                 Tài khoản
               </button>
             ) : (
-              <button onClick={handleNavigateAccount} className="flex items-center text-sm text-slate-300 gap-2">
+              <button onClick={handleNavigateAccount} className="flex items-center gap-2 text-sm text-slate-300">
                 <Avatar src={me?.avatarUrl} sx={{ width: 20, height: 20 }} />
                 Hi, {me.fullName}
               </button>
@@ -121,11 +112,11 @@ export default function SiteHeader() {
                 <div className="flex flex-col space-y-2 pt-4">
                   <div className="flex items-center space-x-2 text-sm">
                     <Phone className="h-4 w-4" />
-                    <span>1800 0123</span>
+                    <span>052 220 6965</span>
                   </div>
                   <div className="flex items-center space-x-2 text-sm">
                     <Mail className="h-4 w-4" />
-                    <span>information@travel@gmail.com</span>
+                    <span>tranvy.art@gmail.com</span>
                   </div>
                 </div>
               </nav>

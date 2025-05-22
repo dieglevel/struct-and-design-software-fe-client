@@ -88,11 +88,10 @@ export const SideBar = () => {
   return (
     <div className="w- container max-w-xs bg-white p-4">
       <div className="mb-6 flex flex-col items-center">
-        <div className="relative mb-3 h-24 w-24">
-          <Image src={avatar1} alt="Profile picture" width={96} height={96} className="rounded-full object-cover" />
+        <div className="relative mb-3 h-24 w-24 border-2 rounded-full">
+          <Image src={userData?.avatarUrl || avatar1} alt="Profile picture" fill className="rounded-full object-contain" />
         </div>
         <h2 className="text-xl font-bold text-[#1a3c61]">{userData.fullName}</h2>
-        <p className="text-sm text-gray-500">{userData?.avatarUrl}</p>
       </div>
       <SidebarProvider>
         <SidebarMenu>

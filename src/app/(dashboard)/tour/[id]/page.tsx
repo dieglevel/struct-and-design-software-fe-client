@@ -19,15 +19,14 @@ export default function TourDetailPage() {
   useEffect(() => {
     handleGetTourById(`${id}`)
     handleGetReviewByTourId(`${id}`)
-    return () => {
-      handleGetTourById()
-    }
   }, [id])
+
+  const tourScheduleId = (tour?.tourScheduleResponses as { tourScheduleId: string }[] | undefined)?.[0]?.tourScheduleId
 
   return (
     <div className="m-auto">
       <div className="relative h-52 w-full">
-        <Image src={tourDetailBanner} alt="Tour Banner" className="h-full w-full object-cover" />
+        <Image src={tourDetailBanner} alt="Tour Banner" className="h-full w-full object-cover" height={208} />
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black text-center opacity-50">
           <h1 className="text-3xl font-bold text-white">Tour detail</h1>
           <p className="line-clamp-1 w-1/2 text-sm text-white opacity-100 md:text-lg">
@@ -57,12 +56,14 @@ export default function TourDetailPage() {
         {/* layout */}
         <BookingTourDetailComponent tourDetail={tour} />
         <AccordionTourSchedule tourDetail={tour} />
-        <CustomerReviews
-          tourScheduleId={`${(tour?.tourScheduleResponses as { tourScheduleId: string }[] | undefined)?.[0]?.tourScheduleId}`}
-          totalRating={totalRating}
-          loading={loading}
-          reviews={reviews}
-        />
+        {tourScheduleId && (
+          <CustomerReviews
+            tourScheduleId={tourScheduleId}
+            totalRating={totalRating}
+            loading={loading}
+            reviews={reviews}
+          />
+        )}
       </div>
     </div>
   )
