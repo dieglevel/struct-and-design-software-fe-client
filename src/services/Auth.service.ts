@@ -17,7 +17,7 @@ class AuthService {
             token,
             userId
         });
-        return response.data;
+        return response;
     }
 
     async loginGoogle() {

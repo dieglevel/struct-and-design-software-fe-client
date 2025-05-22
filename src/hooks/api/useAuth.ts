@@ -30,8 +30,9 @@ function useAuth() {
       }
 
       dispatch(setMe(res.user))
-      await handleSendTokenToServer()
       localStorage.setItem('token', JSON.stringify(item))
+      console.log("💲💲💲 ~ handleLogin ~ res:", res)
+      await handleSendTokenToServer({ userId: res.user.userId || "" })
       enqueueSnackbar({ variant: 'success', message: 'Login success' })
       router.push('/home')
     } catch (error) {
@@ -57,11 +58,12 @@ function useAuth() {
     redirect("/login")
   }
 
-  const handleSendTokenToServer = async () => {
-     await registerServiceWorker(); 
+  const handleSendTokenToServer = async (params?: { userId: string }) => {
+    console.log(params)
+    await registerServiceWorker(); 
     const token = await requestPermissionAndGetToken(); 
     console.log("Token FCM của bạn:", token);
-    await authService.sendTokenToServer(token, me?.userId as string)
+    await authService.sendTokenToServer(token, params?.userId as string)
     return
   }
 
