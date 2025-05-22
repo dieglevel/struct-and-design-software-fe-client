@@ -60,7 +60,7 @@ export const CheapTourContainerComponent = () => {
               <div className=" mx-4 my-2 lg:my-4 flex flex-col justify-between">
                 <h3 className="text-sm text-colorbrand-midnightBlue-900 md:text-xl line-clamp-3 h-14  lg:line-clamp-2 font-semibold ">{item.name}</h3>
                 <div className="flex flex-col justify-between lg:flex-row">
-                  <h3 className="text-sm text-gray-500 md:text-lg line-clamp-2">
+                  <h3 className="text-sm text-gray-500 md:text-lg line-clamp-2 h-14">
                     <ClockCircleOutlined /> {item.description}
                   </h3>
                   <Rating

@@ -20,19 +20,20 @@ const steps = [
   {
     img: notify,
     title: 'Hãy cho chúng tôi biết bạn muốn làm gì?',
-    desc: 'Lorem ipsum is that it has a more-or-less normal distribution of letters, as opposed to using',
+    desc: 'Chia sẻ mục đích chuyến đi hoặc trải nghiệm bạn muốn có để chúng tôi có thể hỗ trợ bạn tốt nhất.',
   },
   {
     img: location,
     title: 'Chia sẻ địa điểm du lịch của bạn',
-    desc: 'Lorem ipsum is that it has a more-or-less normal distribution of letters, as opposed to using',
+    desc: 'Hãy cho biết những điểm đến bạn quan tâm hoặc muốn khám phá trong chuyến đi của mình.',
   },
   {
     img: share,
     title: 'Chia sẻ sở thích du lịch của bạn',
-    desc: 'Lorem ipsum is that it has a more-or-less normal distribution of letters, as opposed to using',
+    desc: 'Cung cấp những sở thích cá nhân về du lịch như khám phá thiên nhiên, văn hóa hay ẩm thực để chúng tôi tư vấn phù hợp.',
   },
 ]
+
 export const SubComponent = () => {
   return (
     <div className="container relative z-10 mx-auto px-4">

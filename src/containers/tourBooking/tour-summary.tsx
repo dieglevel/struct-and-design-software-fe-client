@@ -6,9 +6,11 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Calendar, Users } from 'lucide-react'
 import Image from 'next/image'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import hoiAn from '@/assets/images/hoiAn.jpg'
 
 export function TourSummary({ nextPayment }: any) {
+  const [code, setCode] = useState('')
 
   const { tour, quantity, discount, totalBeforeDiscount, travelers, validate, isFullFillSubmit } =
     useContext(BookingContext)
@@ -29,7 +31,7 @@ export function TourSummary({ nextPayment }: any) {
             <div className="flex gap-3">
               <div className="flex-shrink-0">
                 <Image
-                  src={tour?.thumbnail ?? ''}
+                  src={tour?.thumbnail ?? hoiAn}
                   alt="Tour image"
                   width={120}
                   height={80}
@@ -99,7 +101,12 @@ export function TourSummary({ nextPayment }: any) {
               <div className="flex items-center justify-between pt-2">
                 <span>Mã giảm giá:</span>
                 <div className="flex items-center gap-2">
-                  <Input placeholder="Nhập mã giảm giá" className="h-8 text-sm" />
+                  <Input
+                    placeholder="Nhập mã giảm giá"
+                    className="h-8 text-sm"
+                    onChange={(e) => setCode(e.target.value)}
+                    value={code}
+                  />
                   <Button size="sm" variant="outline" className="h-8">
                     Áp dụng
                   </Button>

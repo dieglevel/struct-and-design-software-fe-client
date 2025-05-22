@@ -19,15 +19,15 @@ export function ContactInformation() {
           <Label htmlFor="fullName" className="text-sm">
             Họ tên *
           </Label>
-          <Input id="fullName" value={me?.fullName ?? ''} placeholder="Nhập họ tên" className="mt-1" />
+          <Input id="fullName" value={me?.fullName ?? ''} placeholder="Nhập họ tên" className="mt-1" onChange={() => {}} />
         </div>
         <div>
           <Label htmlFor="phone" className="text-sm">
             Điện thoại *
           </Label>
-          <Input id="phone" value={me?.phone ?? ''} placeholder="Nhập số điện thoại" className="mt-1" />
+          <Input id="phone" value={me?.phone ?? ''} placeholder="Nhập số điện thoại" className="mt-1" onChange={() => {}} />
         </div>
       </div>
-    </div>
+    </div>  
   )
 }

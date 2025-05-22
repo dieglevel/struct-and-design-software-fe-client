@@ -56,7 +56,7 @@ const LoginPage = () => {
             type="text"
             {...register('username', { required: true })}
             placeholder="Nhập tên đăng nhập"
-            className="rounded-md border-1 border-colorbrand-grayWhite-200 bg-colorbrand-burntSienna-50 p-2 px-4 text-slate-600 outline-none"
+            className="rounded-md border-1 border-colorbrand-grayWhite-200 p-2 px-4 text-slate-600 outline-none"
           />
           <label className="my-2 text-base font-bold text-colorbrand-midnightBlue-950">
             Mật khẩu
@@ -66,7 +66,7 @@ const LoginPage = () => {
             type="password"
             {...register('password', { required: true })}
             placeholder="Nhập mật khẩu"
-            className="rounded-md border-1 border-colorbrand-grayWhite-200 bg-colorbrand-burntSienna-50 p-2 px-4 text-slate-600 outline-none"
+            className="rounded-md border-1 border-colorbrand-grayWhite-200 p-2 px-4 text-slate-600 outline-none"
           />
           <div className="flex flex-row justify-end pt-2">
             <a href="./forget-password" className="text-colorbrand-burntSienna-500">

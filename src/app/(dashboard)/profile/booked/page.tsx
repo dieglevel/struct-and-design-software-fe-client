@@ -1,41 +1,32 @@
 'use client'
 
-import { IBookedTourEntity } from '@/models/response/booked/booked.interface'
 import { BookedList } from '@/containers/profile'
+import bookingService from '@/services/Booking.service'
+import { IBooking } from '@/types/entities/Booking'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
-const bookedTours: IBookedTourEntity[] = [
-  {
-    bookingId: '1',
-    tourName: 'Tour Nha Trang - Khám Phá Biển Đảo',
-    location: 'Phạm Văn Đồng, TP Nha Trang',
-    startDate: '2025-10-12',
-    endDate: '2025-10-31',
-    totalAdults: 2,
-    totalChildren: 1,
-    pricePerPerson: 5000000,
-    image: 'http://res.cloudinary.com/dwip7dplu/image/upload/v1743495910/travel/aiozwipu7gmsnzoedjdw.webp',
-  },
-  {
-    bookingId: '2',
-    tourName: 'Tour Vinpearl Nha Trang – Nghỉ Dưỡng Cao Cấp',
-    location: 'Vinpearl Land, Nha Trang',
-    startDate: '2025-08-05',
-    endDate: '2025-08-10',
-    totalAdults: 3,
-    totalChildren: 0,
-    pricePerPerson: 4255000,
-    image: 'http://res.cloudinary.com/dwip7dplu/image/upload/v1743495910/travel/aiozwipu7gmsnzoedjdw.webp',
-  },
-]
 
 export default function BookedPage() {
 //   const [activeTab, setActiveTab] = useState<string>('all')
+  const [bookedTours, setBookedTours] = useState<IBooking[]>([])
+  const router = useRouter()
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await bookingService.getMyBooking()
+      console.log(response)
+      setBookedTours(response)
+    }
+    fetchData()
+  }, [router.asPath])
 
   return (
     <div className="w-full max-w-4xl flex-1  p-6 lg:w-[896px]">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Đặt phòng của tôi</h1>
-        <p className="text-muted-foreground">Quản lý các đặt phòng và lịch sử của bạn</p>
+        <h1 className="text-3xl font-bold">Danh sách tour của tôi</h1>
+        <p className="text-muted-foreground">Quản lý các tour đã đặt và lịch sử của bạn</p>
       </div>
         
         
